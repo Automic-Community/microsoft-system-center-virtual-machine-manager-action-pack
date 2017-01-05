@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
+<DOCU name="PCK.AUTOMIC_SCVMM.PUB.DOC">
+<HEADER state="1">
+<Title>Package documentation</Title>
+<ArchiveKey1/>
+<ArchiveKey2/>
+<OH_SubType/>
+</HEADER>
+<DOCU_Docu state="1" type="text">
+<DOC><![CDATA[About Automic's SCVMM Package
+================================
+
+
+=Supported versions=
+
+
+=Limitations=
+
+
+=Setup=
+
+=Actions=
+Following actions are supported for SCVMM:
+
+* Action Name: 
+* Action Description: 
+]]></DOC>
+</DOCU_Docu>
+</DOCU>
+</uc-export>
