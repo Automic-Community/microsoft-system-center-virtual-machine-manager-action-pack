@@ -1,9 +1,0 @@
-#environment config
-automationEngine: 
-  host: 127.0.0.1
-  port: 2217
-  client: 101
-  user: EXTVIM
-  department: DEVELOP
-  password: automic
-  packagesPath: PACKAGES
