@@ -12,18 +12,17 @@
 
 
 =Supported versions=
-
+System Center 2012
 
 =Limitations=
-
 
 =Setup=
 
 =Actions=
 Following actions are supported for SCVMM:
 
-* Action Name: 
-* Action Description: 
+* Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM
+* Action Description: This action is used to get the details of a Virtual Machine
 ]]></DOC>
 </DOCU_Docu>
 </DOCU>

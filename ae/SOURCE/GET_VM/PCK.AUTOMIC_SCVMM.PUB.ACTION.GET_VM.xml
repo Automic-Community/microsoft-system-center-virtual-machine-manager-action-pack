@@ -57,7 +57,7 @@
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS">
 <UC4RB_VMM_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PASSWORD#" promptsetname="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_VMM_PORTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PORT#" promptsetname="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS">8100</UC4RB_VMM_PORTs.00>
-<UC4RB_VMM_SERVER_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_SERVER_URL#" promptsetname="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS"/>
+<UC4RB_VMM_SERVER_IPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_SERVER_IP#" promptsetname="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_VMM_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_USERNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 </PRPTBOX>
 </PROMPTSET>
@@ -125,7 +125,7 @@
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS">
 <UC4RB_VMM_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PASSWORD#" promptsetname="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_VMM_PORTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PORT#" promptsetname="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS">8100</UC4RB_VMM_PORTs.00>
-<UC4RB_VMM_SERVER_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_SERVER_URL#" promptsetname="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS"/>
+<UC4RB_VMM_SERVER_IPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_SERVER_IP#" promptsetname="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_VMM_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_USERNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 </PRPTBOX>
 </PROMPTSET>
@@ -179,7 +179,7 @@
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS">
 <UC4RB_VMM_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PASSWORD#" promptsetname="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_VMM_PORTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PORT#" promptsetname="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS">8100</UC4RB_VMM_PORTs.00>
-<UC4RB_VMM_SERVER_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_SERVER_URL#" promptsetname="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS"/>
+<UC4RB_VMM_SERVER_IPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_SERVER_IP#" promptsetname="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_VMM_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_USERNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 </PRPTBOX>
 </PROMPTSET>
@@ -297,7 +297,41 @@
 <MSCRI/>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
-<DOC/>
+<DOC><![CDATA[= Action name =
+PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM
+
+= General description =
+This action is used to get the details of a Virtual Machine based on Name and VM Host on which it is hosted. If VM Host is not provided then VM would be searched in whole VMM server based on VM name. Both VMHost and VM name accept wildcard characters like * and ?. The Virtual Machine details would be printed in the Job report.
+
+= Failure Conditions =
+* This action will fail if multiple or no VMs exist for inputs provided.
+
+= Inputs =
+* Server IP or DNS  : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.0
+* Port		    : Specify port which will be used for connection. Default value is 8100.
+* Username	    : Username which will be used for this connection. E.g. domain\username
+* Password	    : Password to your username.
+* VMHost	    : Specify the host from which you want to get VM. Wildcard characters are supported. E.g. myhost.com
+* VM Name	    : Specify name of the virtual machine you want to get. Wildcard characters are supported. E.g. myvm.com
+* Advance Options   : Specify advance options for Get-SCVirtualMachine commandlet.
+* Overwrite Agent   : Overwrites the default agent
+* Overwrite Login   : Overwrites the default login
+
+= Behaviour =
+(none)
+
+=Return Value=
+(none)
+
+= Outputs =
+* Return code is 0 in case of success.
+* Return code is 1 in case of failure.
+
+= Logging =
+Logs will be displayed in the AE report.
+
+= Example =
+(none)]]></DOC>
 </DOCU_Docu>
 </JOBP>
 </uc-export>

@@ -10,8 +10,8 @@
 <DESIGNER/>
 </PROMPTDESIGNER>
 <PROMPTSETXUI state="1">
-<XUIEDITOR><![CDATA[<dialog height="414" icon="PRPT" id="PRPTS" left="0" top="0" width="441"><readpanel fill="b" id="PRPTBOX" nl="1" scroll="v" text="VMM Server details"><properties><entry name="text">VMM Server details</entry><entry name="modifiable">0</entry></properties><text alt="1" enabled="1" fill="b" focus="0" id="UC4RB_VMM_SERVER_URLs.00" inputassistance="0" len="" multiline="0" multilineIcon="0" nl="1" regex="" separator=";" showaspassword="0" text="Server IP or DNS" tooltip="Specify IP address or DNS name of the SCVMM to which you want to connect. E.g. myserver.com or 192.168.112.0" upper="0" required="0"><oninputassistant><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptvalue|@value"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptinputassistance" target="_chainwindow"/></oninputassistant>
-      
+<XUIEDITOR><![CDATA[<dialog height="414" icon="PRPT" id="PRPTS" left="0" top="0" width="441"><readpanel fill="b" id="PRPTBOX" nl="1" scroll="v" text="VMM Server details"><properties><entry name="text">VMM Server details</entry><entry name="modifiable">0</entry></properties><text alt="1" enabled="1" fill="b" focus="0" id="UC4RB_VMM_SERVER_IPs.00" inputassistance="0" len="" multiline="0" multilineIcon="0" nl="1" regex="" required="0" separator=";" showaspassword="0" text="Server IP or DNS" tooltip="Specify IP address or DNS name of the SCVMM to which you want to connect. E.g. myserver.com or 192.168.112.0" upper="0"><oninputassistant><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptvalue|@value"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptinputassistance" target="_chainwindow"/></oninputassistant>
+         
       <properties>
         <entry listparam="C,N" name="reference" reftype="STATIC">UC_DATATYPE_STRING</entry>
         <entry name="xmlkey"/>
@@ -23,7 +23,7 @@
         <entry name="separator">;</entry>
         <entry name="len"/>
         <entry name="quotes"/>
-        <entry name="id">UC4RB_VMM_SERVER_URLs.00</entry>
+        <entry name="id">UC4RB_VMM_SERVER_IPs.00</entry>
         <entry name="regex"/>
         <entry name="inputassistance">0</entry>
         <entry name="enabled">0</entry>
@@ -36,7 +36,8 @@
         <entry name="customfield"/>
         <entry name="onchangereset"/>
         <entry name="resetable">1</entry>
-      <entry name="initvalue"/></properties>
+      <entry name="initvalue"/>
+         </properties>
     </text><integer alt="1" enabled="1" fill="b" focus="0" id="UC4RB_VMM_PORTs.00" max="" min="" nl="1" text="Port" tooltip="Specify port which will be used for connection. Default value is 8100.">
       <properties>
         <entry listparam="N" name="reference" reftype="STATIC">UC_DATATYPE_NUMERIC</entry>
@@ -50,9 +51,10 @@
         <entry name="tooltip">Specify port which will be used for connection. Default value is 8100.</entry>
         <entry name="modifiable">1</entry>
         <entry name="customfield"/>
-      <entry name="initvalue">0</entry></properties>
-    </integer><text alt="1" enabled="1" fill="b" focus="0" id="UC4RB_VMM_USERNAMEs.00" inputassistance="0" len="" multiline="0" multilineIcon="0" nl="1" regex="" separator=";" showaspassword="0" text="Username" tooltip="Username which will be used for this connection. Eg. domain\username" upper="0" required="0"><oninputassistant><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptvalue|@value"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptinputassistance" target="_chainwindow"/></oninputassistant>
-      
+      <entry name="initvalue">0</entry>
+         </properties>
+    </integer><text alt="1" enabled="1" fill="b" focus="0" id="UC4RB_VMM_USERNAMEs.00" inputassistance="0" len="" multiline="0" multilineIcon="0" nl="1" regex="" required="0" separator=";" showaspassword="0" text="Username" tooltip="Username which will be used for this connection. Eg. domain\username" upper="0"><oninputassistant><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptvalue|@value"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptinputassistance" target="_chainwindow"/></oninputassistant>
+         
       <properties>
         <entry listparam="C,N" name="reference" reftype="STATIC">UC_DATATYPE_STRING</entry>
         <entry name="xmlkey"/>
@@ -77,9 +79,10 @@
         <entry name="customfield"/>
         <entry name="onchangereset"/>
         <entry name="resetable">1</entry>
-      <entry name="initvalue"/></properties>
-    </text><text alt="1" enabled="1" fill="b" focus="0" id="UC4RB_VMM_PASSWORDs.00" inputassistance="0" len="" multiline="0" multilineIcon="0" nl="1" regex="" separator=";" showaspassword="1" text="Password" tooltip="Password to your username." upper="0" required="0"><oninputassistant><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptvalue|@value"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptinputassistance" target="_chainwindow"/></oninputassistant>
-      
+      <entry name="initvalue"/>
+         </properties>
+    </text><text alt="1" enabled="1" fill="b" focus="0" id="UC4RB_VMM_PASSWORDs.00" inputassistance="0" len="" multiline="0" multilineIcon="0" nl="1" regex="" required="0" separator=";" showaspassword="1" text="Password" tooltip="Password to your username." upper="0"><oninputassistant><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptvalue|@value"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptinputassistance" target="_chainwindow"/></oninputassistant>
+         
       <properties>
         <entry listparam="C,N" name="reference" reftype="STATIC">UC_DATATYPE_STRING</entry>
         <entry name="xmlkey"/>
@@ -104,11 +107,12 @@
         <entry name="customfield"/>
         <entry name="onchangereset"/>
         <entry name="resetable">1</entry>
-      <entry name="initvalue"/></properties>
+      <entry name="initvalue"/>
+         </properties>
     </text></readpanel></dialog>]]></XUIEDITOR>
 </PROMPTSETXUI>
 <PROMPTSETDATA state="1">
-<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_VMM_SERVER_URLs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_SERVER_URL#" ReadFromTable="OPSE"></UC4RB_VMM_SERVER_URLs.00><UC4RB_VMM_PORTs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_PORT#" ReadFromTable="OPSE">8100</UC4RB_VMM_PORTs.00><UC4RB_VMM_USERNAMEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_USERNAME#" ReadFromTable="OPSE"></UC4RB_VMM_USERNAMEs.00><UC4RB_VMM_PASSWORDs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_PASSWORD#" ReadFromTable="OPSE"></UC4RB_VMM_PASSWORDs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
+<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_VMM_SERVER_IPs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_SERVER_IP#" ReadFromTable="OPSE"></UC4RB_VMM_SERVER_IPs.00><UC4RB_VMM_PORTs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_PORT#" ReadFromTable="OPSE">8100</UC4RB_VMM_PORTs.00><UC4RB_VMM_USERNAMEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_USERNAME#" ReadFromTable="OPSE"></UC4RB_VMM_USERNAMEs.00><UC4RB_VMM_PASSWORDs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_PASSWORD#" ReadFromTable="OPSE"></UC4RB_VMM_PASSWORDs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
 </PROMPTSETDATA>
 <DOCU_Docu state="1" type="text">
 <DOC/>
