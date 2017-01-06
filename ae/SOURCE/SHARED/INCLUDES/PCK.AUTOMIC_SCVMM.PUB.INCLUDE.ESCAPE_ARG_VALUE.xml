@@ -8,8 +8,8 @@
 </HEADER>
 <SCRIPT mode="1" state="1">
 <MSCRI><![CDATA[
-: SET &UC4RB_VSP_VSPHERE_ESC_VALUE# = STR_TRIM("&TEMP_OPTION_VALUE#")
-: SET &UC4RB_VSP_VSPHERE_ESC_VALUE# = STR_SUB("&UC4RB_VSP_VSPHERE_ESC_VALUE#", "'", "''")]]></MSCRI>
+: SET &UC4RB_VMM_ESC_VALUE# = STR_TRIM("&TEMP_OPTION_VALUE#")
+: SET &UC4RB_VMM_ESC_VALUE# = STR_SUB("&UC4RB_VMM_ESC_VALUE#", "'", "''")]]></MSCRI>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[It escapes the input parameters and wrap the parameter surrounded by quotes(").]]></DOC>
