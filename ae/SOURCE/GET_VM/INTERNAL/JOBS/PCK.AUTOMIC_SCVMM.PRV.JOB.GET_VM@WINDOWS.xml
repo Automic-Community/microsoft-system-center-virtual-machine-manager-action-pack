@@ -136,18 +136,17 @@
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
-!: INC PCK.ITPA_SHARED.PRV.INCLUDE.CHANGE_DIRECTORY_TO_AGENT_BIN
 
 !-------------------------------------Create VMM commandlets---------------------------------------------------------------------------------------------------
 
 ! Get VMhost command
 : SET &UC4RB_VMM_VMHOST_CMD# = "Get-SCVMHost "
-: SET &UC4RB_VMM_VMHOST_CMD# = STR_CAT(&UC4RB_VMM_VMHOST_CMD#, " -vmmserver $vmmserver ")
+: SET &UC4RB_VMM_VMHOST_CMD# = STR_CAT(&UC4RB_VMM_VMHOST_CMD#, " -VMMServer $vmmserver ")
 
 ! vm host
 : IF &UC4RB_VMM_VMHOST# <> ""
 :   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMHOST#
-:   SET &UC4RB_VMM_VMHOST_CMD# = STR_CAT(&UC4RB_VMM_VMHOST_CMD#, " -computername  '&UC4RB_VMM_ESC_VALUE#' ")
+:   SET &UC4RB_VMM_VMHOST_CMD# = STR_CAT(&UC4RB_VMM_VMHOST_CMD#, " -ComputerName  '&UC4RB_VMM_ESC_VALUE#' ")
 : ENDIF
 
 ! Get VM command
@@ -177,11 +176,13 @@ Write-Host &UC4RB_VMM_CONNECT_CMDLET#
 
 ! Connect to VMM Server
 try{
-$vmmserver = &UC4RB_VMM_CONNECT_CMDLET# -Credential $servercreds
+  $vmmserver = &UC4RB_VMM_CONNECT_CMDLET# -Credential $servercreds
 
   Write-Host "successfully connected to VMM Server"
 
   try{
+      $vmcount=0
+: IF &UC4RB_VMM_VMHOST# <> ""
 ! logging get vmhost command
       Write-Host &UC4RB_VMM_VMHOST_CMD#
 
@@ -191,8 +192,7 @@ $vmmserver = &UC4RB_VMM_CONNECT_CMDLET# -Credential $servercreds
             Write-Host "Found one or more VM Host"
             $vmhost | select name
             Write-Host "Searching for unique Virtual Machine."
-            $vmcount=0
-            #$uniquevm
+
             foreach($vmhost in $vmhosts){
 ! logging get vm command
                 Write-Host &UC4RB_VMM_GETVM_CMD# -VMHost $vmhost
@@ -209,26 +209,39 @@ $vmmserver = &UC4RB_VMM_CONNECT_CMDLET# -Credential $servercreds
 
                 }
             }
-            write-host "Number of Virtual Machines found:" $vmcount
-            if($vmcount -eq 1){
-                Write-Host "unique Virtual Machine found."
-                $uniquevm
-            }else{
-                Write-Host "No unique Virtual Machine found."
-                $errors=1
-            }
       }else{
             Write-Host "No VM Hosts found for the name provided."
             $errors=1
       }
+: ELSE
+      Write-Host "Searching for unique Virtual Machine."
+      Write-Host &UC4RB_VMM_GETVM_CMD# -VMMServer $vmmserver
+      $vminhost = &UC4RB_VMM_GETVM_CMD# -VMMServer $vmmserver
+      if($vminhost.count -and $vminhost.count -ne 0){
+        $vmcount = $vminhost.count
+        $uniquevm = $vminhost
+      }
+
+: ENDIF
+      write-host "Number of Virtual Machines found:" $vmcount
+      if($vmcount -eq 1){
+            Write-Host "unique Virtual Machine found."
+            $uniquevm
+      }else{
+            Write-Host "No unique Virtual Machine found."
+            $errors=1
+      }
+
   }catch{
-        Write-Host "Error searching while fetching Virtual Machine or Corresponding VMHost."
         $errors=1
+        Write-Host "Error searching while fetching Virtual Machine or Corresponding VMHost."
+        Write-Host "ERROR: $($error[0].Exception.Message)"
   }
 
 }catch{
-  Write-Host "Error connecting VMM Server."
   $errors=1
+  Write-Host "Error connecting VMM Server."
+  Write-Host "ERROR: $($error[0].Exception.Message)"
 }
 
 
