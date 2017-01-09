@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
+<JOBI name="PCK.AUTOMIC_SCVMM.PUB.INCLUDE.PREP_CONNECTION_CMDLETS">
+<HEADER state="1">
+<Title>prepare get-scvmmserver commandlet</Title>
+<ArchiveKey1/>
+<ArchiveKey2/>
+<OH_SubType/>
+</HEADER>
+<SCRIPT mode="1" state="1">
+<MSCRI><![CDATA[! Buidling Connect command
+: SET &UC4RB_VMM_CONNECT_CMDLET# = "Get-SCVMMServer "
+
+! Server IP or URL
+: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_SERVER_IP#
+: SET &UC4RB_VMM_CONNECT_CMDLET# = STR_CAT(&UC4RB_VMM_CONNECT_CMDLET#, "-ComputerName '&UC4RB_VMM_ESC_VALUE#' ")
+
+! Port
+: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_PORT#
+: SET &UC4RB_VMM_CONNECT_CMDLET# = STR_CAT(&UC4RB_VMM_CONNECT_CMDLET#, "-TCPPort '&UC4RB_VMM_ESC_VALUE#' ")
+
+! Username
+: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_USERNAME#
+: SET &UC4RB_VMM_ESC_USER# = &UC4RB_VMM_ESC_VALUE#
+
+]]></MSCRI>
+</SCRIPT>
+<DOCU_Docu state="1" type="text">
+<DOC/>
+</DOCU_Docu>
+</JOBI>
+</uc-export>
