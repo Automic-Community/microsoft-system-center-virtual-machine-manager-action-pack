@@ -23,6 +23,9 @@ Following actions are supported for SCVMM:
 
 * Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM
 * Action Description: This action is used to get the details of a Virtual Machine
+
+* Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.STOP_VM
+* Action Description: This action is used to stop a Virtual Machine
 ]]></DOC>
 </DOCU_Docu>
 </DOCU>

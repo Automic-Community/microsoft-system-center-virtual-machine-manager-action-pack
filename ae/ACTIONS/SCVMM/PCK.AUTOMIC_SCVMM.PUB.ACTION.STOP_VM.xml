@@ -65,7 +65,6 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM"/>
 <UC4RB_VMM_FORCEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_FORCE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">NO</UC4RB_VMM_FORCEs.00>
 <UC4RB_VMM_SAVE_STATEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_SAVE_STATE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">NO</UC4RB_VMM_SAVE_STATEs.00>
@@ -135,7 +134,6 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM"/>
 <UC4RB_VMM_FORCEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_FORCE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">NO</UC4RB_VMM_FORCEs.00>
 <UC4RB_VMM_SAVE_STATEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_SAVE_STATE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">NO</UC4RB_VMM_SAVE_STATEs.00>
@@ -191,7 +189,6 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM"/>
 <UC4RB_VMM_FORCEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_FORCE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">NO</UC4RB_VMM_FORCEs.00>
 <UC4RB_VMM_SAVE_STATEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_SAVE_STATE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">NO</UC4RB_VMM_SAVE_STATEs.00>
@@ -303,7 +300,41 @@
 <MSCRI/>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
-<DOC/>
+<DOC><![CDATA[= Action name =
+PCK.AUTOMIC_SCVMM.PUB.ACTION.STOP_VM
+
+= General description =
+This action is used to stop a virtual machine based on name and VM Host on which it is hosted. If VM Host is not provided then VM would be searched in whole VMM server based on VM name. User can also provide additional parameters like Id in "Advance options" field. The Virtual Machine details will be printed in the Job report.
+
+= Failure Conditions =
+* This action will fail if multiple or no VMs exist for inputs provided.
+
+= Inputs =
+* Server IP or DNS  : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.0
+* Port		    : Specify port which will be used for connection. Default value is 8100.
+* Username	    : Username which will be used for this connection. E.g. domain\username
+* Password	    : Password to your username.
+* VMHost	    : Specify the host from which you want to get VM. Wildcard characters are supported. E.g. myhost.com
+* VM Name	    : Specify name of the virtual machine you want to stop. Wildcard characters are supported. E.g. myvm.com
+* Advance Options   : Specify advance options for Get-SCVirtualMachine commandlet. E.g. -id 3d73b337-cf03-4d56-b8ae-a7c3fc90071b
+* Overwrite Agent   : Overwrites the default agent
+* Overwrite Login   : Overwrites the default login
+
+= Behaviour =
+(none)
+
+=Return Value=
+(none)
+
+= Outputs =
+* Return code is 0 in case of success.
+* Return code is 1 in case of failure.
+
+= Logging =
+Logs will be displayed in the AE report.
+
+= Example =
+(none)]]></DOC>
 </DOCU_Docu>
 </JOBP>
 </uc-export>
