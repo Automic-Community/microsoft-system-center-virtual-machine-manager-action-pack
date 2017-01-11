@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBS_WINDOWS AttrType="WINDOWS" name="PCK.AUTOMIC_SCVMM.PRV.JOB.GET_VM@WINDOWS">
+<JOBS_WINDOWS AttrType="WINDOWS" name="PCK.AUTOMIC_SCVMM.PRV.JOB.NEW_VM_FROM_VM@WINDOWS">
 <XHEADER state="1">
-<Title>Get Virtual Machine Details</Title>
+<Title/>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -28,7 +28,7 @@
 <AutoDeactNo>0</AutoDeactNo>
 <AutoDeact1ErrorFree>0</AutoDeact1ErrorFree>
 <AutoDeactErrorFree>0</AutoDeactErrorFree>
-<DeactWhen/>
+<DeactWhen>ANY_OK</DeactWhen>
 <DeactDelay>0</DeactDelay>
 <AutoDeactAlways>1</AutoDeactAlways>
 <AttDialog>0</AttDialog>
@@ -117,80 +117,115 @@
 </PRE_SCRIPT>
 <SCRIPT mode="1" state="1">
 <MSCRI><![CDATA[: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.EXECUTION_ENVIRONMENT
-
+: INC PCK.ITPA_SHARED.PUB.INCLUDE.POWERSHELL_UTILITY
 !-------------------------------------Logging input parameters-------------------------------------------------------------------------------------------------
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.PARAM_VALIDATION
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.LOGGING_CONNECTION_DETAILS
 
 ! Log parameters specific to action
+: SET &UC4RB_LOGGING_PARAMETER# = "VM Name"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_NEW_VMNAME#"
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "Path"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_PATH#"
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
 : SET &UC4RB_LOGGING_PARAMETER# = "VMHost"
 : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_VMHOST#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
-: SET &UC4RB_LOGGING_PARAMETER# = "VM Name"
+: SET &UC4RB_LOGGING_PARAMETER# = "VM Name to use"
 : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_VMNAME#"
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
-
-: SET &UC4RB_LOGGING_PARAMETER# = "Advance Options"
-: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_ADV_OPTIONS#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
 
 !-------------------------------------Create VMM commandlets---------------------------------------------------------------------------------------------------
 
+! Get VMhost command
+: SET &UC4RB_VMM_VMHOST_CMD# = "Get-SCVMHost "
+: SET &UC4RB_VMM_VMHOST_CMD# = STR_CAT(&UC4RB_VMM_VMHOST_CMD#, " -VMMServer $vmmserver ")
+
+! vm host
+: IF &UC4RB_VMM_VMHOST# <> ""
+:   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMHOST#
+:   SET &UC4RB_VMM_VMHOST_CMD# = STR_CAT(&UC4RB_VMM_VMHOST_CMD#, " -ComputerName  '&UC4RB_VMM_ESC_VALUE#' ")
+: ENDIF
+
 ! Get VM command
 : SET &UC4RB_VMM_GETVM_CMD# = "Get-SCVirtualMachine "
 
-! VM name
+! VM Name to use
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMNAME#
-: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -Name '&UC4RB_VMM_ESC_VALUE#' ")
+: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -name  '&UC4RB_VMM_ESC_VALUE#' ")
 
-! VM host
-: IF &UC4RB_VMM_VMHOST# <> ""
-:   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMHOST#
-:   SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -VMHost '&UC4RB_VMM_ESC_VALUE#' ")
-: ENDIF
+! Create new vm from vm command
+: SET &UC4RB_VMM_CREATEVM_CMD# = "New-SCVirtualMachine "
 
-! VMM server
-: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -VMMServer $vmmserver ")
+! New vm name
+: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_NEW_VMNAME#
+: SET &UC4RB_VMM_CREATEVM_CMD# = STR_CAT(&UC4RB_VMM_CREATEVM_CMD#, " -Name  '&UC4RB_VMM_ESC_VALUE#' ")
+
+! Path
+: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_PATH#
+: SET &UC4RB_VMM_CREATEVM_CMD# = STR_CAT(&UC4RB_VMM_CREATEVM_CMD#, " -Path  '&UC4RB_VMM_ESC_VALUE#' ")
 
 ! Advance options
 : IF &UC4RB_VMM_ADV_OPTIONS# <> ""
-:   SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " &UC4RB_VMM_ADV_OPTIONS# ")
+:   SET &UC4RB_VMM_CREATEVM_CMD# = STR_CAT(&UC4RB_VMM_CREATEVM_CMD#, " &UC4RB_VMM_ADV_OPTIONS# ")
 : ENDIF
 
 !-------------------------------------Commandlet execution-----------------------------------------------------------------------------------------------------
 
-! Connect to VMM Server
+
+
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CONNECT_CMDLET
 
-try{
+  try{
 
-! logging get vm command
-  Write-Host "INFO:" &UC4RB_VMM_GETVM_CMD#
-  $vmachine = &UC4RB_VMM_GETVM_CMD#
-  if($vmachine.count -ne 1){
-      Write-Host "INFO: Multiple or No Virtual Machine(s) found."
-      $errors=1
+!     logging get vmhost command
 
-  }else{
-      Write-Host "INFO: Unique Virtual Machine found."
-      $vmachine
+      $vmhosts = &UC4RB_VMM_VMHOST_CMD#
+
+      if($vmhosts.count -gt 1){
+            Write-Host "Found more than one VM Host"
+            $errors=1
+      }elseif($vmhosts.count -eq 1){
+!     look for unique VM
+           Write-Host &UC4RB_VMM_GETVM_CMD#
+           $uniquevm = &UC4RB_VMM_GETVM_CMD#
+
+            if($uniquevm.count -ne 1){
+                echo "Found  zero or more than one VM "
+                $count=$uniquevm.count
+                echo "Number of VM found :$count"
+                $errors=1
+           }else{
+                echo "Creating clone..........."
+                Write-Host UC4RB_VMM_CREATEVM_CMD -VM $uniquevm -VMHost $vmhosts
+                UC4RB_VMM_CREATEVM_CMD -VM $uniquevm -VMHost $vmhosts
+           }
+
+      }else{
+            Write-Host "No VM Hosts found for the name provided."
+            $errors=1
+      }
+
+  }catch{
+        $errors=1
+        Write-Host "Error searching while fetching Virtual Machine or Corresponding VMHost."
+        Write-Host "ERROR: $($error[0].Exception.Message)"
   }
 
-}catch{
-  $errors=1
-  Write-Host "ERROR: $($error[0].Exception.Message)"
-}
 
 
 !-----------------------------------Error Handling-------------------------------------------------------------------------------------
 !Status messages
-: SET &UC4RB_LOGGING_INFO# = "******** GET VM ACTION EXECUTED SUCCESSFULLY ********"
-: SET &UC4RB_LOGGING_ERROR# = "******** GET VM ACTION FAILED ********"
+:SET &UC4RB_LOGGING_INFO# = "******** New VM from VM Action EXECUTED SUCCESSFULLY ********"
+:SET &UC4RB_LOGGING_ERROR# = "******** New VM from VM Action FAILED ********"
 
-: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CHECK_ERRORSTATUS]]></MSCRI>
+:INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CHECK_ERRORSTATUS]]></MSCRI>
 </SCRIPT>
 <OUTPUTSCAN state="1">
 <Inherit>N</Inherit>
