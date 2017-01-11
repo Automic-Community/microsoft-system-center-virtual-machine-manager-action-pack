@@ -23,6 +23,9 @@ Following actions are supported for SCVMM:
 
 * Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM
 * Action Description: This action is used to get the details of a Virtual Machine
+
+* Action Name:  PCK.AUTOMIC_SCVMM.PUB.ACTION.NEW_VM_FROM_VM
+* Action Description: This action is used to create a virtual machine from an existing stopped virtual machine deployed on a host.
 ]]></DOC>
 </DOCU_Docu>
 </DOCU>
