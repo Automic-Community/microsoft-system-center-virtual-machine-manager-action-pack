@@ -116,7 +116,7 @@
 :INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.PREP_CONNECTION_CMDLETS]]></PSCRI>
 </PRE_SCRIPT>
 <SCRIPT mode="1" state="1">
-<MSCRI><![CDATA[: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE..EXECUTION_ENVIRONMENT
+<MSCRI><![CDATA[: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.EXECUTION_ENVIRONMENT
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.POWERSHELL_UTILITY
 !-------------------------------------Logging input parameters-------------------------------------------------------------------------------------------------
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.PARAM_VALIDATION
@@ -177,23 +177,10 @@
 : ENDIF
 
 !-------------------------------------Commandlet execution-----------------------------------------------------------------------------------------------------
-! Decrypt Password
-: INC PCK.ITPA_SHARED.PUB.INCLUDE.ATTACH
-: SET &UC4RB_ENCRYPTED_PASSWORD_TMP# = "&UC4RB_VMM_PASSWORD#"
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.DECRYPT_PASSWORD
 
-! Create PSCredential object
-$securepassword = ConvertTo-SecureString $UC4_DECRYPTED_PWD -AsPlainText -Force
-$servercreds = New-Object System.Management.Automation.PSCredential ('&UC4RB_VMM_ESC_USER#', $securepassword)
 
-! logging connect command
-Write-Host &UC4RB_VMM_CONNECT_CMDLET#
 
-! Connect to VMM Server
-try{
-  $vmmserver = &UC4RB_VMM_CONNECT_CMDLET# -Credential $servercreds
-
-  Write-Host "successfully connected to VMM Server"
+: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CONNECT_CMDLET
 
   try{
 
@@ -231,11 +218,6 @@ try{
         Write-Host "ERROR: $($error[0].Exception.Message)"
   }
 
-}catch{
-  $errors=1
-  Write-Host "Error connecting VMM Server."
-  Write-Host "ERROR: $($error[0].Exception.Message)"
-}
 
 
 !-----------------------------------Error Handling-------------------------------------------------------------------------------------
