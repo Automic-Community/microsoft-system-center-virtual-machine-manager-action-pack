@@ -165,15 +165,15 @@
 
 ! New vm name
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_NEW_VMNAME#
-: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -Name  '&UC4RB_VMM_ESC_VALUE#' ")
+: SET &UC4RB_VMM_CREATEVM_CMD# = STR_CAT(&UC4RB_VMM_CREATEVM_CMD#, " -Name  '&UC4RB_VMM_ESC_VALUE#' ")
 
 ! Path
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_PATH#
-: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -Name  '&UC4RB_VMM_ESC_VALUE#' ")
+: SET &UC4RB_VMM_CREATEVM_CMD# = STR_CAT(&UC4RB_VMM_CREATEVM_CMD#, " -Path  '&UC4RB_VMM_ESC_VALUE#' ")
 
 ! Advance options
 : IF &UC4RB_VMM_ADV_OPTIONS# <> ""
-:   SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " &UC4RB_VMM_ADV_OPTIONS# ")
+:   SET &UC4RB_VMM_CREATEVM_CMD# = STR_CAT(&UC4RB_VMM_CREATEVM_CMD#, " &UC4RB_VMM_ADV_OPTIONS# ")
 : ENDIF
 
 !-------------------------------------Commandlet execution-----------------------------------------------------------------------------------------------------
@@ -196,17 +196,15 @@ try{
   Write-Host "successfully connected to VMM Server"
 
   try{
-      $vmcount=0
 
 !     logging get vmhost command
-      Write-Host &UC4RB_VMM_VMHOST_CMD#
 
       $vmhosts = &UC4RB_VMM_VMHOST_CMD#
 
       if($vmhosts.count -gt 1){
             Write-Host "Found more than one VM Host"
             $errors=1
-      }elseif($vmhost.count -eq 1){
+      }elseif($vmhosts.count -eq 1){
 !     look for unique VM
            Write-Host &UC4RB_VMM_GETVM_CMD#
            $uniquevm = &UC4RB_VMM_GETVM_CMD#
