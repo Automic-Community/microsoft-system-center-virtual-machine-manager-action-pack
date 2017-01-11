@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
+<JOBI name="PCK.AUTOMIC_SCVMM.PUB.INCLUDE..EXECUTION_ENVIRONMENT">
+<HEADER state="1">
+<Title>set execution environment</Title>
+<ArchiveKey1/>
+<ArchiveKey2/>
+<OH_SubType/>
+</HEADER>
+<SCRIPT mode="1" state="1">
+<MSCRI><![CDATA[! Initialize the error
+$errors = 0
+! Load powershell utility
+: INC PCK.ITPA_SHARED.PUB.INCLUDE.POWERSHELL_UTILITY
+
+! Set the parameter to stop in order to terminate the script execution on error
+$ErrorActionPreference= 'Stop'
+! To ignore DisplayDeprecationWarnings
+$WarningPreference= 'SilentlyContinue']]></MSCRI>
+</SCRIPT>
+<DOCU_Docu state="1" type="text">
+<DOC><![CDATA[Initializes the PowerShell environment to execute our script and PowerCLI cmdlets. Following is initialized:
+* sets PowerCLI to path env variable and calls script to initialize PowerCLI environment
+* initializes variable $ErrorActionPreference and $error for Error handling and processing.
+
+This include can be only used in Job's Process tab.
+It can be used for Windows PowerShell environment.
+]]></DOC>
+</DOCU_Docu>
+</JOBI>
+</uc-export>

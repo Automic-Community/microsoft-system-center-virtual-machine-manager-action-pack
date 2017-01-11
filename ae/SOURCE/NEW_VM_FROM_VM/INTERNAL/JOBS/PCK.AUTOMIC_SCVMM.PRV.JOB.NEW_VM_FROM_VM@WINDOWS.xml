@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
+<JOBS_WINDOWS AttrType="WINDOWS" name="PCK.AUTOMIC_SCVMM.PRV.JOB.NEW_VM_FROM_VM@WINDOWS">
+<XHEADER state="1">
+<Title/>
+<ArchiveKey1/>
+<ArchiveKey2/>
+<Active>1</Active>
+<OH_SubType/>
+<CustomAttributes KeyListID="0" dataRequestID="0"/>
+</XHEADER>
+<OUTPUTREG state="1">
+<FileReg/>
+</OUTPUTREG>
+<SYNCREF state="1">
+<Syncs/>
+</SYNCREF>
+<ATTR_JOBS state="1">
+<Queue>CLIENT_QUEUE</Queue>
+<StartType/>
+<HostDst>|&lt;WIN&gt;|HOST</HostDst>
+<HostATTR_Type>WINDOWS</HostATTR_Type>
+<CodeName/>
+<Login/>
+<IntAccount/>
+<ExtRepDef>1</ExtRepDef>
+<ExtRepAll>0</ExtRepAll>
+<ExtRepNone>0</ExtRepNone>
+<AutoDeactNo>0</AutoDeactNo>
+<AutoDeact1ErrorFree>0</AutoDeact1ErrorFree>
+<AutoDeactErrorFree>0</AutoDeactErrorFree>
+<DeactWhen>ANY_OK</DeactWhen>
+<DeactDelay>0</DeactDelay>
+<AutoDeactAlways>1</AutoDeactAlways>
+<AttDialog>0</AttDialog>
+<ActAtRun>0</ActAtRun>
+<Consumption>0</Consumption>
+<UC4Priority>0</UC4Priority>
+<MaxParallel2>0</MaxParallel2>
+<MpElse1>1</MpElse1>
+<MpElse2>0</MpElse2>
+<TZ/>
+</ATTR_JOBS>
+<ATTR_WINDOWS state="1">
+<OutputDb>1</OutputDb>
+<OutputDbErr>0</OutputDbErr>
+<OutputFile>0</OutputFile>
+<IsGenerated>0</IsGenerated>
+<BAT>0</BAT>
+<COM>0</COM>
+<WinBatch>1</WinBatch>
+<Standard>1</Standard>
+<Minimized>0</Minimized>
+<Maximized>0</Maximized>
+<JObjDefault>1</JObjDefault>
+<JObjYes>0</JObjYes>
+<JObjNo>0</JObjNo>
+<WorkingDirectory>c:\</WorkingDirectory>
+<Command/>
+<LogOn>0</LogOn>
+<ShowJob>0</ShowJob>
+</ATTR_WINDOWS>
+<RUNTIME state="1">
+<MaxRetCode>0</MaxRetCode>
+<MrcExecute/>
+<MrcElseE>0</MrcElseE>
+<FcstStatus>0| |</FcstStatus>
+
+<ErtMethodDef>1</ErtMethodDef>
+<ErtMethodFix>0</ErtMethodFix>
+<ErtFix>0</ErtFix>
+<ErtDynMethod>2|Average</ErtDynMethod>
+<ErtMethodDyn>0</ErtMethodDyn>
+<ErtCnt>0</ErtCnt>
+<ErtCorr>0</ErtCorr>
+<ErtIgn>0</ErtIgn>
+<ErtIgnFlg>0</ErtIgnFlg>
+<ErtMinCnt>0</ErtMinCnt>
+<MrtMethodNone>1</MrtMethodNone>
+<MrtMethodFix>0</MrtMethodFix>
+<MrtFix>0</MrtFix>
+<MrtMethodErt>0</MrtMethodErt>
+<MrtErt>0</MrtErt>
+<MrtMethodDate>0</MrtMethodDate>
+<MrtDays>0</MrtDays>
+<MrtTime>00:00</MrtTime>
+<MrtTZ/>
+<SrtMethodNone>1</SrtMethodNone>
+<SrtMethodFix>0</SrtMethodFix>
+<SrtFix>0</SrtFix>
+<SrtMethodErt>0</SrtMethodErt>
+<SrtErt>0</SrtErt>
+<MrtCancel>0</MrtCancel>
+<MrtExecute>0</MrtExecute>
+<MrtExecuteObj/>
+</RUNTIME>
+<DYNVALUES state="1">
+<dyntree>
+<node content="1" id="VALUE" name="Variables" parent="" type="VALUE">
+<VALUE state="1">
+<Values/>
+<Mode>0</Mode>
+</VALUE>
+</node>
+</dyntree>
+</DYNVALUES>
+<ROLLBACK state="1">
+<RollbackFlag>0</RollbackFlag>
+<CBackupObj/>
+<CRollbackObj/>
+<FBackupPath/>
+<FDeleteBefore>0</FDeleteBefore>
+<FInclSubDirs>0</FInclSubDirs>
+</ROLLBACK>
+<PRE_SCRIPT mode="1" replacementmode="1" state="1">
+<PSCRI><![CDATA[:INC PCK.ITPA_SHARED.PUB.INCLUDE.START_STOP_JOB_ACCORDING_TO_AGENT_OS
+:INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.PREP_CONNECTION_CMDLETS]]></PSCRI>
+</PRE_SCRIPT>
+<SCRIPT mode="1" state="1">
+<MSCRI><![CDATA[: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE..EXECUTION_ENVIRONMENT
+: INC PCK.ITPA_SHARED.PUB.INCLUDE.POWERSHELL_UTILITY
+!-------------------------------------Logging input parameters-------------------------------------------------------------------------------------------------
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.PARAM_VALIDATION
+: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.LOGGING_CONNECTION_DETAILS
+
+! Log parameters specific to action
+: SET &UC4RB_LOGGING_PARAMETER# = "VM Name"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_NEW_VMNAME#"
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "Path"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_PATH#"
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "VMHost"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_VMHOST#"
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "VM Name to use"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_VMNAME#"
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
+
+!-------------------------------------Create VMM commandlets---------------------------------------------------------------------------------------------------
+
+! Get VMhost command
+: SET &UC4RB_VMM_VMHOST_CMD# = "Get-SCVMHost "
+: SET &UC4RB_VMM_VMHOST_CMD# = STR_CAT(&UC4RB_VMM_VMHOST_CMD#, " -VMMServer $vmmserver ")
+
+! vm host
+: IF &UC4RB_VMM_VMHOST# <> ""
+:   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMHOST#
+:   SET &UC4RB_VMM_VMHOST_CMD# = STR_CAT(&UC4RB_VMM_VMHOST_CMD#, " -ComputerName  '&UC4RB_VMM_ESC_VALUE#' ")
+: ENDIF
+
+! Get VM command
+: SET &UC4RB_VMM_GETVM_CMD# = "Get-SCVirtualMachine "
+
+! VM Name to use
+: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMNAME#
+: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -name  '&UC4RB_VMM_ESC_VALUE#' ")
+
+! Create new vm from vm command
+: SET &UC4RB_VMM_CREATEVM_CMD# = "New-SCVirtualMachine "
+
+! New vm name
+: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_NEW_VMNAME#
+: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -Name  '&UC4RB_VMM_ESC_VALUE#' ")
+
+! Path
+: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_PATH#
+: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -Name  '&UC4RB_VMM_ESC_VALUE#' ")
+
+! Advance options
+: IF &UC4RB_VMM_ADV_OPTIONS# <> ""
+:   SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " &UC4RB_VMM_ADV_OPTIONS# ")
+: ENDIF
+
+!-------------------------------------Commandlet execution-----------------------------------------------------------------------------------------------------
+! Decrypt Password
+: INC PCK.ITPA_SHARED.PUB.INCLUDE.ATTACH
+: SET &UC4RB_ENCRYPTED_PASSWORD_TMP# = "&UC4RB_VMM_PASSWORD#"
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.DECRYPT_PASSWORD
+
+! Create PSCredential object
+$securepassword = ConvertTo-SecureString $UC4_DECRYPTED_PWD -AsPlainText -Force
+$servercreds = New-Object System.Management.Automation.PSCredential ('&UC4RB_VMM_ESC_USER#', $securepassword)
+
+! logging connect command
+Write-Host &UC4RB_VMM_CONNECT_CMDLET#
+
+! Connect to VMM Server
+try{
+  $vmmserver = &UC4RB_VMM_CONNECT_CMDLET# -Credential $servercreds
+
+  Write-Host "successfully connected to VMM Server"
+
+  try{
+      $vmcount=0
+
+!     logging get vmhost command
+      Write-Host &UC4RB_VMM_VMHOST_CMD#
+
+      $vmhosts = &UC4RB_VMM_VMHOST_CMD#
+
+      if($vmhosts.count -gt 1){
+            Write-Host "Found more than one VM Host"
+            $errors=1
+      }elseif($vmhost.count -eq 1){
+!     look for unique VM
+           Write-Host &UC4RB_VMM_GETVM_CMD#
+           $uniquevm = &UC4RB_VMM_GETVM_CMD#
+
+            if($uniquevm.count -ne 1){
+                echo "Found  zero or more than one VM "
+                $count=$uniquevm.count
+                echo "Number of VM found :$count"
+                $errors=1
+           }else{
+                echo "Creating clone..........."
+                Write-Host UC4RB_VMM_CREATEVM_CMD -VM $uniquevm -VMHost $vmhosts
+                UC4RB_VMM_CREATEVM_CMD -VM $uniquevm -VMHost $vmhosts
+           }
+
+      }else{
+            Write-Host "No VM Hosts found for the name provided."
+            $errors=1
+      }
+
+  }catch{
+        $errors=1
+        Write-Host "Error searching while fetching Virtual Machine or Corresponding VMHost."
+        Write-Host "ERROR: $($error[0].Exception.Message)"
+  }
+
+}catch{
+  $errors=1
+  Write-Host "Error connecting VMM Server."
+  Write-Host "ERROR: $($error[0].Exception.Message)"
+}
+
+
+!-----------------------------------Error Handling-------------------------------------------------------------------------------------
+!Status messages
+:SET &UC4RB_LOGGING_INFO# = "******** New VM from VM Action EXECUTED SUCCESSFULLY ********"
+:SET &UC4RB_LOGGING_ERROR# = "******** New VM from VM Action FAILED ********"
+
+:INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CHECK_ERRORSTATUS]]></MSCRI>
+</SCRIPT>
+<OUTPUTSCAN state="1">
+<Inherit>N</Inherit>
+<filterobjects/>
+<HostFsc/>
+<LoginFsc/>
+</OUTPUTSCAN>
+<POST_SCRIPT mode="1" replacementmode="1" state="1">
+<OSCRI/>
+</POST_SCRIPT>
+<DOCU_Docu state="1" type="text">
+<DOC/>
+</DOCU_Docu>
+</JOBS_WINDOWS>
+</uc-export>
