@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
 <JOBS_WINDOWS AttrType="WINDOWS" name="PCK.AUTOMIC_SCVMM.PRV.JOB.GET_VM@WINDOWS">
 <XHEADER state="1">
-<Title/>
+<Title>Get Virtual Machine Details</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -116,8 +116,8 @@
 :INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.PREP_CONNECTION_CMDLETS]]></PSCRI>
 </PRE_SCRIPT>
 <SCRIPT mode="1" state="1">
-<MSCRI><![CDATA[$errors=0
-: INC PCK.ITPA_SHARED.PUB.INCLUDE.POWERSHELL_UTILITY
+<MSCRI><![CDATA[: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.EXECUTION_ENVIRONMENT
+
 !-------------------------------------Logging input parameters-------------------------------------------------------------------------------------------------
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.PARAM_VALIDATION
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.LOGGING_CONNECTION_DETAILS
@@ -139,22 +139,21 @@
 
 !-------------------------------------Create VMM commandlets---------------------------------------------------------------------------------------------------
 
-! Get VMhost command
-: SET &UC4RB_VMM_VMHOST_CMD# = "Get-SCVMHost "
-: SET &UC4RB_VMM_VMHOST_CMD# = STR_CAT(&UC4RB_VMM_VMHOST_CMD#, " -VMMServer $vmmserver ")
-
-! vm host
-: IF &UC4RB_VMM_VMHOST# <> ""
-:   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMHOST#
-:   SET &UC4RB_VMM_VMHOST_CMD# = STR_CAT(&UC4RB_VMM_VMHOST_CMD#, " -ComputerName  '&UC4RB_VMM_ESC_VALUE#' ")
-: ENDIF
-
 ! Get VM command
 : SET &UC4RB_VMM_GETVM_CMD# = "Get-SCVirtualMachine "
 
-! vm name
+! VM name
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMNAME#
-: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -name  '&UC4RB_VMM_ESC_VALUE#' ")
+: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -Name '&UC4RB_VMM_ESC_VALUE#' ")
+
+! VM host
+: IF &UC4RB_VMM_VMHOST# <> ""
+:   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMHOST#
+:   SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -VMHost '&UC4RB_VMM_ESC_VALUE#' ")
+: ENDIF
+
+! VMM server
+: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -VMMServer $vmmserver ")
 
 ! Advance options
 : IF &UC4RB_VMM_ADV_OPTIONS# <> ""
@@ -162,95 +161,36 @@
 : ENDIF
 
 !-------------------------------------Commandlet execution-----------------------------------------------------------------------------------------------------
-! Decrypt Password
-: INC PCK.ITPA_SHARED.PUB.INCLUDE.ATTACH
-: SET &UC4RB_ENCRYPTED_PASSWORD_TMP# = "&UC4RB_VMM_PASSWORD#"
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.DECRYPT_PASSWORD
-
-! Create PSCredential object
-$securepassword = ConvertTo-SecureString $UC4_DECRYPTED_PWD -AsPlainText -Force
-$servercreds = New-Object System.Management.Automation.PSCredential ('&UC4RB_VMM_ESC_USER#', $securepassword)
-
-! logging connect command
-Write-Host &UC4RB_VMM_CONNECT_CMDLET#
 
 ! Connect to VMM Server
+: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CONNECT_CMDLET
+
 try{
-  $vmmserver = &UC4RB_VMM_CONNECT_CMDLET# -Credential $servercreds
 
-  Write-Host "successfully connected to VMM Server"
-
-  try{
-      $vmcount=0
-: IF &UC4RB_VMM_VMHOST# <> ""
-! logging get vmhost command
-      Write-Host &UC4RB_VMM_VMHOST_CMD#
-
-      $vmhosts = &UC4RB_VMM_VMHOST_CMD#
-
-      if($vmhosts.count -ge 1){
-            Write-Host "Found one or more VM Host"
-            $vmhost | select name
-            Write-Host "Searching for unique Virtual Machine."
-
-            foreach($vmhost in $vmhosts){
 ! logging get vm command
-                Write-Host &UC4RB_VMM_GETVM_CMD# -VMHost $vmhost
-                $vminhost = &UC4RB_VMM_GETVM_CMD# -VMHost $vmhost
-                if($vminhost.count -ne 0){
-                    $vmcount = $vmcount + $vminhost.count
-                    if($vmcount -ne 1){
-                        Write-Host "Multiple Virtual Machine found."
-                        $errors=1
-                        break
-                    }else{
-                        $uniquevm = $vminhost
-                    }
+  Write-Host "INFO:" &UC4RB_VMM_GETVM_CMD#
+  $vmachine = &UC4RB_VMM_GETVM_CMD#
+  if($vmachine.count -ne 1){
+      Write-Host "INFO: Multiple or No Virtual Machine(s) found."
+      $errors=1
 
-                }
-            }
-      }else{
-            Write-Host "No VM Hosts found for the name provided."
-            $errors=1
-      }
-: ELSE
-      Write-Host "Searching for unique Virtual Machine."
-      Write-Host &UC4RB_VMM_GETVM_CMD# -VMMServer $vmmserver
-      $vminhost = &UC4RB_VMM_GETVM_CMD# -VMMServer $vmmserver
-      if($vminhost.count -and $vminhost.count -ne 0){
-        $vmcount = $vminhost.count
-        $uniquevm = $vminhost
-      }
-
-: ENDIF
-      write-host "Number of Virtual Machines found:" $vmcount
-      if($vmcount -eq 1){
-            Write-Host "unique Virtual Machine found."
-            $uniquevm
-      }else{
-            Write-Host "No unique Virtual Machine found."
-            $errors=1
-      }
-
-  }catch{
-        $errors=1
-        Write-Host "Error searching while fetching Virtual Machine or Corresponding VMHost."
-        Write-Host "ERROR: $($error[0].Exception.Message)"
+  }else{
+      Write-Host "INFO: Unique Virtual Machine found."
+      $vmachine
   }
 
 }catch{
   $errors=1
-  Write-Host "Error connecting VMM Server."
   Write-Host "ERROR: $($error[0].Exception.Message)"
 }
 
 
 !-----------------------------------Error Handling-------------------------------------------------------------------------------------
 !Status messages
-:SET &UC4RB_LOGGING_INFO# = "******** GET VM ACTION EXECUTED SUCCESSFULLY ********"
-:SET &UC4RB_LOGGING_ERROR# = "******** GET VM ACTION FAILED ********"
+: SET &UC4RB_LOGGING_INFO# = "******** GET VM ACTION EXECUTED SUCCESSFULLY ********"
+: SET &UC4RB_LOGGING_ERROR# = "******** GET VM ACTION FAILED ********"
 
-:INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CHECK_ERRORSTATUS]]></MSCRI>
+: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CHECK_ERRORSTATUS]]></MSCRI>
 </SCRIPT>
 <OUTPUTSCAN state="1">
 <Inherit>N</Inherit>

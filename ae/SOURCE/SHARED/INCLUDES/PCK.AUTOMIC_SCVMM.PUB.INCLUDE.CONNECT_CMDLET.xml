@@ -17,14 +17,14 @@
  $servercreds = New-Object System.Management.Automation.PSCredential ('&UC4RB_VMM_ESC_USER#', $securepassword)
 
 ! logging connect command
- Write-Host &UC4RB_VMM_CONNECT_CMDLET#
+ Write-Host "INFO:" &UC4RB_VMM_CONNECT_CMDLET#
 
 ! Connect to VMM Server
   try{
       $vmmserver = &UC4RB_VMM_CONNECT_CMDLET# -Credential $servercreds
-      Write-Host "successfully connected to VMM Server"
+      Write-Host "INFO: Successfully connected to VMM Server"
   }catch{
-      Write-Host "Error connecting VMM Server."
+      Write-Host "ERROR: Error connecting VMM Server."
       Write-Host "ERROR: $($error[0].Exception.Message)"
       __uc_return(1)
   }
