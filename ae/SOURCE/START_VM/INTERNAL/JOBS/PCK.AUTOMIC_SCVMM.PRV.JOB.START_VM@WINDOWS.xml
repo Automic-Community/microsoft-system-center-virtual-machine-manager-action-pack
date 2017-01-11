@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBS_WINDOWS AttrType="WINDOWS" name="PCK.AUTOMIC_SCVMM.PRV.JOB.STOP_VM@WINDOWS">
+<JOBS_WINDOWS AttrType="WINDOWS" name="PCK.AUTOMIC_SCVMM.PRV.JOB.START_VM@WINDOWS">
 <XHEADER state="1">
-<Title>Stop VM</Title>
+<Title>Start VM</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -131,58 +131,33 @@
 : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_VMNAME#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
-: SET &UC4RB_LOGGING_PARAMETER# = "Force"
-: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_FORCE#"
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
-
-: SET &UC4RB_LOGGING_PARAMETER# = "Save state"
-: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_SAVE_STATE#"
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
-
 : SET &UC4RB_LOGGING_PARAMETER# = "Advance Options"
 : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_ADV_OPTIONS#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
 
-! Checking if both Force and Saved State options are not used together
-: SET &OPTION_COUNT# = 0
-: SET &OPERATION# = ""
+!-------------------------------------Create VMM commandlets---------------------------------------------------------------------------------------------------
 
-: IF &UC4RB_VMM_FORCE# EQ "YES"
-:   SET &OPTION_COUNT# = &OPTION_COUNT# + 1
-:   SET &OPERATION# =  "-Force"
-: ENDIF
-
-: IF &UC4RB_VMM_SAVE_STATE# EQ "YES"
-:   SET &OPTION_COUNT# = &OPTION_COUNT# + 1
-:   SET &OPERATION# =  "-SaveState"
-: ENDIF
-
-: IF &OPTION_COUNT# EQ 2
-:   STOP MSG, 50, "Force and Saved state options cannot be selected together"
-: ENDIF
-
-!-------------------------------------Stop VMM commandlets---------------------------------------------------------------------------------------------------
 ! Get VM command
 : SET &UC4RB_VMM_GETVM_CMD# = "Get-SCVirtualMachine "
 
-! Stop VM command
-: SET &UC4RB_VMM_STOPVM_CMD# = "Stop-SCVirtualMachine &OPERATION# "
+! Start VM command
+: SET &UC4RB_VMM_STARTVM_CMD# = "Start-SCVirtualMachine "
 
-! vm name
+! VM name
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMNAME#
-: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -name  '&UC4RB_VMM_ESC_VALUE#' ")
+: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -Name '&UC4RB_VMM_ESC_VALUE#' ")
 
-! vm host
+! VM host
 : IF &UC4RB_VMM_VMHOST# <> ""
 :   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMHOST#
-:   SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -VMHost  '&UC4RB_VMM_ESC_VALUE#' ")
+:   SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -VMHost '&UC4RB_VMM_ESC_VALUE#' ")
 : ENDIF
 
-! Advance Option
+! Advance options
 : IF &UC4RB_VMM_ADV_OPTIONS# <> ""
-:   SET &UC4RB_VMM_STOPVM_CMD# = STR_CAT(&UC4RB_VMM_STOPVM_CMD#, &UC4RB_VMM_ADV_OPTIONS#)
+:   SET &UC4RB_VMM_STARTVM_CMD# = STR_CAT(&UC4RB_VMM_STARTVM_CMD#, " &UC4RB_VMM_ADV_OPTIONS# ")
 : ENDIF
 
 !-------------------------------------Commandlet execution-----------------------------------------------------------------------------------------------------
@@ -191,37 +166,35 @@
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CONNECT_CMDLET
 
 try{
-      Write-Host "INFO:" &UC4RB_VMM_GETVM_CMD#
-      $vminhost = &UC4RB_VMM_GETVM_CMD#
 
-      if($vminhost.count -ne 1){
-           throw "Multiple or No Virtual Machine(s) found."
+! logging get vm command
+  Write-Host "INFO:" &UC4RB_VMM_GETVM_CMD#
+  $vmachine = &UC4RB_VMM_GETVM_CMD#
+  if($vmachine.count -ne 1){
+      throw "Multiple or No Virtual Machine(s) found."
+  }else{
+      Write-Host "INFO: Unique Virtual Machine found."
 
-        }else{
-           Write-Host "INFO: Unique Virtual Machine found."
-             if(($vminhost.Status -ne "PowerOff") -and ($vminhost.Status -ne "Saved") ){
-                       WRITE-HOST "INFO:Stop VM cmdlet - &UC4RB_VMM_STOPVM_CMD# -VM $($vminhost)"
-                       &UC4RB_VMM_STOPVM_CMD# -VM $vminhost
-
-
-                }else{
-                     WRITE-HOST "INFO:Machine status is already = $($vminhost.Status)"
-                }
-        }
+      if($vmachine.Status -ne "Running"){
+          WRITE-HOST "INFO:Start Vm cmdlet - &UC4RB_VMM_STARTVM_CMD# -VM $($vminhost)"
+         &UC4RB_VMM_STARTVM_CMD# -VM $vmachine
+      }else{
+         Write-Host "INFO: VM already in Running state"
+      }
+  }
 
 }catch{
   $errors=1
-  WRITE-HOST "ERROR: $($error[0].Exception.Message)"
+  Write-Host "ERROR: $($error[0].Exception.Message)"
 }
 
 
 !-----------------------------------Error Handling-------------------------------------------------------------------------------------
 !Status messages
-:SET &UC4RB_LOGGING_INFO# = "******** STOP VM ACTION EXECUTED SUCCESSFULLY ********"
-:SET &UC4RB_LOGGING_ERROR# = "******** STOP VM ACTION FAILED ********"
+: SET &UC4RB_LOGGING_INFO# = "******** START VM ACTION EXECUTED SUCCESSFULLY ********"
+: SET &UC4RB_LOGGING_ERROR# = "******** START VM ACTION FAILED ********"
 
-:INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CHECK_ERRORSTATUS
-]]></MSCRI>
+: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CHECK_ERRORSTATUS]]></MSCRI>
 </SCRIPT>
 <OUTPUTSCAN state="1">
 <Inherit>N</Inherit>

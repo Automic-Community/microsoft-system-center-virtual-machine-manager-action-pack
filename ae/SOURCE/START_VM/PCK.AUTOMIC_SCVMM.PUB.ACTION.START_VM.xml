@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBP AllowExternal="1" name="PCK.AUTOMIC_SCVMM.PUB.ACTION.STOP_VM">
+<JOBP AllowExternal="1" name="PCK.AUTOMIC_SCVMM.PUB.ACTION.START_VM">
 <XHEADER state="1">
-<Title>Stop VM</Title>
+<Title>Start VM</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -62,14 +62,13 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM"/>
-<UC4RB_VMM_FORCEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_FORCE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">NO</UC4RB_VMM_FORCEs.00>
-<UC4RB_VMM_SAVE_STATEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_SAVE_STATE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">NO</UC4RB_VMM_SAVE_STATEs.00>
-<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM"/>
-<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM">
+<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM"/>
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM"/>
+<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM"/>
+<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -91,7 +90,7 @@
 </PostCon>
 </postconditions>
 </task>
-<task Alias="STOP_VM" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_SCVMM.PRV.JOB.STOP_VM@WINDOWS" ParentAlias="" ParentObject="" Row="1" Text2="">
+<task Alias="START_VM" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_SCVMM.PRV.JOB.START_VM@WINDOWS" ParentAlias="" ParentObject="" Row="1" Text2="">
 <checkpoint RollbackFlag="1" RunPerPatch="0" RunPerTarget="0" TcpADays="0" TcpATime="00:00" TcpATimeTZ="" TcpExecute="" TcpOn="0" promptatgen="0" showprompt="0"/>
 <after ActFlg="1" AtimOn="0" ErlstStDays="0" ErlstStTime="00:00" ErlstStTimeTZ="" HoldFlg="0"/>
 <when ChkWhenExec="0" LtstEnd="0" LtstEndDays="0" LtstEndTime="00:00" LtstSt="0" LtstStDays="0" LtstStTime="00:00" LtstTimeTZ="" WCTypeAND="1" WCTypeOR="0" WElseA="1" WElseH="0" WElseS="0" WElseX="0" WhenExecute="" WtimOn="0"/>
@@ -131,14 +130,13 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM"/>
-<UC4RB_VMM_FORCEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_FORCE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">NO</UC4RB_VMM_FORCEs.00>
-<UC4RB_VMM_SAVE_STATEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_SAVE_STATE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">NO</UC4RB_VMM_SAVE_STATEs.00>
-<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM"/>
-<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM">
+<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM"/>
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM"/>
+<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM"/>
+<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -186,14 +184,13 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM"/>
-<UC4RB_VMM_FORCEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_FORCE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">NO</UC4RB_VMM_FORCEs.00>
-<UC4RB_VMM_SAVE_STATEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_SAVE_STATE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM">NO</UC4RB_VMM_SAVE_STATEs.00>
-<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM"/>
-<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM">
+<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM"/>
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM"/>
+<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM"/>
+<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -265,9 +262,9 @@
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS" prptmode="1"/>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM" parent="PRPTS" type="PROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM" ontop="1">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.STOP_VM" prptmode="1"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM" parent="PRPTS" type="PROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM" ontop="1">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.START_VM" prptmode="1"/>
 </PROMPTSET>
 </node>
 <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PRPTS" type="PROMPTSET">
@@ -301,10 +298,10 @@
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[= Action name =
-PCK.AUTOMIC_SCVMM.PUB.ACTION.STOP_VM
+PCK.AUTOMIC_SCVMM.PUB.ACTION.START_VM
 
 = General description =
-This action is used to stop a virtual machine based on name and VM Host on which it is hosted. If VM Host is not provided then VM would be searched in whole VMM server based on VM name. User can also provide additional parameters like Id in "Advance options" field. The Virtual Machine details will be printed in the Job report.
+This action is used to start a virtual machine based on Name and VM Host on which it is hosted. If VM Host is not provided then VM would be searched in whole VMM server based on VM name. User can also provide additional parameters like Id in "Advance options" field. The Virtual Machine details would be printed in the Job report.
 
 = Failure Conditions =
 * This action will fail if multiple or no VMs exist for inputs provided.
@@ -315,10 +312,8 @@ This action is used to stop a virtual machine based on name and VM Host on which
 * Username	    : Username which will be used for this connection. E.g. domain\username
 * Password	    : Password to your username.
 * VMHost	    : Specify the host from which you want to get VM. Wildcard characters are supported. E.g. myhost.com
-* VM Name	    : Specify name of the virtual machine you want to stop. Wildcard characters are supported. E.g. myvm.com
-* Force             : Specify whether command will be forced.Default is NO
-* Save State        : Specify whether if you want to save the state.Default is NO
-* Advance Options   : Specify advance options for Stop commandlet. E.g. -id 3d73b337-cf03-4d56-b8ae-a7c3fc90071b
+* VM Name	    : Specify name of the virtual machine you want to start. Wildcard characters are supported. E.g. myvm.com
+* Advance Options   : Specify advance options for Get-SCVirtualMachine commandlet. E.g. -id 3d73b337-cf03-4d56-b8ae-a7c3fc90071b
 * Overwrite Agent   : Overwrites the default agent
 * Overwrite Login   : Overwrites the default login
 
