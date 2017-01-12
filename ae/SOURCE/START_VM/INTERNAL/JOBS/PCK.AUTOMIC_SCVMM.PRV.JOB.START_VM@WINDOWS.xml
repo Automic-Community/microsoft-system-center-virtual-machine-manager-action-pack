@@ -179,7 +179,7 @@ try{
       Write-Host "INFO: Unique Virtual Machine found."
 
       if($vmachine.Status -ne "Running"){
-          WRITE-HOST "INFO:Start Vm cmdlet - &UC4RB_VMM_STARTVM_CMD# -VM $($vminhost)"
+          WRITE-HOST "INFO:Start Vm cmdlet - &UC4RB_VMM_STARTVM_CMD# -VM $($vmachine)"
          &UC4RB_VMM_STARTVM_CMD# -VM $vmachine
       }else{
          Write-Host "INFO: VM already in Running state"
