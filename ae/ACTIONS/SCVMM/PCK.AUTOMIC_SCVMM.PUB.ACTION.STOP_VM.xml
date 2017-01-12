@@ -314,11 +314,11 @@ This action is used to stop a virtual machine based on name and VM Host on which
 * Port		    : Specify port which will be used for connection. Default value is 8100.
 * Username	    : Username which will be used for this connection. E.g. domain\username
 * Password	    : Password to your username.
-* VMHost	    : Specify the host from which you want to get VM. Wildcard characters are supported. E.g. myhost.com
-* VM Name	    : Specify name of the virtual machine you want to stop. Wildcard characters are supported. E.g. myvm.com
+* VMHost	    : Specify the host on which you want to atop VM. Wildcard characters are supported.E.g myhost.com
+* VM Name	    : Specify name of the virtual machine you want to stop. Wildcard characters are supported. E.g. myvm
 * Force             : Specify whether command will be forced.Default is NO
 * Save State        : Specify whether if you want to save the state.Default is NO
-* Advance Options   : Specify advance options for Stop commandlet. E.g. -id 3d73b337-cf03-4d56-b8ae-a7c3fc90071b
+* Advanced Options   : Specify parameters you want to include into command. E.g. -id 3d73b337-cf03-4d56-b8ae-a7c3fc90071b
 * Overwrite Agent   : Overwrites the default agent
 * Overwrite Login   : Overwrites the default login
 

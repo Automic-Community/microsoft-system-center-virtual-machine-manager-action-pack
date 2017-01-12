@@ -170,6 +170,9 @@
 ! Stop VM command
 : SET &UC4RB_VMM_STOPVM_CMD# = "Stop-SCVirtualMachine &OPERATION# "
 
+! VMM server
+: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -VMMServer $vmmserver ")
+
 ! vm name
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMNAME#
 : SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -name  '&UC4RB_VMM_ESC_VALUE#' ")
@@ -199,14 +202,8 @@ try{
 
         }else{
            Write-Host "INFO: Unique Virtual Machine found."
-             if(($vminhost.Status -ne "PowerOff") -and ($vminhost.Status -ne "Saved") ){
-                       WRITE-HOST "INFO:Stop VM cmdlet - &UC4RB_VMM_STOPVM_CMD# -VM $($vminhost)"
+           WRITE-HOST "INFO: Stop VM cmdlet - &UC4RB_VMM_STOPVM_CMD# -VM $($vminhost)"
                        &UC4RB_VMM_STOPVM_CMD# -VM $vminhost
-
-
-                }else{
-                     WRITE-HOST "INFO:Machine status is already = $($vminhost.Status)"
-                }
         }
 
 }catch{

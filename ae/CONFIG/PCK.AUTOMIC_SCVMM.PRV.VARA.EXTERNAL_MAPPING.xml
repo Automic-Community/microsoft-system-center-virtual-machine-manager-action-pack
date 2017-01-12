@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<VARA OVD_VRName="FREI" data_type="STATIC" name="PCK.AUTOMIC_SCVMM.PRV.VARA.PACKAGE_PARAMETERS" replacementmode="2">
+<VARA OVD_VRName="FREI" data_type="STATIC" name="PCK.AUTOMIC_SCVMM.PRV.VARA.EXTERNAL_MAPPING" replacementmode="2">
 <HEADER state="1">
-<Title>package parameters for SCVMM</Title>
+<Title>External mapping for SCVMM</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <OH_SubType>STATIC</OH_SubType>
@@ -26,6 +26,8 @@
 <Variables>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.NEW_VM_FROM_VM/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.NEW_VM_FROM_VM/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.START_VM/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.START_VM/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.STOP_VM/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
