@@ -65,18 +65,11 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_NEW_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_NEW_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_PATHs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PATH#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
-</PRPTBOX>
-</PROMPTSET>
-</node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.ADVANCE_OPTIONS" name="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.ADVANCE_OPTIONS" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.ADVANCE_OPTIONS">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.ADVANCE_OPTIONS">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.ADVANCE_OPTIONS"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -123,7 +116,7 @@
 <node content="1" id="PVALUE" name="Parent Variables" parent="" type="TASKVALUE">
 <VALUE state="2">
 <Values/>
-<Mode>0</Mode>
+<Mode>1</Mode>
 </VALUE>
 </node>
 <node content="1" id="PRPTS" name="PromptSets" parent="" pref="1" type="PROMPTSET"/>
@@ -141,18 +134,11 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_NEW_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_NEW_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_PATHs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PATH#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
-</PRPTBOX>
-</PROMPTSET>
-</node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.ADVANCE_OPTIONS" name="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.ADVANCE_OPTIONS" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.ADVANCE_OPTIONS">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.ADVANCE_OPTIONS">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.ADVANCE_OPTIONS"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -203,18 +189,11 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_NEW_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_NEW_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_PATHs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PATH#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
-</PRPTBOX>
-</PROMPTSET>
-</node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.ADVANCE_OPTIONS" name="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.ADVANCE_OPTIONS" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.ADVANCE_OPTIONS">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.ADVANCE_OPTIONS">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.ADVANCE_OPTIONS"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -278,7 +257,7 @@
 <node content="1" id="VALUE" name="Variables" parent="" type="VALUE">
 <VALUE state="1">
 <Values/>
-<Mode>0</Mode>
+<Mode>1</Mode>
 </VALUE>
 </node>
 <node content="1" id="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS" parent="PRPTS" type="PROMPTSET">
@@ -289,11 +268,6 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" parent="PRPTS" type="PROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" ontop="1">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" prptmode="1"/>
-</PROMPTSET>
-</node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.ADVANCE_OPTIONS" name="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.ADVANCE_OPTIONS" parent="PRPTS" type="PROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.ADVANCE_OPTIONS" ontop="1">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.ADVANCE_OPTIONS" prptmode="1"/>
 </PROMPTSET>
 </node>
 <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PRPTS" type="PROMPTSET">
@@ -326,7 +300,53 @@
 <MSCRI/>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
-<DOC/>
+<DOC><![CDATA[= Action name =
+PCK.AUTOMIC_SCVMM.PUB.ACTION.NEW_VM_FROM_VM
+
+= General description =
+This action is used to create a virtual machine from an existing stopped virtual machine deployed on a host. User can also provide additional parameters like Id in "Advance options" field. The Virtual Machine details would be printed in the Job report.
+NOTE: Virtual machine must be in Poweroff or Stored state in order to be cloned.
+
+= Failure Conditions =
+* This action will fail if multiple or no VMs exist for inputs provided.
+* This action will fail If VM is not in Poweroff or Stored state.
+
+= Inputs =
+* Server IP or DNS  : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.0
+* Port		    : Specify port which will be used for connection. Default value is 8100.
+* Username	    : Username which will be used for this connection. E.g. domain\username
+* Password	    : Password to your username.
+* VM Name	    : SSpecify Name of the Virtual Machine you want to create.  E.g. myvm
+* Path	 	    : Specify destination path for the operation. 
+		      Example formats:  Local: "F:\"
+			    		UNC: "\\Library\Templates"
+			    		Volume GUID: "\\?\Volume{4703c1ea-8ae7-11db-b473-00123f7603e3}\"
+			    		VMware ESX:  "[storage1]\MyVMwareFolderForVMs\MyVM.vmx"
+			    		Citrix XenServer:  "Local storage[99b6212f-b63d-c676-25f9-d6c460992de7]"
+					Wildcards are supported for Get- cmdlets and when you specify the UNC path.
+					Example format:
+					UNC: "\\VMHostServer\MyVMs\*VM*"
+* VMHost	    : Specify the host on which you want to create the new virtual machine.VMM supports Hyper-V hosts, VMware ESX hosts, and Citrix XenServer hosts.	
+* VM Name to use    : Existing VM Name which will be used for creating new one.    
+* Advance Options   : Specify advance options for Get-SCVirtualMachine commandlet. E.g. -id 3d73b337-cf03-4d56-b8ae-a7c3fc90071b
+* Overwrite Agent   : Overwrites the default agent
+* Overwrite Login   : Overwrites the default login
+
+= Behaviour =
+(none)
+
+=Return Value=
+(none)
+
+= Outputs =
+* Return code is 0 in case of success.
+* Return code is 1 in case of failure.
+
+= Logging =
+Logs will be displayed in the AE report.
+
+= Example =
+(none)]]></DOC>
 </DOCU_Docu>
 </JOBP>
 </uc-export>
