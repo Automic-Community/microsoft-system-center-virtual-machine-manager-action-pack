@@ -14,34 +14,34 @@ Resource          ../../Resources/actions.txt
 *** Test Cases ***    OK_NOK    NewVMName         Path          VMHost        VMNameToUse     AdvancedOptions
 New VM from VM with Valid Inputs
                       [Tags]    main_scenarios
-                      OK        Generated         ${VM_Path}    ${VM_Host}    ${Source_VM}    ${EMPTY}
+                      OK        Generated         [${VM_Path}]    ${VM_Host}    ${Source_VM}    ${EMPTY}
 
 New VM from VM with Valid Inputs also providing Advanced Options
-                      OK        Generated         ${VM_Path}    ${VM_Host}    ${Source_VM}    -CPUCount 4
+                      OK        Generated         [${VM_Path}]    ${VM_Host}    ${Source_VM}    -CPUCount 4
 
 Assert Behaviour for Non-Existing Path
                       NOK       Generated         Invalid       ${VM_Host}    ${Source_VM}    ${EMPTY}
 
 Assert Behaviour for Non-Existing VM Host
-                      NOK       Generated         ${VM_Path}    Invalid       ${Source_VM}    ${EMPTY}
+                      NOK       Generated         [${VM_Path}]    Invalid       ${Source_VM}    ${EMPTY}
 
 Assert Behaviour for Non-Existing VM to Use
-                      NOK       Generated         ${VM_Path}    ${VM_Host}    Invalid         ${EMPTY}
+                      NOK       Generated         [${VM_Path}]    ${VM_Host}    Invalid         ${EMPTY}
 
 Assert Behaviour for Non-Existing Advanced Parameter
-                      NOK       Generated         ${VM_Path}    ${VM_Host}    ${Source_VM}    Invalid
+                      NOK       Generated         [${VM_Path}]    ${VM_Host}    ${Source_VM}    Invalid
 
 Assert New VM Name as Mandatory Field
-                      NOK       ${EMPTY}          ${VM_Path}    ${VM_Host}    ${Source_VM}    -CPUCount 4
+                      NOK       ${EMPTY}          [${VM_Path}]    ${VM_Host}    ${Source_VM}    -CPUCount 4
 
 Assert Path as Mandatory Field
                       NOK       Generated         ${EMPTY}      ${VM_Host}    ${Source_VM}    -CPUCount 4
 
 Assert VM Host as Mandatory Field
-                      NOK       Generated         ${VM_Path}    ${EMPTY}      ${Source_VM}    -CPUCount 4
+                      NOK       Generated         [${VM_Path}]    ${EMPTY}      ${Source_VM}    -CPUCount 4
 
 Assert Vm Name to Use as Mandatory Field
-                      NOK       Generated         ${VM_Path}    ${VM_Host}    ${EMPTY}        -CPUCount 4
+                      NOK       Generated         [${VM_Path}]    ${VM_Host}    ${EMPTY}        -CPUCount 4
 
 *** Keywords ***
 Startup
