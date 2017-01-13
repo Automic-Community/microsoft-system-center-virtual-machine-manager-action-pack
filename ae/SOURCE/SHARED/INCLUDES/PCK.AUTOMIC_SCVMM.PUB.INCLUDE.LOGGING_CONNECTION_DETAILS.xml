@@ -18,7 +18,7 @@
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM]]></MSCRI>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
-<DOC/>
+<DOC><![CDATA[It logs the common input parameters like VMM server or IP, Port and Username]]></DOC>
 </DOCU_Docu>
 </JOBI>
 </uc-export>
