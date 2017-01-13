@@ -33,10 +33,10 @@ try{
 ]]></MSCRI>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
-<DOC><![CDATA[Initializes the PowerShell environment to execute our script and PowerCLI cmdlets. Following is initialized:
-* sets PowerCLI to path env variable and calls script to initialize PowerCLI environment
-* initializes variable $ErrorActionPreference and $error for Error handling and processing.
-
+<DOC><![CDATA[This include does the following:
+* Decrypt the password using itpatools.jar and create the PSCredential object using the credentials provided on VMM connection promptset.
+* Connects to the VMM server using the server details and PSCredential object.
+* Exception handling if connection to VMM server fails.
 This include can be only used in Job's Process tab.
 It can be used for Windows PowerShell environment.
 ]]></DOC>
