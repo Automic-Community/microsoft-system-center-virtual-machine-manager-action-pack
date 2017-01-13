@@ -1,0 +1,3 @@
+*** Variables ***
+#---- AE Actions-------------------------
+${_NEW_VM_FROM_VM_ACTION}    PCK.AUTOMIC_SCVMM.PUB.ACTION.NEW_VM_FROM_VM
