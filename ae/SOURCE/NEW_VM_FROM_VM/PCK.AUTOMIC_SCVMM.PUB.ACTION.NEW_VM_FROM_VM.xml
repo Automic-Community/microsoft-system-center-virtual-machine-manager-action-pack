@@ -309,14 +309,13 @@ NOTE: Virtual machine must be in Poweroff or Stored state in order to be cloned.
 
 = Failure Conditions =
 * This action will fail if multiple or no VMs exist for inputs provided.
-* This action will fail If VM is not in Poweroff or Stored state.
 
 = Inputs =
 * Server IP or DNS  : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.0
 * Port		    : Specify port which will be used for connection. Default value is 8100.
 * Username	    : Username which will be used for this connection. E.g. domain\username
 * Password	    : Password to your username.
-* VM Name	    : SSpecify Name of the Virtual Machine you want to create.  E.g. myvm
+* VM Name	    : Specify Name of the Virtual Machine you want to create.  E.g. myvm
 * Path	 	    : Specify destination path for the operation. 
 		      Example formats:  Local: "F:\"
 			    		UNC: "\\Library\Templates"
@@ -328,7 +327,7 @@ NOTE: Virtual machine must be in Poweroff or Stored state in order to be cloned.
 					UNC: "\\VMHostServer\MyVMs\*VM*"
 * VMHost	    : Specify the host on which you want to create the new virtual machine.VMM supports Hyper-V hosts, VMware ESX hosts, and Citrix XenServer hosts.	
 * VM Name to use    : Existing VM Name which will be used for creating new one.    
-* Advance Options   : Specify advance options for Get-SCVirtualMachine commandlet. E.g. -id 3d73b337-cf03-4d56-b8ae-a7c3fc90071b
+* Advance Options   : Specify parameters you want to include into command. E.g. -MemoryMB 6553 -CPUCount 4
 * Overwrite Agent   : Overwrites the default agent
 * Overwrite Login   : Overwrites the default login
 
