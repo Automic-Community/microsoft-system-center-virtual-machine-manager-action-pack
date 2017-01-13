@@ -316,7 +316,7 @@ NOTE: Virtual machine must be in Poweroff or Stored state in order to be cloned.
 * Port		    : Specify port which will be used for connection. Default value is 8100.
 * Username	    : Username which will be used for this connection. E.g. domain\username
 * Password	    : Password to your username.
-* VM Name	    : SSpecify Name of the Virtual Machine you want to create.  E.g. myvm
+* VM Name	    : Specify Name of the Virtual Machine you want to create.  E.g. myvm
 * Path	 	    : Specify destination path for the operation. 
 		      Example formats:  Local: "F:\"
 			    		UNC: "\\Library\Templates"
