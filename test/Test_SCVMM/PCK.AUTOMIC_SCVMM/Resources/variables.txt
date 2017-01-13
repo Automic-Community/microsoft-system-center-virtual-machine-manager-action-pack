@@ -1,0 +1,13 @@
+*** Settings ***
+Resource          ../../../Env/default.txt
+
+*** Variables ***
+#---- Common Promptset Fields --------------------------------------------------------------------------------------
+${VMM_Server}     WIN-B4KMBN6PDOH.SC.VMM
+${VMM_Port}       8100
+${VMM_Username}    SC\\Administrator
+${VMM_Password}    Punish3r
+#---- New VM from VM ----------------------------------------------------------------------------------------------------
+${VM_Path}        Datastore3
+${VM_Host}        svievmw12.sbb01.spoc.global
+${Source_VM}      AutomationTest

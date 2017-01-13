@@ -12,6 +12,24 @@ $errors = 0
 ! Load powershell utility
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.POWERSHELL_UTILITY
 
+! check if vmm module is available and load it
+function LoadModule{
+  param($ModuleName)
+  $targetmodule=Get-Module -ListAvailable | where {$_.Name -eq $ModuleName}
+  if(! $targetmodule){
+      Write-Host "ERROR: VirtualMachineManager module not found."
+      __uc_return(1)
+  }else{
+      Write-Host "INFO: Loading VirtualMachineManager module."
+      Import-Module -Name $ModuleName -PassThru
+      if(! $? ) {
+        __uc_return(1)
+      }
+  }
+}
+
+LoadModule -ModuleName virtualmachinemanager
+
 ! Set the parameter to stop in order to terminate the script execution on error
 $ErrorActionPreference= 'Stop'
 ! To ignore DisplayDeprecationWarnings
@@ -19,9 +37,9 @@ $WarningPreference= 'SilentlyContinue']]></MSCRI>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[Initializes the PowerShell environment to execute our script and PowerCLI cmdlets. Following is initialized:
-* sets PowerCLI to path env variable and calls script to initialize PowerCLI environment
-* initializes variable $ErrorActionPreference and $error for Error handling and processing.
-
+* sets errors variable to 0.
+* checks whether virtualmachinemanager powershell module is available and load it.
+* sets ErrorActionPreference and WarningPreference 
 This include can be only used in Job's Process tab.
 It can be used for Windows PowerShell environment.
 ]]></DOC>
