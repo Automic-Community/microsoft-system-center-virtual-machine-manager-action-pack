@@ -1,0 +1,62 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        get_vm
+Default Tags
+Test Template     Get VM Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    VM_Name           VM_Host
+Get VM With Valid Inputs
+                      [Tags]    main_scenarios
+                      OK        ${VM_Name}        ${VM_Host}
+
+Assertion With Non-Existing VM Name
+                      [Tags]    main_scenarios
+                      NOK       Invalid           ${VM_Host}
+
+Assertion With Non-Existing VM Host
+                      [Tags]    main_scenarios
+                      NOK       ${VM_Name}        Invalid
+
+Assertion With More Than One Existing VM Name Having Same Name
+                      [Tags]    main_scenarios
+                      NOK       Invalid           ${VM_Host}
+
+Assert VM Name As a Mandatory Field
+                      [Tags]    main_scenarios
+                      NOK       Empty             ${VM_Host}
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "Get VM"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Get VM Template
+    [Arguments]    ${OK_NOK}    ${VM_Name}    ${VM_Host}
+    [Documentation]    This action is used to get the details of a Virtual Machine based on Name and VM Host on which it is hosted. If VM Host is not provided then VM would be searched in whole VMM server based on VM name
+    ...    -Precondition: To run this test suite, SCVMM credentials should be known to user.
+    ...    -${VM_Name}: This field specifies Virtual machine name which you want to get.
+    ...    -${VM_Host}: This field specifies the Host Name form which you want to get VM.
+    Generate String
+    Action Create    ${_GET_VM_ACTION}
+    Common Inputs
+    Run Keyword If    '${VM_Name}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMNAME#    ${VM_Name}
+    Action Set    &UC4RB_VMM_VMNAME#    ${VM_Name}
+    Run Keyword If    '${VM_Host}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMHOST#    ${VM_Host}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure    ELSE
+    ...    Assert Mandatory
+
+Teardown
+    Log    *******End Test "Get VM"*******

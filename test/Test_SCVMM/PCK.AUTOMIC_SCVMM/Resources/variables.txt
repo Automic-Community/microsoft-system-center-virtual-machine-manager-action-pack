@@ -11,3 +11,7 @@ ${VMM_Password}    Punish3r
 ${VM_Path}        Datastore3
 ${VM_Host}        svievmw12.sbb01.spoc.global
 ${Source_VM}      AutomationTest
+
+#---- Get VM ----------------------------------------------------------------------------------------------------
+${VM_Name}        kkg2
+${VM_Host}        svievmw04.sbb01.spoc.global
