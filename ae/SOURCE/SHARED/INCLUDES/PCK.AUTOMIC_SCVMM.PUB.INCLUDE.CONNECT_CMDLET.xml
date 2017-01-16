@@ -11,7 +11,7 @@
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.ATTACH
 : SET &UC4RB_ENCRYPTED_PASSWORD_TMP# = "&UC4RB_VMM_PASSWORD#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.DECRYPT_PASSWORD
-try{
+
 
 ! Create PSCredential object
  $securepassword = ConvertTo-SecureString $UC4_DECRYPTED_PWD -AsPlainText -Force
@@ -24,11 +24,7 @@ try{
 ! Connect to VMM Server
   $vmmserver = &UC4RB_VMM_CONNECT_CMDLET# -Credential $servercreds
   Write-Host "INFO: Successfully connected to VMM Server"
-  }catch{
-      Write-Host "ERROR: Error connecting VMM Server."
-      Write-Host "ERROR: $($error[0].Exception.Message)"
-      __uc_return(1)
-  }
+
 
 ]]></MSCRI>
 </SCRIPT>
