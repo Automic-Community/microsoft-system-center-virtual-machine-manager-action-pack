@@ -8,6 +8,12 @@ ${VMM_Port}       8100
 ${VMM_Username}    SC\\Administrator
 ${VMM_Password}    Punish3r
 #---- New VM from VM ----------------------------------------------------------------------------------------------------
-${VM_Path}        [local Storage svievmw04]\\
+${VM_Path}        Datastore3
 ${VM_Host}        svievmw12.sbb01.spoc.global
 ${Source_VM}      AutomationTest
+#---- Stop VM ----------------------------------------------------------------------------------------------------
+${VM_Name}        Test_KG
+${VM_Host}        svievmw04.sbb01.spoc.global
+${Force}          No
+${Save_State}     No
+

@@ -65,7 +65,7 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_NEW_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_NEW_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_PATHs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PATH#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
@@ -134,7 +134,7 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_NEW_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_NEW_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_PATHs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PATH#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
@@ -189,7 +189,7 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_NEW_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_NEW_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_PATHs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PATH#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
 <UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM"/>
@@ -267,7 +267,9 @@
 </node>
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" parent="PRPTS" type="PROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" ontop="1">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" prptmode="1"/>
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_VM" prptmode="1">
+<UC4RB_VMM_ADV_OPTIONSs.00 altview="0" haslist="0"/>
+</PRPTBOX>
 </PROMPTSET>
 </node>
 <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PRPTS" type="PROMPTSET">
@@ -305,18 +307,20 @@ PCK.AUTOMIC_SCVMM.PUB.ACTION.NEW_VM_FROM_VM
 
 = General description =
 This action is used to create a virtual machine from an existing stopped virtual machine deployed on a host. User can also provide additional parameters like Id in "Advance options" field. The Virtual Machine details would be printed in the Job report.
-NOTE: Virtual machine must be in Poweroff or Stored state in order to be cloned.
+
+NOTE: 
+* Virtual machine must be in Poweroff or Stored state in order to be cloned.
+* When you deploy a new virtual machine to a Hyper-V host, you can specify a location for the virtual machine files, or use the default path of <C>:\ProgramData\Microsoft\Windows\Hyper-V.
 
 = Failure Conditions =
 * This action will fail if multiple or no VMs exist for inputs provided.
-* This action will fail If VM is not in Poweroff or Stored state.
 
 = Inputs =
 * Server IP or DNS  : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.0
 * Port		    : Specify port which will be used for connection. Default value is 8100.
 * Username	    : Username which will be used for this connection. E.g. domain\username
 * Password	    : Password to your username.
-* VM Name	    : SSpecify Name of the Virtual Machine you want to create.  E.g. myvm
+* VM Name	    : Specify Name of the Virtual Machine you want to create.  E.g. myvm
 * Path	 	    : Specify destination path for the operation. 
 		      Example formats:  Local: "F:\"
 			    		UNC: "\\Library\Templates"
@@ -328,7 +332,7 @@ NOTE: Virtual machine must be in Poweroff or Stored state in order to be cloned.
 					UNC: "\\VMHostServer\MyVMs\*VM*"
 * VMHost	    : Specify the host on which you want to create the new virtual machine.VMM supports Hyper-V hosts, VMware ESX hosts, and Citrix XenServer hosts.	
 * VM Name to use    : Existing VM Name which will be used for creating new one.    
-* Advance Options   : Specify advance options for Get-SCVirtualMachine commandlet. E.g. -id 3d73b337-cf03-4d56-b8ae-a7c3fc90071b
+* Advance Options   : Specify parameters you want to include into command. E.g. -MemoryMB 6553 -CPUCount 4
 * Overwrite Agent   : Overwrites the default agent
 * Overwrite Login   : Overwrites the default login
 
