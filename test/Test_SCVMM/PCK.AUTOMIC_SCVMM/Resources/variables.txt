@@ -16,3 +16,8 @@ ${Source_VM}      AutomationTest
 ${VM_Name}        kkg2
 ${VM_Host_Get_VM}        svievmw04.sbb01.spoc.global
 ${Advance_opt}        -id 39f1e207-eefc-4616-8881-8592449914cc    
+#---- Stop VM ----------------------------------------------------------------------------------------------------
+${VM_Name}        Test_KG
+${VM_Host}        svievmw04.sbb01.spoc.global
+${Force}          No
+${Save_State}     No
