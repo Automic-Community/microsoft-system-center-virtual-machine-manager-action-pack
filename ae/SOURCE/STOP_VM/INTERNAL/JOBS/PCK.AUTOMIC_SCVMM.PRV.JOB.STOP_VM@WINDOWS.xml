@@ -194,6 +194,7 @@ try{
       $vminhost = &UC4RB_VMM_GETVM_CMD#
 
       if($vminhost.count -ne 1){
+           Write-Host "ERROR: Number of VM found: "$vminhost.count
            throw "Multiple or No Virtual Machine(s) found."
 
         }else{
@@ -211,7 +212,6 @@ try{
 
 }catch{
   $errors=1
-  Write-Host "ERROR: Number of VM found: "$vminhost.count
   WRITE-HOST "ERROR: $($error[0].Exception.Message)"
 }
 
