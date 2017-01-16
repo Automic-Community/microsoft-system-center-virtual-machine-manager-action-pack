@@ -12,8 +12,7 @@ ${VM_Path}        Datastore3
 ${VM_Host}        svievmw12.sbb01.spoc.global
 ${Source_VM}      AutomationTest
 #---- Stop VM ----------------------------------------------------------------------------------------------------
-${VM_Name}        Test_KG
-${VM_Host}        svievmw04.sbb01.spoc.global
+${VM_Name_stop}    Test_KG
+${VM_Host_stop}    svievmw04.sbb01.spoc.global
 ${Force}          No
-${Save_State}     No
-
+${SaveState}      No
