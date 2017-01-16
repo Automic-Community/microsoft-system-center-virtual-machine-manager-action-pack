@@ -310,8 +310,7 @@ This action is used to create a virtual machine from an existing stopped virtual
 
 NOTE: 
 * Virtual machine must be in Poweroff or Stored state in order to be cloned.
-* When you deploy a new virtual machine to a Hyper-V host, you can specify a location for the virtual machine files, or it use the default path of <C>:\ProgramData\Microsoft\Windows\Hyper-V.
-* When you deploy a new virtual machine on a VMware ESX host or Citrix XenServer host, there is no default path to store the virtual machine files, so you must specify the path when you create the virtual machine.
+* When you deploy a new virtual machine to a Hyper-V host, you can specify a location for the virtual machine files, or use the default path of <C>:\ProgramData\Microsoft\Windows\Hyper-V.
 
 = Failure Conditions =
 * This action will fail if multiple or no VMs exist for inputs provided.
