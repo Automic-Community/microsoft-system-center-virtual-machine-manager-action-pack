@@ -15,7 +15,7 @@ Resource          ../../Resources/actions.txt
 *** Test Cases ***    OK_NOK    VM_Name           VM_Host       AdvancedOptions
 Get VM With Valid Inputs With Providing VM Host and Advanced Options
                       [Tags]    main_scenarios
-                      OK        ${VM_Name}        ${VM_Host}    -RunAsynchronously
+                      OK        ${VM_Name}       ${VM_Host_Get_VM}    ${Advance_opt}
 
 Get VM With Valid Inputs Without Providing VM Host and Advanced Options
                       [Tags]    main_scenarios
@@ -23,7 +23,7 @@ Get VM With Valid Inputs Without Providing VM Host and Advanced Options
 
 Assertion With Non-Existing VM Name
                       [Tags]    main_scenarios
-                      NOK       Invalid           ${VM_Host}    ${EMPTY}
+                      NOK       Invalid           ${VM_Host_Get_VM}    ${EMPTY}
 
 Assertion With Non-Existing VM Host
                       [Tags]    main_scenarios
@@ -31,11 +31,11 @@ Assertion With Non-Existing VM Host
 
 Assertion With More Than One Existing VM Name Having Same Name
                       [Tags]    main_scenarios
-                      NOK       Invalid           ${VM_Host}    ${EMPTY}
+                      NOK       Invalid           ${VM_Host_Get_VM}    ${EMPTY}
 
 Assert VM Name As a Mandatory Field
                       [Tags]    main_scenarios
-                      NOK       ${EMPTY}          ${VM_Host}    -RunAsynchronously
+                      NOK       ${EMPTY}          ${VM_Host_Get_VM}   ${Advance_opt}
 
 *** Keywords ***
 Startup
@@ -48,7 +48,7 @@ Get VM Template
     [Documentation]    This action is used to get the details of a Virtual Machine based on Name and VM Host on which it is hosted. If VM Host is not provided then VM would be searched in whole VMM server based on VM name
     ...    -Precondition: To run this test suite, SCVMM credentials should be known to user.
     ...    -${VM_Name}: This field specifies Virtual machine name which you want to get.
-    ...    -${VM_Host}: This field specifies the Host Name form which you want to get VM.
+    ...    -${VM_Host_Get_VM}: This field specifies the Host Name form which you want to get VM.
     ...    -${AdvancedOptions}: This field specifies advanced parameter for start-scvirtualmachine command.
     Generate String
     Action Create    ${_GET_VM_ACTION}
@@ -56,8 +56,8 @@ Get VM Template
     Run Keyword If    '${VM_Name}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_VMNAME#    ${VM_Name}
     Action Set    &UC4RB_VMM_VMNAME#    ${VM_Name}
-    Run Keyword If    '${VM_Host}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_VMM_VMHOST#    ${VM_Host}
+    Run Keyword If  '${VM_Host_Get_VM}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMHOST#   ${VM_Host_Get_VM}
     Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
     Set Overwrite Agent
