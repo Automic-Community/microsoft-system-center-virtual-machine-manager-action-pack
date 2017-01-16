@@ -15,16 +15,13 @@ $errors = 0
 ! check if vmm module is available and load it
 function LoadModule{
   param($ModuleName)
-  $targetmodule=Get-Module -ListAvailable | where {$_.Name -eq $ModuleName}
+  $targetmodule=Get-Module | where {$_.Name -eq $ModuleName}
   if(! $targetmodule){
-      Write-Host "ERROR: VirtualMachineManager module not found."
+    Write-Host "INFO: Loading VirtualMachineManager module."
+    Import-Module -Name $ModuleName -PassThru
+    if(! $? ) {
       __uc_return(1)
-  }else{
-      Write-Host "INFO: Loading VirtualMachineManager module."
-      Import-Module -Name $ModuleName -PassThru
-      if(! $? ) {
-        __uc_return(1)
-      }
+    }
   }
 }
 

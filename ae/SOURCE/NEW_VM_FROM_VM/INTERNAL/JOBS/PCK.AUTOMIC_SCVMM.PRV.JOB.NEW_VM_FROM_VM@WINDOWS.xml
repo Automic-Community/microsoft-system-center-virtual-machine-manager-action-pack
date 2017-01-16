@@ -177,12 +177,9 @@
 
 !-------------------------------------Commandlet execution------------------------------------------------------------------------------
 
-
+try{
 ! Connect to VMM Server
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CONNECT_CMDLET
-
-try{
-
 ! logging get vm command
   Write-Host "INFO:" &UC4RB_VMM_GETVM_CMD#
   $vmachine = &UC4RB_VMM_GETVM_CMD#
