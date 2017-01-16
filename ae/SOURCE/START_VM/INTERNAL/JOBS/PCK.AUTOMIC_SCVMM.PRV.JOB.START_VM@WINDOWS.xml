@@ -179,7 +179,7 @@ try{
       Write-Host "INFO: Unique Virtual Machine found."
 
       if($vmachine.Status -ne "Running"){
-          WRITE-HOST "INFO:Start Vm cmdlet - &UC4RB_VMM_STARTVM_CMD# -VM $($vmachine)"
+          WRITE-HOST "INFO:Start Vm cmdlet - &UC4RB_VMM_STARTVM_CMD# -VM $($vmachine.name)"
          &UC4RB_VMM_STARTVM_CMD# -VM $vmachine
       }else{
          Write-Host "INFO: VM already in Running state"
@@ -188,8 +188,10 @@ try{
 
 }catch{
   $errors=1
+  Write-Host "ERROR: Number of VM found: "$vmachine.count
   Write-Host "ERROR: $($error[0].Exception.Message)"
 }
+
 
 
 !-----------------------------------Error Handling-------------------------------------------------------------------------------------

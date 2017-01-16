@@ -182,6 +182,7 @@ try{
 }catch{
   $errors=1
   Write-Host "ERROR: $($error[0].Exception.Message)"
+  Write-Host "ERROR: Number of VM found: "$vminhost.count
 }
 
 

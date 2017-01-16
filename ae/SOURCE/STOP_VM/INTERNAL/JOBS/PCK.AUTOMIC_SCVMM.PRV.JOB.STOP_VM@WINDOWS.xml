@@ -145,24 +145,6 @@
 
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
 
-! Checking if both Force and Saved State options are not used together
-: SET &OPTION_COUNT# = 0
-: SET &OPERATION# = ""
-
-: IF &UC4RB_VMM_FORCE# EQ "YES"
-:   SET &OPTION_COUNT# = &OPTION_COUNT# + 1
-:   SET &OPERATION# =  "-Force"
-: ENDIF
-
-: IF &UC4RB_VMM_SAVE_STATE# EQ "YES"
-:   SET &OPTION_COUNT# = &OPTION_COUNT# + 1
-:   SET &OPERATION# =  "-SaveState"
-: ENDIF
-
-: IF &OPTION_COUNT# EQ 2
-:   STOP MSG, 50, "Force and Saved state options cannot be selected together"
-: ENDIF
-
 !-------------------------------------Stop VMM commandlets---------------------------------------------------------------------------------------------------
 ! Get VM command
 : SET &UC4RB_VMM_GETVM_CMD# = "Get-SCVirtualMachine "
@@ -183,6 +165,17 @@
 :   SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -VMHost  '&UC4RB_VMM_ESC_VALUE#' ")
 : ENDIF
 
+! FORCE
+: IF &UC4RB_VMM_FORCE# <> "NO"
+:   SET &UC4RB_VMM_STOPVM_CMD# = STR_CAT(&UC4RB_VMM_STOPVM_CMD#, " -Force ")
+: ENDIF
+
+! Save State
+: IF &UC4RB_VMM_SAVE_STATE# <> "NO"
+:   SET &UC4RB_VMM_STOPVM_CMD# = STR_CAT(&UC4RB_VMM_STOPVM_CMD#, " -SaveState ")
+: ENDIF
+
+
 ! Advance Option
 : IF &UC4RB_VMM_ADV_OPTIONS# <> ""
 :   SET &UC4RB_VMM_STOPVM_CMD# = STR_CAT(&UC4RB_VMM_STOPVM_CMD#, &UC4RB_VMM_ADV_OPTIONS#)
@@ -192,22 +185,29 @@
 
 ! Connect to VMM Server
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CONNECT_CMDLET
-
 try{
-      Write-Host "INFO:" &UC4RB_VMM_GETVM_CMD#
+      WRITE-HOST "INFO:" &UC4RB_VMM_GETVM_CMD#
       $vminhost = &UC4RB_VMM_GETVM_CMD#
 
       if($vminhost.count -ne 1){
            throw "Multiple or No Virtual Machine(s) found."
 
         }else{
-           Write-Host "INFO: Unique Virtual Machine found."
-           WRITE-HOST "INFO: Stop VM cmdlet - &UC4RB_VMM_STOPVM_CMD# -VM $($vminhost)"
-                       &UC4RB_VMM_STOPVM_CMD# -VM $vminhost
+           WRITE-HOST "INFO: Unique Virtual Machine found."
+
+           $op = &OPTION_COUNT#
+           if(($vminhost.Status -eq "PowerOff") -and (0 -eq $op)){
+               WRITE-HOST "INFO: VM already stopped."
+           }else{
+               WRITE-HOST "INFO: Stop VM cmdlet :: &UC4RB_VMM_STOPVM_CMD# -VM $($vminhost.name)"
+               &UC4RB_VMM_STOPVM_CMD# -VM $vminhost
+           }
+
         }
 
 }catch{
   $errors=1
+  Write-Host "ERROR: Number of VM found: "$vminhost.count
   WRITE-HOST "ERROR: $($error[0].Exception.Message)"
 }
 
