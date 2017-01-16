@@ -1,0 +1,62 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        start_vm
+Test Template     Start VM Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    VMName            VMHost        AdvancedOptions
+Start VM with Valid Inputs without providing VM Host and Advanced Options
+                      [Tags]    main_scenarios
+                      OK        ${Source_VM}      ${EMPTY}      ${EMPTY}
+
+Starting an already running VM also providing VM Host and Advanced Options
+                      OK        ${Source_VM}      ${VM_Host}    -RunAsynchronously
+
+Assert Behaviour for Non-Existing VM
+                      NOK       Invalid           ${VM_Host}    ${EMPTY}
+
+Assert Behaviour for Non-Existing VM Host
+                      NOK       ${Source_VM}      Invalid       ${EMPTY}
+
+Assert Behaviour for Non-Existing Advanced Parameter
+                      NOK       ${Source_VM}      ${VM_Host}    Invalid
+
+Assert VM Name as Mandatory Field
+                      NOK       ${EMPTY}          ${VM_Host}    -RunAsynchronously
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "START VM"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Start VM Template
+    [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost}    ${AdvancedOptions}
+    [Documentation]    This test starts a vm.
+    ...    -Precondition: To execute this test variables used should be changed accordingly.
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
+    ...    -${VMName}: This field specifies the vm name which you want to start
+    ...    -${VMHost}: This field specifies the host where vm is located
+    ...    -${AdvancedOptions}: This field specifies advanced parameter for start-scvirtualmachine command.
+    Generate String
+    Action Create    ${_START_VM_ACTION}
+    Common Inputs
+    Run Keyword If    '${VMName}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMNAME#    ${VMName}
+    Run Keyword If    '${VMHost}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMHOST#    ${VMHost}
+    Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+
+Teardown
+    Log    *******End Test "START VM"*******

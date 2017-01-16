@@ -1,0 +1,78 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        stop_vm
+Default Tags
+Test Template     Stop VM Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    VM_Name           VM_Host       Force    Save_state AdvancedOptions
+Stop VM With Valid Inputs Without Providing VM Host,Force,Save_state and Advanced Options
+                      [Tags]    main_scenarios
+                      OK        ${VM_Name}        ${EMPTY}      No       No                            ${EMPTY}
+
+Stopping an already stopped VM also providing VM Host and Advanced Options
+                      [Tags]    main_scenarios
+                      OK        ${VM_Name}        ${VM_Host}    No       No                            -RunAsynchronously
+
+Assertion With Non-Existing VM Name
+                      [Tags]    main_scenarios
+                      OK        Invalid           ${VM_Host}    No       No                            ${EMPTY}
+
+Assertion With Non-Existing VM Host
+                      [Tags]    main_scenarios
+                      OK        ${VM_Name}        Invalid       NO       No                            ${EMPTY}
+
+Assertion With Force and State_Save both checked 'Yes'
+                      [Tags]    main_scenarios
+                      NOK       ${VM_Name}        Invalid       Yes      Yes                           ${EMPTY}
+
+Assertion for Non-Existing Advanced Parameter
+                      [Tags]    main_scenarios
+                      Other     ${VM_Name}        ${VM_Host}    No       No                            invalid
+                      NOK
+
+Assert VM Name as Mandatory Field
+                      [Tags]    main_scenarios
+                      NOK       ${EMPTY}          ${VM_Host}    No       NO                            -RunAsynchronously
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "Stop VM"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Stop VM Template
+    [Arguments]    ${OK_NOK}    ${VM_Name}    ${VM_Host}    ${Force} ${State_Save} ${AdvancedOptions}
+    [Documentation]    This test is used to stop the given VM.
+    ...    -Precondition: To run this test suite, SCVMM credentials should be known to user.
+    ...    -${VM_Name}: This field specifies Name of the Virtual Machine you want to stop.
+    ...    -${VM_Host}: This field Specify the host from which you want to stop VM.
+    ...    -${Force} : This field Specify whether command will be forced.
+    ...    -${State_Save}: This field Specify whether if you want to save the state.
+    ...    -${AdvancedOptions}: This field specifies advanced parameter for start-scvirtualmachine command.
+    Generate String
+    Action Create    ${_GET_VM_ACTION}
+    Common Inputs
+    Run Keyword If    '${VM_Name}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMNAME#    ${VM_Name}
+    Action Set    &UC4RB_JIRA_COMMENT#    ${Comment}
+    Run Keyword If    '${VM_Host}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMHOST#    ${VM_Host}
+    Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
+    Action Set    &UC4RB_VMM_FORCE#    ${Force}
+    Action Set    &UC4RB_VMM_SAVE_STATE# ${Save_State}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure    ELSE
+    ...    Assert Mandatory
+
+Teardown
+    Log    *******End Test "Stop VM"*******
