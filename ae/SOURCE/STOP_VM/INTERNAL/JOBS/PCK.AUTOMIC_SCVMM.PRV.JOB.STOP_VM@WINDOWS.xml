@@ -183,9 +183,10 @@
 
 !-------------------------------------Commandlet execution-----------------------------------------------------------------------------------------------------
 
-! Connect to VMM Server
-: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CONNECT_CMDLET
+
 try{
+!     Connect to VMM Server
+:     INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CONNECT_CMDLET
       WRITE-HOST "INFO:" &UC4RB_VMM_GETVM_CMD#
       $vminhost = &UC4RB_VMM_GETVM_CMD#
 
