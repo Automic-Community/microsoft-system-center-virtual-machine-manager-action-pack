@@ -148,9 +148,10 @@
 !-------------------------------------Stop VMM commandlets---------------------------------------------------------------------------------------------------
 ! Get VM command
 : SET &UC4RB_VMM_GETVM_CMD# = "Get-SCVirtualMachine "
+: SET &OPTION_COUNT# = 0
 
 ! Stop VM command
-: SET &UC4RB_VMM_STOPVM_CMD# = "Stop-SCVirtualMachine &OPERATION# "
+: SET &UC4RB_VMM_STOPVM_CMD# = "Stop-SCVirtualMachine "
 
 ! VMM server
 : SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -VMMServer $vmmserver ")
@@ -168,11 +169,13 @@
 ! FORCE
 : IF &UC4RB_VMM_FORCE# <> "NO"
 :   SET &UC4RB_VMM_STOPVM_CMD# = STR_CAT(&UC4RB_VMM_STOPVM_CMD#, " -Force ")
+:   SET &OPTION_COUNT# = 1
 : ENDIF
 
 ! Save State
 : IF &UC4RB_VMM_SAVE_STATE# <> "NO"
 :   SET &UC4RB_VMM_STOPVM_CMD# = STR_CAT(&UC4RB_VMM_STOPVM_CMD#, " -SaveState ")
+:   SET &OPTION_COUNT# = 1
 : ENDIF
 
 

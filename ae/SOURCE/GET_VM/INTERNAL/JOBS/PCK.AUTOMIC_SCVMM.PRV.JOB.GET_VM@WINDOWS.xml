@@ -168,8 +168,7 @@ try{
   Write-Host "INFO:" &UC4RB_VMM_GETVM_CMD#
   $vmachine = &UC4RB_VMM_GETVM_CMD#
   if($vmachine.count -ne 1){
-      Write-Host "INFO: Multiple or No Virtual Machine(s) found."
-      $errors=1
+      throw "Multiple or No Virtual Machine(s) found."
 
   }else{
       Write-Host "INFO: Unique Virtual Machine found."
