@@ -304,7 +304,7 @@ This action is used to get the details of a Virtual Machine based on Name and VM
 * This action will fail if multiple or no VMs exist for inputs provided.
 
 = Inputs =
-* Server IP or DNS  : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.0
+* Server IP or DNS  : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.45
 * Port		    : Specify port which will be used for connection. Default value is 8100.
 * Username	    : Username which will be used for this connection. E.g. domain\username
 * Password	    : Password to your username.

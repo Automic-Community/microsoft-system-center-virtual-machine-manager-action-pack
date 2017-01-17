@@ -313,7 +313,7 @@ If VM is in state PowerOff then its state cannot be saved ,it needs to be in Run
 * This action will fail if multiple or no VMs exist for inputs provided.
 
 = Inputs =
-* Server IP or DNS  : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.0
+* Server IP or DNS  : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.45
 * Port		    : Specify port which will be used for connection. Default value is 8100.
 * Username	    : Username which will be used for this connection. E.g. domain\username
 * Password	    : Password to your username.
@@ -321,7 +321,7 @@ If VM is in state PowerOff then its state cannot be saved ,it needs to be in Run
 * VM Name	    : Specify name of the virtual machine you want to stop.E.g. myvm
 * Force             : Specify whether command will be forced.Default is NO
 * Save State        : Specify whether if you want to save the state.Default is NO
-* Advanced Options   : Specify parameters you want to include into command. E.g. -id 3d73b337-cf03-4d56-b8ae-a7c3fc90071b
+* Advanced Options   : Specify parameters you want to include into command. E.g. -RunAsynchronously
 * Overwrite Agent   : Overwrites the default agent
 * Overwrite Login   : Overwrites the default login
 
