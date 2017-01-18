@@ -35,6 +35,9 @@ Following actions are supported for SCVMM:
 
 * Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.START_VM
 * Action Description: This action is used to start a Virtual Machine
+
+* Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.REMOVE_VM
+* Action Description: This action is used to remove a Virtual Machine
 ]]></DOC>
 </DOCU_Docu>
 </DOCU>
