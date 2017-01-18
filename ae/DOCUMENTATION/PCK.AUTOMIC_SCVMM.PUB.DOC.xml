@@ -45,6 +45,9 @@ Following actions are supported for SCVMM:
 * Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.CREATE_CHECKPOINT
 * Action Description: This action is used to create a checkpoint of VM.
 
+* Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.SUSPEND_VM
+* Action Description: This action is used to suspend a Virtual Machine
+
 ]]></DOC>
 </DOCU_Docu>
 </DOCU>
