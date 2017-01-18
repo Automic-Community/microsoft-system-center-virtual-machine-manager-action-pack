@@ -300,7 +300,53 @@
 <MSCRI/>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
-<DOC/>
+<DOC><![CDATA[= Action name =
+PCK.AUTOMIC_SCVMM.PUB.ACTION.CREATE_CHECKPOINT
+
+= General description =
+This action is used to create a checkpoint of VM. Atleast the VM name and Checkpoint name should be provided. The details of Checkpoint would be printed in the Job report. You can also provide a description and additional parameters to the "Advanced Options" field.
+
+= Failure Conditions =
+* This action will fail if multiple or no VMs exist for inputs provided.
+
+= Inputs =
+* Server IP or DNS  : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.45
+* Port		    : Specify port which will be used for connection. Default value is 8100.
+* Username	    : Username which will be used for this connection. E.g. domain\username
+* Password	    : Password to your username.
+* VM Name	    : Specify Name of the Virtual Machine for which you want to create a checkpoint. E.g. myvm.com
+* VMHost	    : Specify the host from which you want to get VM. E.g. myhost.com
+* Checkpoint Name   : Provide name for this checkpoint. E.g. myvm.com_20-Jan-2017
+* Description	    : Provide description for this checkpoint.
+* Advanced Options  : Specify parameters you want to include into command. E.g. -RunAsynchronously
+* Overwrite Agent   : Overwrites the default agent
+* Overwrite Login   : Overwrites the default login
+
+= Behaviour =
+(none)
+
+=Return Value=
+(none)
+
+= Outputs =
+* Return code is 0 in case of success.
+* Return code is 1 in case of failure.
+
+= Logging =
+Logs will be displayed in the AE report.
+
+= Example =
+1. Create checkpoint of a VM which is unique to the VMM server
+VM Name: 		myvm_12345
+Checkpoint Name: 	myvm_12345_20-Feb2017
+Description: 		This Checkpoint is created using action pack.
+
+2. Create checkpoint asynchronously of a VM which is unique to a VM host in VMM server
+VM Name: 		myvm_12345
+VMHost : 		myvmhost.com
+Checkpoint Name: 	myvm_12345_20-Feb2017
+Description: 		This Checkpoint is created using action pack.
+Advanced Options: 	-RunAsynchronously]]></DOC>
 </DOCU_Docu>
 </JOBP>
 </uc-export>
