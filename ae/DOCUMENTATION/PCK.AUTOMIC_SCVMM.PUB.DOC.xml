@@ -13,13 +13,16 @@ System Center Virtual Machine Manager (SCVMM) forms part of Microsoft's System C
 System Center Virtual Machine Manager enables increased physical server utilization by making possible simple and fast consolidation on virtual infrastructure. This is supported by consolidation candidate identification, fast Physical-to-Virtual (P2V) migration and intelligent workload placement based on performance data and user defined business policies (NOTE: P2V Migration capability was removed in SCVMM 2012r2). VMM enables rapid provisioning of new virtual machines by the administrator and end users using a self-service provisioning tool. Finally, VMM provides the central management console to manage all the building blocks of a virtualized data center
 
 =Supported versions=
-System Center 2012
+System Center Virtual Machine Manager 2012
 
 =Limitations=
+* We are only supporting Windows Agent with PowerShell.
 
 =Setup=
-* Powershell version 4 or higher
-* Module VirtualMachineManager
+* Oracle JDK 1.7 or higher must be installed on Agent OS and "java" must be set as executable on the same.
+* The Agent should be able to access the VMM servers in order to make HTTP requests.
+* Powershell version 4 or higher with Module VirtualMachineManager should be present on Agent machine.
+* Connection details to the VMM server.
 
 =Actions=
 Following actions are supported for SCVMM:
@@ -38,6 +41,10 @@ Following actions are supported for SCVMM:
 
 * Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.REMOVE_VM
 * Action Description: This action is used to remove a Virtual Machine
+
+* Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.CREATE_CHECKPOINT
+* Action Description: This action is used to create a checkpoint of VM.
+
 ]]></DOC>
 </DOCU_Docu>
 </DOCU>

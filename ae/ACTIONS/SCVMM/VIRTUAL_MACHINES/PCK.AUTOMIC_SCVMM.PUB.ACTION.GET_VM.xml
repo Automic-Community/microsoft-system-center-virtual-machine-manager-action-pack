@@ -298,7 +298,7 @@
 PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM
 
 = General description =
-This action is used to get the details of a Virtual Machine based on Name and VM Host on which it is hosted. If VM Host is not provided then VM would be searched in whole VMM server based on VM name. User can also provide additional parameters like Id in "Advance options" field. The Virtual Machine details would be printed in the Job report.
+This action is used to get the details of a Virtual Machine based on Name and VM Host on which it is hosted. If VM Host is not provided then VM would be searched in whole VMM server based on VM name. User can also provide additional parameters like Id in "Advanced Options" field. The Virtual Machine details would be printed in the Job report.
 
 = Failure Conditions =
 * This action will fail if multiple or no VMs exist for inputs provided.

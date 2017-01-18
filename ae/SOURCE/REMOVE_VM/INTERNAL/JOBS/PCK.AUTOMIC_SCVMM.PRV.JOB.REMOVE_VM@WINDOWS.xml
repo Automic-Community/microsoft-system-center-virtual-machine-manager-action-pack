@@ -135,7 +135,7 @@
 : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_FORCE#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
-: SET &UC4RB_LOGGING_PARAMETER# = "Advance Options"
+: SET &UC4RB_LOGGING_PARAMETER# = "Advanced Options"
 : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_ADV_OPTIONS#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
@@ -143,14 +143,9 @@
 
 !-------------------------------------Remove VMM commandlets---------------------------------------------------------------------------------------------------
 ! Get VM command
-: SET &UC4RB_VMM_GETVM_CMD# = "Get-SCVirtualMachine "
 
-! VMM server
-: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -VMMServer $vmmserver ")
-
-! vm name
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMNAME#
-: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -name  '&UC4RB_VMM_ESC_VALUE#' ")
+: SET &UC4RB_VMM_GETVM_CMD# = "Get-SCVirtualMachine -VMMServer $vmmserver -name '&UC4RB_VMM_ESC_VALUE#' "
 
 ! vm host
 : IF &UC4RB_VMM_VMHOST# <> ""
