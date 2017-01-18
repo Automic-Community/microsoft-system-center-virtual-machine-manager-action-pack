@@ -21,4 +21,9 @@ ${VM_Name_stop}    Test_KG
 ${VM_Host_stop}    svievmw04.sbb01.spoc.global
 ${Force}          No
 ${Save_State}     No
+#---- Remove VM ----------------------------------------------------------------------------------------------------
+${VM_Name_Remove}    Test_KG
+${VM_Host_Remove}    svievmw04.sbb01.spoc.global
+${Force}          No
+
 
