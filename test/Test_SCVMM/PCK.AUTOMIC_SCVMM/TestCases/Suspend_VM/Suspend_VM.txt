@@ -13,30 +13,33 @@ Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
 *** Test Cases ***    OK_NOK    VM_Name               VM_Host               AdvancedOptions
-Suspend VM With Valid Inputs
+Suspend VM With Valid Inputs without providing VM_host and Advanced options 
                       [Tags]    main_scenarios
-                      OK        ${Source_VM}   ${VM_Host}             -RunAsynchronously
+                      OK        ${Source_VM}         ${EMPTY}         ${EMPTY}
+Suspend VM With Valid Inputs providing VM_host and Advanced options 
+                      [Tags]    main_scenarios    
+                      OK        ${Source_VM}       ${VM_Host}             -RunAsynchronously
 
 Assertion With Non-Existing VM Name
                       [Tags]    main_scenarios
                       NOK       Invalid           ${VM_Host}      ${EMPTY}
 
 Assertion With Non-Existing VM Host
-                      [Tags]    main_scenarios
+                        
                       NOK       ${Source_VM}    Invalid               ${EMPTY}
 
 Assertion for Non-Existing Advanced Parameter
-                      [Tags]    main_scenarios
-                      Other     ${Source_VM}    ${VM_Host}          invalid
-                      NOK
+                          
+                     NOK    ${Source_VM}    ${VM_Host}          Invalid
+                      
 
-Assert VM Name as Mandatory Field
-                      [Tags]    main_scenarios
+Assertion VM Name as Mandatory Field
+                       
                       NOK       ${EMPTY}          ${VM_Host}     -RunAsynchronously
 
 *** Keywords ***
 Startup
-    Log    *******Start Test Suspend VM"*******
+    Log    *******"Start Test Suspend VM"*******
     Log    *******Connect to AE*******
     Connect AE
 
@@ -44,6 +47,7 @@ Suspend VM Template
     [Arguments]    ${OK_NOK}    ${VM_Name}    ${VM_Host}    ${AdvancedOptions}
     [Documentation]    This test is used to suspend the given VM.
     ...    -Precondition: To run this test suite, SCVMM credentials should be known to user and VM state should be in running state.
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
     ...    -${VM_Name}: This field specifies Name of the Virtual Machine you want to suspend.
     ...    -${VM_Host}: This field Specify the host from which you want to suspend VM.
     ...    -${AdvancedOptions}: This field specifies advanced parameter for suspend virtual machine command.
@@ -56,11 +60,10 @@ Suspend VM Template
     ...    &UC4RB_VMM_VMHOST#    ${VM_Host}
     Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
-    Action Set    &UC4RB_VMM_FORCE#    ${Force}
     Set Overwrite Agent
     Action Execute
-    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure    ELSE
-    ...    Assert Mandatory
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure    
+    
 
 Teardown
-    Log    *******End Test Suspend VM"*******
+    Log    *******"End Test Suspend VM"*******
