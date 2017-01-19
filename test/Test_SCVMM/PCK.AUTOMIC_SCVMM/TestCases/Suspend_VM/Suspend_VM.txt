@@ -1,0 +1,66 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        suspend_vm
+Default Tags
+Test Template     Suspend VM Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    VM_Name               VM_Host               AdvancedOptions
+Suspend VM With Valid Inputs
+                      [Tags]    main_scenarios
+                      OK        ${Source_VM}   ${VM_Host}             -RunAsynchronously
+
+Assertion With Non-Existing VM Name
+                      [Tags]    main_scenarios
+                      NOK       Invalid           ${VM_Host}      ${EMPTY}
+
+Assertion With Non-Existing VM Host
+                      [Tags]    main_scenarios
+                      NOK       ${Source_VM}    Invalid               ${EMPTY}
+
+Assertion for Non-Existing Advanced Parameter
+                      [Tags]    main_scenarios
+                      Other     ${Source_VM}    ${VM_Host}          invalid
+                      NOK
+
+Assert VM Name as Mandatory Field
+                      [Tags]    main_scenarios
+                      NOK       ${EMPTY}          ${VM_Host}     -RunAsynchronously
+
+*** Keywords ***
+Startup
+    Log    *******Start Test Suspend VM"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Suspend VM Template
+    [Arguments]    ${OK_NOK}    ${VM_Name}    ${VM_Host}    ${AdvancedOptions}
+    [Documentation]    This test is used to suspend the given VM.
+    ...    -Precondition: To run this test suite, SCVMM credentials should be known to user and VM state should be in running state.
+    ...    -${VM_Name}: This field specifies Name of the Virtual Machine you want to suspend.
+    ...    -${VM_Host}: This field Specify the host from which you want to suspend VM.
+    ...    -${AdvancedOptions}: This field specifies advanced parameter for suspend virtual machine command.
+    Generate String
+    Action Create    ${_SUSPEND_VM_ACTION}
+    Common Inputs
+    Run Keyword If    '${VM_Name}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMNAME#    ${VM_Name}
+    Run Keyword If    '${VM_Host}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMHOST#    ${VM_Host}
+    Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
+    Action Set    &UC4RB_VMM_FORCE#    ${Force}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure    ELSE
+    ...    Assert Mandatory
+
+Teardown
+    Log    *******End Test Suspend VM"*******

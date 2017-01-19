@@ -19,24 +19,24 @@ Stop VM With Valid Inputs Without Providing VM Host,Force,Save_state and Advance
 
 Stopping an already stopped VM also providing VM Host and Advanced Options
                       [Tags]    main_scenarios
-                      OK        ${VM_Name_stop}    ${VM_Host_stop}    No       No           -RunAsynchronously
+                      OK        ${Source_VM}   ${VM_Host}    No       No           -RunAsynchronously
 
 Assertion With Non-Existing VM Name
                       [Tags]    main_scenarios
-                      NOK        Invalid            ${VM_Host_stop}    No       No           ${EMPTY}
+                      NOK        Invalid            ${VM_Host}    No       No           ${EMPTY}
 
 Assertion With Non-Existing VM Host
                       [Tags]    main_scenarios
-                      NOK        ${VM_Name_stop}    Invalid            NO       No           ${EMPTY}
+                      NOK      ${Source_VM}    Invalid            NO       No           ${EMPTY}
 
 Assertion for Non-Existing Advanced Parameter
                       [Tags]    main_scenarios
-                      Other     ${VM_Name_stop}    ${VM_Host_stop}    No       No           invalid
+                      Other     ${Source_VM}    ${VM_Host}    No       No           invalid
                       NOK
 
 Assert VM Name as Mandatory Field
                       [Tags]    main_scenarios
-                      NOK       ${EMPTY}           ${VM_Host_stop}    No       NO           -RunAsynchronously
+                      NOK       ${EMPTY}           ${VM_Host}    No       NO           -RunAsynchronously
 
 *** Keywords ***
 Startup
