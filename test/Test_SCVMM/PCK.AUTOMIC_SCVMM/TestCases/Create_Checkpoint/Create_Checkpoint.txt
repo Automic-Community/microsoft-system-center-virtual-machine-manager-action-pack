@@ -12,30 +12,30 @@ Resource          ../../Resources/keywords.txt
 Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
-*** Test Cases ***    OK_NOK                                VM_Name           VM_Host       CheckpointName        Description       AdvancedOptions
+*** Test Cases ***    OK_NOK    VM_Name           VM_Host       CheckpointName        Description       AdvancedOptions
 Create Checkpoint With Valid Inputs Without Providing VM Host,Description and Advanced Options
-                      [Tags]                                main_scenarios
-                      NOK                                   ${Source_VM}      ${EMPTY}      ${Checkpoint_Name}    ${EMPTY}          ${EMPTY}
+                      [Tags]    main_scenarios
+                      NOK       ${Source_VM}      ${EMPTY}      ${Checkpoint_Name}    ${EMPTY}          ${EMPTY}
 
 Create Checkpoint With Valid Inputs also providing VM Host,Description and Advanced Options
-                      [Tags]                                 main_scenarios
-                      OK                                   ${Source_VM}     ${VM_Host}    ${Checkpoint_Name}    ${Description}    -RunAsynchronously
+                      [Tags]    main_scenarios
+                      OK        ${Source_VM}      ${VM_Host}    Generated             ${Description}    -RunAsynchronously
 
 Assertion With Non-Existing VM Name
-                      [Tags]                                main_scenarios
-                      NOK                                   Invalid           ${VM_Host}    ${Checkpoint_Name}    ${EMPTY}          ${EMPTY}
-Assertion With Non-Existing Checkpoint Name
-                      NOK                                   ${Source_VM}      ${VM_Host}      Invalid             ${EMPTY}          ${EMPTY}
+                      [Tags]    main_scenarios
+                      NOK       Invalid           ${VM_Host}    Generated             ${EMPTY}          ${EMPTY}
 
+Assertion With Non-Existing AdvancedOptions
+                      NOK       ${Source_VM}      ${VM_Host}    Generated             ${EMPTY}          Invalid
 
 Assertion With Non-Existing VM Host
-                      NOK                                   ${Source_VM}      Invalid       ${Checkpoint_Name}    ${EMPTY}          ${EMPTY}
+                      NOK       ${Source_VM}      Invalid       Generated             ${EMPTY}          ${EMPTY}
 
 Assertion for VM Name as Mandatory Field
-                      NOK                                   ${EMPTY}          ${VM_Host}    ${Checkpoint_Name}    ${Description}    -RunAsynchronously
+                      NOK       ${EMPTY}          ${VM_Host}    Generated             ${Description}    -RunAsynchronously
 
 Assertion for Checkpoint Name as Mandatory Field
-                      NOK                                   ${Source_VM}      ${VM_Host}    ${EMPTY}              ${Description}    -RunAsynchronously
+                      NOK       ${Source_VM}      ${VM_Host}    ${EMPTY}              ${Description}    -RunAsynchronously
 
 *** Keywords ***
 Startup
@@ -60,12 +60,11 @@ Create Checkpoint Template
     ...    &UC4RB_VMM_VMNAME#    ${VM_Name}
     Run Keyword If    '${VM_Host}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_VMHOST#    ${VM_Host}
-    Run Keyword If    '${CheckpointName}' == 'Invalid'    Action Set    &UC4RB_VMM_CHECKPOINT#    ${Generated_Name}_${Time}    ELSE    Action Set
+    Run Keyword If    '${CheckpointName}' == 'Generated'    Action Set    &UC4RB_VMM_CHECKPOINT#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_CHECKPOINT#    ${CheckpointName}
-    Run Keyword If    ' ${Description}' == 'Invalid'    Action Set    &UC4RB_VMM_DESC#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_VMM_DESC#    ${Description}
     Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
+    Action Set &UC4RB_VMM_DESC#    ${Description}
     Set Overwrite Agent
     Action Execute
     Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
