@@ -67,6 +67,5 @@ Remove VM Template
     Action Execute
     Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure  
     
-
 Teardown
     Log    *******End Test "Remove VM"*******

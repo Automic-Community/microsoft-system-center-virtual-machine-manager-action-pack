@@ -31,8 +31,8 @@ Assertion With Non-Existing VM Host
 
 Assertion for Non-Existing Advanced Parameter
                       [Tags]    main_scenarios
-                      Other     ${Source_VM}    ${VM_Host}    No       No           invalid
-                      NOK
+
+                      NOK     ${Source_VM}    ${VM_Host}    No       No               Invalid
 
 Assert VM Name as Mandatory Field
                       [Tags]    main_scenarios
