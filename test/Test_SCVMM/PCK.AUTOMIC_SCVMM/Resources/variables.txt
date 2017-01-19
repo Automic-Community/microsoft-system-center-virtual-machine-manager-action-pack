@@ -16,4 +16,6 @@ ${Advance_opt}        -id 39f1e207-eefc-4616-8881-8592449914cc
 #---- Remove VM ----------------------------------------------------------------------------------------------------
 ${VM_Name_Remove}     Test_KG1
 ${VM_Host_Remove}     svievmw04.sbb01.spoc.global
-
+#---- Create Checkpoint----------------------------------------------------------------------------------------------------
+${Checkpoint_Name}    myvm.com_20-Jan-2017
+${Description}        description for checkpoint
