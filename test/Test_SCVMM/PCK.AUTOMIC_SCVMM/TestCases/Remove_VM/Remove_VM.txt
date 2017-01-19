@@ -15,14 +15,14 @@ Resource          ../../Resources/actions.txt
 *** Test Cases ***    OK_NOK    VM_Name            VM_Host            Force    AdvancedOptions
 
 Remove VM With Valid Inputs Without Providing VM Host,Force and Advanced Options
-                          main_scenarios
+                     [Tags]     main_scenarios
                       OK         ${VM_Name_Remove}       ${EMPTY}           No       ${EMPTY}
 Remove VM With Valid Inputs With Providing VM Host,Force and Advanced Options
-                          
+                      [Tags]     main_scenarios
                       OK         ${VM_Name_Remove}       ${VM_Host_Remove}    Yes       -RunAsynchronously
 
 Assertion With Non-Existing VM Name
-                          main_scenarios
+                      [Tags]    main_scenarios
                       NOK       Invalid              ${VM_Host_Remove}    No       ${EMPTY}
 
 Assertion With Non-Existing VM Host
@@ -46,8 +46,8 @@ Startup
 
 Remove VM Template
     [Arguments]    ${OK_NOK}    ${VM_Name}    ${VM_Host}    ${Force}    ${AdvancedOptions}
-    [Documentation]    This test is used to stop the given VM.
-    ...    -Precondition: To run this test suite, SCVMM credentials should be known to user and VM state should be in stopped or save state. 
+    [Documentation]    This test is used to remove the given VM.
+    ...    -Precondition: To run this test suite, SCVMM credentials should be known to user and VM state should be in stopped or save state.if 'Force' is opted as 'Yes' then VM should be removed when its in running state.
     ...   -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
     ...    -${VM_Name}: This field specifies Name of the Virtual Machine you want to remove.
     ...    -${VM_Host}: This field Specify Name of the VM Host in which VM is located..
