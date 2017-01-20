@@ -92,8 +92,8 @@ Generate String
     Set Global Variable    ${Time}
 
 Connect to SCVMM
-    Run Keyword If    '${VMMServer}' == 'Invalid'    Action Set    &UC4RB_VMM_SERVER_IP#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_VMM_SERVER_IP#    ${VMMServer}
+    Run Keyword If    '${ServerIP}' == 'Invalid'    Action Set    &UC4RB_VMM_SERVER_IP#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_SERVER_IP#    ${ServerIP}
     Run Keyword If    '${Port}' == 'Invalid'    Action Set    &UC4RB_VMM_PORT#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_PORT#    ${Port}
     Run Keyword If    '${Username}' == 'Invalid'    Action Set    &UC4RB_VMM_USERNAME#    ${Generated_Name}_${Time}    ELSE    Action Set

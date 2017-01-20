@@ -57,20 +57,12 @@ Common Failures Template
     ...    -${VMHost}: This field specifies the host from which you want to get VM.
     Generate String
     Action Create    ${_GET_VM_ACTION}
-    Run Keyword If    '${ServerIP}' == 'Invalid'    Action Set    &UC4RB_VMM_SERVER_IP#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_VMM_SERVER_IP#    ${ServerIP}
-    Run Keyword If    '${Port}' == 'Invalid'    Action Set    &UC4RB_VMM_PORT#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_VMM_PORT#    ${Port}
-    Run Keyword If    '${Username}' == 'Invalid'    Action Set    &UC4RB_VMM_USERNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_VMM_USERNAME#    ${Username}
-    Run Keyword If    '${Password}' == 'Invalid'    Action Set    &UC4RB_VMM_PASSWORD#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_VMM_PASSWORD#    ${Password}
     Connect to SCVMM
     Action Set    &UC4RB_VMM_VMNAME#    ${VMName}
     Action Set    &UC4RB_VMM_VMHOST#    ${VMHost}
     Set Overwrite Agent
     Action Execute
-    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+    Assert Failure
 
 Teardown
     Log    *******End Test "COMMON FAILURES"*******
