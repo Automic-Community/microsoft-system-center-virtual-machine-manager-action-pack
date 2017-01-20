@@ -20,7 +20,11 @@ Starting an already running VM also providing VM Host and Advanced Options
                       OK        ${Source_VM}      ${VM_Host}    -RunAsynchronously
 
 Assert Behaviour for Non-Existing VM
+                      [Tags]    main_scenarios
                       NOK       Invalid           ${VM_Host}    ${EMPTY}
+
+Assert Behaviour when more than one VM exists for provided VM Name
+                      NOK       VM*               ${EMPTY}      ${EMPTY}
 
 Assert Behaviour for Non-Existing VM Host
                       NOK       ${Source_VM}      Invalid       ${EMPTY}

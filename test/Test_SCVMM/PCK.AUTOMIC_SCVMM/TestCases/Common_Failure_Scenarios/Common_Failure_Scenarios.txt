@@ -12,30 +12,30 @@ Resource          ../../Resources/keywords.txt
 Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
-*** Test Cases ***    OK_NOK    Server_IP or DNS    Port           VM_Username        VM_Password        VM_Name       VM_Host
-Assertion with Invalid
-                      NOK       Invalid             ${VMM_Port}    ${VMM_Username}    ${VMM_Password}    ${VM_Name}    ${VM_Host}
+*** Test Cases ***    OK_NOK    ServerIP         Port           Username           Password           VMName          VMHost
+Assertion with Invalid Server IP
+                      NOK       Invalid          ${VMM_Port}    ${VMM_Username}    ${VMM_Password}    ${Source_VM}    ${VM_Host}
 
 Assertion with Invalid Port
-                      NOK       ${VMM_Server}       Invalid        ${VMM_Username}    ${VMM_Password}    ${VM_Name}    ${VM_Host}
+                      NOK       ${VMM_Server}    Invalid        ${VMM_Username}    ${VMM_Password}    ${Source_VM}    ${VM_Host}
 
 Assertion with Non-Existing Username
-                      NOK       ${VMM_Server}       ${VMM_Port}    Invalid            ${VMM_Password}    ${VM_Name}    ${VM_Host}
+                      NOK       ${VMM_Server}    ${VMM_Port}    Invalid            ${VMM_Password}    ${Source_VM}    ${VM_Host}
 
 Assertion with Invalid Password
-                      NOK       ${VMM_Server}       ${VMM_Port}    ${VMM_Username}    Invalid            ${VM_Name}    ${VM_Host}
+                      NOK       ${VMM_Server}    ${VMM_Port}    ${VMM_Username}    Invalid            ${Source_VM}    ${VM_Host}
 
-Assert Server_IP or DNS As a Mandatory Field
-                      OTHER     ${EMPTY}            ${VMM_Port}    ${VMM_Username}    ${VMM_Password}    ${VM_Name}    ${VM_Host}
+Assert Server IP As a Mandatory Field
+                      NOK       ${EMPTY}         ${VMM_Port}    ${VMM_Username}    ${VMM_Password}    ${Source_VM}    ${VM_Host}
 
 Assert Port As a Mandatory Field
-                      OTHER     ${VMM_Server}       ${EMPTY}       ${VMM_Username}    ${VMM_Password}    ${VM_Name}    ${VM_Host}
+                      NOK       ${VMM_Server}    ${EMPTY}       ${VMM_Username}    ${VMM_Password}    ${Source_VM}    ${VM_Host}
 
 Assert Username As a Mandatory Field
-                      OTHER     ${VMM_Server}       ${VMM_Port}    ${EMPTY}           ${VMM_Password}    ${VM_Name}    ${VM_Host}
+                      NOK       ${VMM_Server}    ${VMM_Port}    ${EMPTY}           ${VMM_Password}    ${Source_VM}    ${VM_Host}
 
 Assert Password As a Mandatory Field
-                      OTHER     ${VMM_Server}       ${VMM_Port}    ${VMM_Username}    ${EMPTY}           ${VM_Name}    ${VM_Host}
+                      NOK       ${VMM_Server}    ${VMM_Port}    ${VMM_Username}    ${EMPTY}           ${Source_VM}    ${VM_Host}
 
 *** Keywords ***
 Startup
@@ -44,33 +44,33 @@ Startup
     Connect AE
 
 Common Failures Template
-    [Arguments]    ${OK_NOK}    ${Server_IP}    ${Port}    ${Username}    ${Password}    ${VM_Name} ${VM_Host}
+    [Arguments]    ${OK_NOK}    ${ServerIP}    ${Port}    ${Username}    ${Password}    ${VMName}
+    ...    ${VMHost}
     [Documentation]    This test executes all the commom negative test case scenarios of SCVMM Package Actions.
     ...    -Precondition: To run this test suite SCVMM credentials should be known to user.
     ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK. Value of this variable should be OK, NOK or OTHER.
     ...    -${Server_IP}: This field specifies Specify IP address or DNS name of the SCVMM server to which you want to connect.
     ...    -${Port}: This field specifies port which will be used for connection.
-    ...    -${VM_Username}: This field specifies username which will be used for this connection.
-    ...    -${VM_Password}: This field specifies password for the given username.
-    ...    -${VM_Name}: This field specifies name of the virtual machine you want to get
-    ...    -${VM_Host}: This field specifies the host from which you want to get VM.
+    ...    -${Username}: This field specifies username which will be used for this connection.
+    ...    -${Password}: This field specifies password for the given username.
+    ...    -${VMName}: This field specifies name of the virtual machine you want to get
+    ...    -${VMHost}: This field specifies the host from which you want to get VM.
     Generate String
     Action Create    ${_GET_VM_ACTION}
-    Run Keyword If    '${VMM_Server}' == 'Invalid'    Action Set    UC4RB_VMM_SERVER_IP#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    UC4RB_VMM_SERVER_IP#    ${VMM_Server}
-    Run Keyword If    '${VMM_Port}' == 'Invalid'    Action Set    UC4RB_VMM_PORT#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    UC4RB_VMM_PORT#    ${VMM_Port}
-    Run Keyword If    '${VM_Username}' == 'Invalid'    Action Set    UC4RB_VMM_USERNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    UC4RB_VMM_USERNAME#    ${VM_Username}
-    Run Keyword If    '${VM_Password}' == 'Invalid'    Action Set    UC4RB_VMM_PASSWORD#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    UC4RB_VMM_PASSWORD#    ${VM_Password}
+    Run Keyword If    '${ServerIP}' == 'Invalid'    Action Set    &UC4RB_VMM_SERVER_IP#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_SERVER_IP#    ${ServerIP}
+    Run Keyword If    '${Port}' == 'Invalid'    Action Set    &UC4RB_VMM_PORT#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_PORT#    ${Port}
+    Run Keyword If    '${Username}' == 'Invalid'    Action Set    &UC4RB_VMM_USERNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_USERNAME#    ${Username}
+    Run Keyword If    '${Password}' == 'Invalid'    Action Set    &UC4RB_VMM_PASSWORD#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_PASSWORD#    ${Password}
     Connect to SCVMM
-    Action Set    UC4RB_VMM_VMNAME#    ${VM_Name}
-    Action Set    UC4RB_VMM_VMHOST#    ${VM_Host}
+    Action Set    &UC4RB_VMM_VMNAME#    ${VMName}
+    Action Set    &UC4RB_VMM_VMHOST#    ${VMHost}
     Set Overwrite Agent
     Action Execute
-    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure    ELSE
-    ...    Assert Mandatory
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
 
 Teardown
     Log    *******End Test "COMMON FAILURES"*******

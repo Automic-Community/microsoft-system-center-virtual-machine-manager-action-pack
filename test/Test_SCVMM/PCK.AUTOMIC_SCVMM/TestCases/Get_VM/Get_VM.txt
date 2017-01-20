@@ -12,30 +12,29 @@ Resource          ../../Resources/keywords.txt
 Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
-*** Test Cases ***    OK_NOK    VM_Name           VM_Host       AdvancedOptions
+*** Test Cases ***    OK_NOK    VMName            VMHost        AdvancedOptions
 Get VM With Valid Inputs With Providing VM Host and Advanced Options
                       [Tags]    main_scenarios
-                      OK        ${Source_VM}       ${VM_Host}    ${Advance_opt}
+                      OK        ${Source_VM}      ${VM_Host}    ${Advance_opt}
 
 Get VM With Valid Inputs Without Providing VM Host and Advanced Options
-                      [Tags]    main_scenarios
-                      OK        ${Source_VM}        ${EMPTY}      ${EMPTY}
+                      OK        ${Source_VM}      ${EMPTY}      ${EMPTY}
 
 Assertion With Non-Existing VM Name
                       [Tags]    main_scenarios
                       NOK       Invalid           ${VM_Host}    ${EMPTY}
 
 Assertion With Non-Existing VM Host
-                      [Tags]    main_scenarios
-                      NOK       ${Source_VM}        Invalid       ${EMPTY}
+                      NOK       ${Source_VM}      Invalid       ${EMPTY}
 
-Assertion With More Than One Existing VM Name Having Same Name
-                      [Tags]    main_scenarios
-                      NOK       Invalid           ${VM_Host}    ${EMPTY}
+Assertion with Invalid Advanced Parameter
+                      NOK       ${Source_VM}      ${EMPTY}      Invalid
+
+Assertion when more than one VM exists with provided VM name
+                      NOK       VM*               ${VM_Host}    ${EMPTY}
 
 Assert VM Name As a Mandatory Field
-                      [Tags]    main_scenarios
-                      NOK       ${EMPTY}          ${VM_Host}   ${Advance_opt}
+                      NOK       ${EMPTY}          ${VM_Host}    ${Advance_opt}
 
 *** Keywords ***
 Startup
@@ -44,26 +43,25 @@ Startup
     Connect AE
 
 Get VM Template
-    [Arguments]    ${OK_NOK}    ${VM_Name}    ${VM_Host}    ${AdvancedOptions}
+    [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost}    ${AdvancedOptions}
     [Documentation]    This action is used to get the details of a Virtual Machine based on Name and VM Host on which it is hosted. If VM Host is not provided then VM would be searched in whole VMM server based on VM name
     ...    -Precondition: To run this test suite, SCVMM credentials should be known to user.
-    ...    -${VM_Name}: This field specifies Virtual machine name which you want to get.
-    ...    -${VM_Host_Get_VM}: This field specifies the Host Name form which you want to get VM.
-    ...    -${AdvancedOptions}: This field specifies advanced parameter for start-scvirtualmachine command.
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
+    ...    -${VMName}: This field specifies Virtual machine name which you want to get.
+    ...    -${VMHost}: This field specifies the Host Name form which you want to get VM.
+    ...    -${AdvancedOptions}: This field specifies advanced parameter for get-scvirtualmachine command.
     Generate String
     Action Create    ${_GET_VM_ACTION}
     Common Inputs
-    Run Keyword If    '${VM_Name}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_VMM_VMNAME#    ${VM_Name}
-    Action Set    &UC4RB_VMM_VMNAME#    ${VM_Name}
-    Run Keyword If  '${VM_Host}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_VMM_VMHOST#   ${VM_Host}
+    Run Keyword If    '${VMName}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMNAME#    ${VMName}
+    Run Keyword If    '${VMHost}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMHOST#    ${VMHost}
     Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
     Set Overwrite Agent
     Action Execute
-    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure    ELSE
-    ...    Assert Mandatory
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
 
 Teardown
     Log    *******End Test "Get VM"*******
