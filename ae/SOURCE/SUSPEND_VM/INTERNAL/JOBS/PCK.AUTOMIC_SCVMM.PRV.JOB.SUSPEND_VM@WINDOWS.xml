@@ -167,18 +167,15 @@ try{
       $vm = &UC4RB_VMM_GETVM_CMD#
 
       if($vm.count -ne 1){
-           Write-Host "ERROR: Number of VM found: "$vm.count
-           throw "Multiple or No Virtual Machine(s) found."
-
-        }else{
-           WRITE-HOST "INFO: Unique Virtual Machine found."
-           if($vm.Status -ne "Saved"){
-              WRITE-HOST "INFO: Suspend VM cmdlet :: &UC4RB_VMM_SUSPENDVM_CMD# "
-              &UC4RB_VMM_SUSPENDVM_CMD#
-           }else{
-               Write-Host "INFO: VM already in Suspended state"
-           }
-        }
+           throw "Virtual Machines Found $($vm.count). Expected: 1"
+      }
+      WRITE-HOST "INFO: Unique Virtual Machine found."
+      if($vm.Status -ne "Saved"){
+          WRITE-HOST "INFO: Suspend VM cmdlet :: &UC4RB_VMM_SUSPENDVM_CMD# "
+          &UC4RB_VMM_SUSPENDVM_CMD#
+      }else{
+          Write-Host "INFO: VM already in Suspended state"
+      }
 
 }catch{
   $errors=1

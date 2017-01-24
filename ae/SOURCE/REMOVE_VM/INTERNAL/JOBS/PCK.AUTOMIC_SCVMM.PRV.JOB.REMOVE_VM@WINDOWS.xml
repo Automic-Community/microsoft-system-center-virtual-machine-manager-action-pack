@@ -168,16 +168,11 @@ try{
       $vm = &UC4RB_VMM_GETVM_CMD#
 
       if($vm.count -ne 1){
-           Write-Host "ERROR: Number of VM found: "$vm.count
-           throw "Multiple or No Virtual Machine(s) found."
-
-        }else{
-           WRITE-HOST "INFO: Unique Virtual Machine found."
-           WRITE-HOST "INFO: Remove VM cmdlet :: &UC4RB_VMM_REMOVEVM_CMD# -VM $($vm.name)"
-           &UC4RB_VMM_REMOVEVM_CMD# -VM $vm
-
-
-        }
+        throw "Virtual Machines Found $($vm.count). Expected: 1"
+      }
+      WRITE-HOST "INFO: Unique Virtual Machine found."
+      WRITE-HOST "INFO: Remove VM cmdlet :: &UC4RB_VMM_REMOVEVM_CMD# -VM $($vm.name)"
+      &UC4RB_VMM_REMOVEVM_CMD# -VM $vm
 
 }catch{
   $errors=1

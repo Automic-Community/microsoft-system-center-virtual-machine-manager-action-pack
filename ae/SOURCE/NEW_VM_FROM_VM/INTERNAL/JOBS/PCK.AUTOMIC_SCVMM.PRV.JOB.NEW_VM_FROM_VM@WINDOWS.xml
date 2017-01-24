@@ -183,14 +183,11 @@ try{
 ! logging get vm command
   Write-Host "INFO:" &UC4RB_VMM_GETVM_CMD#
   $vmachine = &UC4RB_VMM_GETVM_CMD#
-  if($vmachine.count -eq 1){
-        Write-Host "INFO:" &UC4RB_VMM_CREATEVM_CMD# -VM $vmachine
-        &UC4RB_VMM_CREATEVM_CMD# -VM $vmachine
-  }else{
-      Write-Host "ERROR: Multiple or No Virtual Machine(s) found."
-      Write-Host "ERROR: Number of VM found:"$vmachine.count
-      $errors=1
+  if($vmachine.count -ne 1){
+      throw "Virtual Machines Found $($vmachine.count). Expected: 1"
   }
+  Write-Host "INFO:" &UC4RB_VMM_CREATEVM_CMD# -VM $vmachine
+  &UC4RB_VMM_CREATEVM_CMD# -VM $vmachine
 
 }catch{
   $errors=1

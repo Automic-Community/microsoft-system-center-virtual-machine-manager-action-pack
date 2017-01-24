@@ -172,17 +172,15 @@ try{
   Write-Host "INFO:" &UC4RB_VMM_GETVM_CMD#
   $vmachine = &UC4RB_VMM_GETVM_CMD#
   if($vmachine.count -ne 1){
-      Write-Host "ERROR: Number of VM found: "$vmachine.count
-      throw "Multiple or No Virtual Machine(s) found."
-  }else{
-      Write-Host "INFO: Unique Virtual Machine found."
+      throw "Virtual Machines Found $($vmachine.count). Expected: 1"
+  }
+  Write-Host "INFO: Unique Virtual Machine found."
 
-      if($vmachine.Status -ne "Running"){
-          WRITE-HOST "INFO:Start Vm cmdlet - &UC4RB_VMM_STARTVM_CMD# -VM $($vmachine.name)"
-         &UC4RB_VMM_STARTVM_CMD# -VM $vmachine
-      }else{
-         Write-Host "INFO: VM already in Running state"
-      }
+  if($vmachine.Status -ne "Running"){
+    WRITE-HOST "INFO:Start Vm cmdlet - &UC4RB_VMM_STARTVM_CMD# -VM $($vmachine.name)"
+    &UC4RB_VMM_STARTVM_CMD# -VM $vmachine
+  }else{
+    Write-Host "INFO: VM already in Running state"
   }
 
 }catch{
