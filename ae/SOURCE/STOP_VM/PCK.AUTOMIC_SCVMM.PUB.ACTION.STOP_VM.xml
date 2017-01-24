@@ -317,8 +317,8 @@ If VM is in state PowerOff then its state cannot be saved ,it needs to be in Run
 * Port		    : Specify port which will be used for connection. Default value is 8100.
 * Username	    : Username which will be used for this connection. E.g. domain\username
 * Password	    : Password to your username.
-* VMHost	    : Specify the host on which you want to stop VM.E.g myhost.com
 * VM Name	    : Specify name of the virtual machine you want to stop.E.g. myvm
+* VM Host	    : Specify the host on which you want to stop VM.E.g myhost.com
 * Force             : Specify whether command will be forced.Default is NO
 * Save State        : Specify whether if you want to save the state.Default is NO
 * Advanced Options   : Specify parameters you want to include into command. E.g. -RunAsynchronously

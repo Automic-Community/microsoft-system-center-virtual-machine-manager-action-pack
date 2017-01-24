@@ -65,7 +65,6 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT"/>
 <UC4RB_VMM_CHECKPOINTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_CHECKPOINT#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT"/>
 <UC4RB_VMM_DESCs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DESC#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT"/>
@@ -135,7 +134,6 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT"/>
 <UC4RB_VMM_CHECKPOINTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_CHECKPOINT#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT"/>
 <UC4RB_VMM_DESCs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DESC#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT"/>
@@ -191,7 +189,6 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT"/>
 <UC4RB_VMM_CHECKPOINTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_CHECKPOINT#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT"/>
 <UC4RB_VMM_DESCs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DESC#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.CREATE_CHECKPOINT"/>
@@ -307,7 +304,9 @@
 PCK.AUTOMIC_SCVMM.PUB.ACTION.CREATE_CHECKPOINT
 
 = General description =
-This action is used to create a checkpoint of VM. Atleast the VM name and Checkpoint name should be provided. The details of Checkpoint would be printed in the Job report. You can also provide a description and additional parameters to the "Advanced Options" field.
+This action is used to create a checkpoint of VM. Atleast the VM name and Checkpoint name should be provided. You can also provide a description and additional parameters to the "Advanced Options" field.
+
+The details of Checkpoint including Checkpoint ID would be printed in the Job report. This Checkpoint ID could be read from Job report and used as an input to other checkpoint related actions to uniquely identify it. 
 
 = Failure Conditions =
 * This action will fail if multiple or no VMs exist for inputs provided.
@@ -318,7 +317,7 @@ This action is used to create a checkpoint of VM. Atleast the VM name and Checkp
 * Username	    : Username which will be used for this connection. E.g. domain\username
 * Password	    : Password to your username.
 * VM Name	    : Specify Name of the Virtual Machine for which you want to create a checkpoint. E.g. myvm.com
-* VMHost	    : Specify the host from which you want to get VM. E.g. myhost.com
+* VM Host	    : Specify the host from which you want to get VM. E.g. myhost.com
 * Checkpoint Name   : Provide name for this checkpoint. E.g. myvm.com_20-Jan-2017
 * Description	    : Provide description for this checkpoint.
 * Advanced Options  : Specify parameters you want to include into command. E.g. -RunAsynchronously
