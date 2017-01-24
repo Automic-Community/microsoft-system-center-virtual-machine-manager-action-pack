@@ -6,7 +6,7 @@ Resource          ../../../Env/default.txt
 ${VMM_Server}     192.168.44.190
 ${VMM_Port}       8100
 ${VMM_Username}    sbb01\\extata
-${VMM_Password}    Ir0nm@n!
+${VMM_Password}    EnterPassword
 ${Source_VM}      VMM
 ${VM_Host}        vviescvmm01.sbb01.spoc.global
 #---- New VM from VM ----------------------------------------------------------------------------------------------------
@@ -14,5 +14,6 @@ ${VM_Path}        Datastore3
 #---- Get VM----------------------------------------------------------------------------------------------------
 ${Advance_opt}    -id 3461584e-98c6-4960-93d5-2d180ce3464b
 #---- Remove VM ----------------------------------------------------------------------------------------------------
-${VM_Name_Remove}    SR_VM
-${VM_Host_Remove}    vviescvmm01.sbb01.spoc.global
+${VM_Name_Remove}    newvm
+#---- Create Checkpoint----------------------------------------------------------------------------------------------------
+${Description}    description for checkpoint
