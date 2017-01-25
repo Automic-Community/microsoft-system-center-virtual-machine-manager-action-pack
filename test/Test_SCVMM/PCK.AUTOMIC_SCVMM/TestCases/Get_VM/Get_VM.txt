@@ -34,7 +34,7 @@ Assertion when more than one VM exists with provided VM name
                       NOK       VM*               ${VM_Host}    ${EMPTY}
 
 Assert VM Name As a Mandatory Field
-                      NOK       ${EMPTY}          ${VM_Host}    ${EMPTY}
+                      NOK       ${EMPTY}          ${VM_Host}    -RunAsynchronously
 
 *** Keywords ***
 Startup

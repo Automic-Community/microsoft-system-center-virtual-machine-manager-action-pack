@@ -57,7 +57,7 @@ Remove VM Template
     Run Keyword If    '${VMName}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_VMNAME#    ${VMName}
     Run Keyword If    '${VMHost}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_VMM_VMHOST#    ${VM_Host}
+    ...    &UC4RB_VMM_VMHOST#    ${VMHost}
     Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
     Set Overwrite Agent
