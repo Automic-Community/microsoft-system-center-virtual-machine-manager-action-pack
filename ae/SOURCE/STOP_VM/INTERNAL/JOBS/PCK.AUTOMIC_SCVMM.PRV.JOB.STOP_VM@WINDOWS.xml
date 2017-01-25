@@ -123,12 +123,12 @@
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.LOGGING_CONNECTION_DETAILS
 
 ! Log parameters specific to action
-: SET &UC4RB_LOGGING_PARAMETER# = "VMHost"
-: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_VMHOST#"
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
-
 : SET &UC4RB_LOGGING_PARAMETER# = "VM Name"
 : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_VMNAME#"
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "VM Host"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_VMHOST#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
 : SET &UC4RB_LOGGING_PARAMETER# = "Force"
@@ -194,21 +194,17 @@ try{
       $vminhost = &UC4RB_VMM_GETVM_CMD#
 
       if($vminhost.count -ne 1){
-           Write-Host "ERROR: Number of VM found: "$vminhost.count
-           throw "Multiple or No Virtual Machine(s) found."
+          throw "Virtual Machines Found $($vminhost.count). Expected: 1"
+       }
+       WRITE-HOST "INFO: Unique Virtual Machine found."
 
-        }else{
-           WRITE-HOST "INFO: Unique Virtual Machine found."
-
-           $op = &OPTION_COUNT#
-           if(($vminhost.Status -eq "PowerOff") -and (0 -eq $op)){
-               WRITE-HOST "INFO: VM already stopped."
-           }else{
-               WRITE-HOST "INFO: Stop VM cmdlet :: &UC4RB_VMM_STOPVM_CMD# -VM $($vminhost.name)"
-               &UC4RB_VMM_STOPVM_CMD# -VM $vminhost
-           }
-
-        }
+       $op = &OPTION_COUNT#
+       if(($vminhost.Status -eq "PowerOff") -and (0 -eq $op)){
+           WRITE-HOST "INFO: VM already stopped."
+       }else{
+           WRITE-HOST "INFO: Stop VM cmdlet :: &UC4RB_VMM_STOPVM_CMD# -VM $($vminhost.name)"
+           &UC4RB_VMM_STOPVM_CMD# -VM $vminhost
+       }
 
 }catch{
   $errors=1

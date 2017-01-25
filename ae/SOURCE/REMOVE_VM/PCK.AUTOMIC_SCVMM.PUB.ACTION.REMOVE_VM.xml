@@ -65,9 +65,7 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM"/>
-<UC4RB_VMM_FORCEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_FORCE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM">NO</UC4RB_VMM_FORCEs.00>
 <UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM"/>
 <UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM"/>
 </PRPTBOX>
@@ -134,9 +132,7 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM"/>
-<UC4RB_VMM_FORCEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_FORCE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM">NO</UC4RB_VMM_FORCEs.00>
 <UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM"/>
 <UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM"/>
 </PRPTBOX>
@@ -189,9 +185,7 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM"/>
-<UC4RB_VMM_FORCEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_FORCE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM">NO</UC4RB_VMM_FORCEs.00>
 <UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM"/>
 <UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_VM"/>
 </PRPTBOX>
@@ -304,8 +298,7 @@
 PCK.AUTOMIC_SCVMM.PUB.ACTION.REMOVE_VM
 
 = General description =
-This action is used to remove  a virtual machine. It deletes the virtual machine record from the VMM database, deletes all files associated with the virtual machine, and removes the virtual machine from the host on which it is deployed or from the library server on which it is stored. When used with the Force parameter, it  only deletes the virtual machine from the VMM database. It does not delete the virtual machine itself.
-This action  print the object which is returns upon success, with the property MarkedForDeletion set to TRUE, or returns an error message upon failure.
+This action is used to remove  a virtual machine. It deletes the virtual machine record from the VMM database, deletes all files associated with the virtual machine, and removes the virtual machine from the host on which it is deployed or from the library server on which it is stored.
 
 = Failure Conditions =
 * This action will fail if multiple or no VMs exist for inputs provided.
@@ -315,10 +308,9 @@ This action  print the object which is returns upon success, with the property M
 * Port		    : Specify port which will be used for connection. Default value is 8100.
 * Username	    : Username which will be used for this connection. E.g. domain\username
 * Password	    : Password to your username.
-* VMHost	    : Specify Name of the VM Host in which VM is located .E.g myhost.com
 * VM Name	    : Specify name of the virtual machine you want to remove .E.g. myvm
-* Force             : Specify whether command will be forced. Default is NO
-* Advanced Options  : Specify parameters you want to include into command. E.g. -RunAsynchronously
+* VM Host	    : Specify Name of the VM Host in which VM is located .E.g myhost.com
+* Advanced Options  : Specify parameters you want to include into command. E.g. -RunAsynchronously. You could also use -Force parameter to delete the virtual machine from the VMM database. It does not delete the virtual machine itself.
 * Overwrite Agent   : Overwrites the default agent
 * Overwrite Login   : Overwrites the default login
 

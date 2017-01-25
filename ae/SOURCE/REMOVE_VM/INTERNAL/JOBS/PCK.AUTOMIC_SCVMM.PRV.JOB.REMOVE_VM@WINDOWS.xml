@@ -123,16 +123,13 @@
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.LOGGING_CONNECTION_DETAILS
 
 ! Log parameters specific to action
-: SET &UC4RB_LOGGING_PARAMETER# = "VMHost"
-: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_VMHOST#"
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
 : SET &UC4RB_LOGGING_PARAMETER# = "VM Name"
 : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_VMNAME#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
-: SET &UC4RB_LOGGING_PARAMETER# = "Force"
-: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_FORCE#"
+: SET &UC4RB_LOGGING_PARAMETER# = "VM Host"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_VMHOST#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
 : SET &UC4RB_LOGGING_PARAMETER# = "Advanced Options"
@@ -156,11 +153,6 @@
 ! Remove VM command
 : SET &UC4RB_VMM_REMOVEVM_CMD# = "Remove-SCVirtualMachine "
 
-! FORCE
-: IF &UC4RB_VMM_FORCE# <> "NO"
-:   SET &UC4RB_VMM_REMOVEVM_CMD# = STR_CAT(&UC4RB_VMM_REMOVEVM_CMD#, " -Force ")
-: ENDIF
-
 ! Advance Option
 : IF &UC4RB_VMM_ADV_OPTIONS# <> ""
 :   SET &UC4RB_VMM_REMOVEVM_CMD# = STR_CAT(&UC4RB_VMM_REMOVEVM_CMD#, &UC4RB_VMM_ADV_OPTIONS#)
@@ -176,16 +168,11 @@ try{
       $vm = &UC4RB_VMM_GETVM_CMD#
 
       if($vm.count -ne 1){
-           Write-Host "ERROR: Number of VM found: "$vm.count
-           throw "Multiple or No Virtual Machine(s) found."
-
-        }else{
-           WRITE-HOST "INFO: Unique Virtual Machine found."
-           WRITE-HOST "INFO: Remove VM cmdlet :: &UC4RB_VMM_REMOVEVM_CMD# -VM $($vm.name)"
-           &UC4RB_VMM_REMOVEVM_CMD# -VM $vm
-
-
-        }
+        throw "Virtual Machines Found $($vm.count). Expected: 1"
+      }
+      WRITE-HOST "INFO: Unique Virtual Machine found."
+      WRITE-HOST "INFO: Remove VM cmdlet :: &UC4RB_VMM_REMOVEVM_CMD# -VM $($vm.name)"
+      &UC4RB_VMM_REMOVEVM_CMD# -VM $vm
 
 }catch{
   $errors=1

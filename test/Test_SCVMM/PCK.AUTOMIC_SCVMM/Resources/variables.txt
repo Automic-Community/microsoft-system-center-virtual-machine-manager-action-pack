@@ -3,16 +3,16 @@ Resource          ../../../Env/default.txt
 
 *** Variables ***
 #---- Common Promptset Fields --------------------------------------------------------------------------------------
-${VMM_Server}     WIN-B4KMBN6PDOH.SC.VMM
+${VMM_Server}     192.168.44.190
 ${VMM_Port}       8100
-${VMM_Username}    SC\\Administrator
-${VMM_Password}    Punish3r
-${Source_VM}      AutomationTest
-${VM_Host}        svievmw12.sbb01.spoc.global
+${VMM_Username}    sbb01\\extata
+${VMM_Password}    EnterPassword
+${Source_VM}      VMM
+${VM_Host}        vviescvmm01.sbb01.spoc.global
 #---- New VM from VM ----------------------------------------------------------------------------------------------------
 ${VM_Path}        Datastore3
 #---- Get VM----------------------------------------------------------------------------------------------------
-${Advance_opt}    -id 39f1e207-eefc-4616-8881-8592449914cc
+${Advance_opt}    -id 3461584e-98c6-4960-93d5-2d180ce3464b
 #---- Remove VM ----------------------------------------------------------------------------------------------------
 ${VM_Name_Remove}    newvm
 #---- Create Checkpoint----------------------------------------------------------------------------------------------------

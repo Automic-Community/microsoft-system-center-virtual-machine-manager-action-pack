@@ -123,12 +123,12 @@
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.LOGGING_CONNECTION_DETAILS
 
 ! Log parameters specific to action
-: SET &UC4RB_LOGGING_PARAMETER# = "VMHost"
-: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_VMHOST#"
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
-
 : SET &UC4RB_LOGGING_PARAMETER# = "VM Name"
 : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_VMNAME#"
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "VM Host"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_VMHOST#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
 : SET &UC4RB_LOGGING_PARAMETER# = "Advanced Options"
@@ -168,13 +168,10 @@ try{
   Write-Host "INFO:" &UC4RB_VMM_GETVM_CMD#
   $vmachine = &UC4RB_VMM_GETVM_CMD#
   if($vmachine.count -ne 1){
-      Write-Host "ERROR: Number of VM found: "$vmachine.count
-      throw "Multiple or No Virtual Machine(s) found."
-
-  }else{
-      Write-Host "INFO: Unique Virtual Machine found."
-      $vmachine
+      throw "Virtual Machines Found $($vmachine.count). Expected: 1"
   }
+  Write-Host "INFO: Unique Virtual Machine found."
+  $vmachine
 
 }catch{
   $errors=1

@@ -12,30 +12,30 @@ Resource          ../../Resources/keywords.txt
 Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
-*** Test Cases ***    OK_NOK    VMName               VMHost        Force    AdvancedOptions
+*** Test Cases ***    OK_NOK    VM_Name              VM_Host              AdvancedOptions
 Remove VM With Valid Inputs Without Providing VM Host,Force and Advanced Options
                       [Tags]    main_scenarios
-                      OK        ${VM_Name_Remove}    ${EMPTY}      No       ${EMPTY}
+                      OK        ${VM_Name_Remove}    ${EMPTY}             ${EMPTY}
 
-Remove VM With Valid Inputs With Providing VM Host,Force and Advanced Options
+Remove VM With Valid Inputs With Providing VM Host and Advanced Options
                       [Tags]    main_scenarios
-                      OK        ${VM_Name_Remove}    ${VM_Host}    Yes      -RunAsynchronously
+                      OK        ${VM_Name_Remove}    ${VM_Host}    -RunAsynchronously
 
 Assertion With Non-Existing VM Name
                       [Tags]    main_scenarios
-                      NOK       Invalid              ${VM_Host}    No       ${EMPTY}
+                      NOK       Invalid              ${VM_Host}    ${EMPTY}
 
 Assert Behaviour when more than one VM exists for provided VM Name
-                      NOK       VM*                  ${EMPTY}      No       ${EMPTY}
+                      NOK       VM*                  ${EMPTY}            ${EMPTY}
 
 Assertion With Non-Existing VM Host
-                      NOK       ${VM_Name_Remove}    Invalid       No       ${EMPTY}
+                      NOK       ${VM_Name_Remove}    Invalid              ${EMPTY}
 
 Assertion for Non-Existing Advanced Parameter
-                      NOK       ${VM_Name_Remove}    ${VM_Host}    No       Invalid
+                      NOK       ${VM_Name_Remove}    ${VM_Host}    Invalid
 
 Assertion for VM Name as Mandatory Field
-                      NOK       ${EMPTY}             ${VM_Host}    No       -RunAsynchronously
+                      NOK       ${EMPTY}             ${VM_Host}    -RunAsynchronously
 
 *** Keywords ***
 Startup
@@ -44,24 +44,22 @@ Startup
     Connect AE
 
 Remove VM Template
-    [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost}    ${Force}    ${AdvancedOptions}
+    [Arguments]    ${OK_NOK}    ${VM_Name}    ${VM_Host}    ${AdvancedOptions}
     [Documentation]    This test is used to remove the given VM.
-    ...    -Precondition: To run this test suite, SCVMM credentials should be known to user and VM state should be in stopped or save state.if 'Force' is opted as 'Yes' then VM should be removed when its in running state.
+    ...    -Precondition: To run this test suite, SCVMM credentials should be known to user and VM state should be in stopped or save state.
     ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
-    ...    -${VMName}: This field specifies Name of the Virtual Machine you want to remove.
-    ...    -${VMHost}: This field Specify Name of the VM Host in which VM is located..
-    ...    -${Force} : This field Specify whether command will be forced.
+    ...    -${VM_Name}: This field specifies Name of the Virtual Machine you want to remove.
+    ...    -${VM_Host}: This field Specify Name of the VM Host in which VM is located..
     ...    -${AdvancedOptions}: This field specifies advanced parameter for remove virtual machine command.
     Generate String
     Action Create    ${_REMOVE_VM_ACTION}
     Common Inputs
-    Run Keyword If    '${VMName}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_VMM_VMNAME#    ${VMName}
-    Run Keyword If    '${VMHost}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_VMM_VMHOST#    ${VMHost}
+    Run Keyword If    '${VM_Name}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMNAME#    ${VM_Name}
+    Run Keyword If    '${VM_Host}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMHOST#    ${VM_Host}
     Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
-    Action Set    &UC4RB_VMM_FORCE#    ${Force}
     Set Overwrite Agent
     Action Execute
     Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
