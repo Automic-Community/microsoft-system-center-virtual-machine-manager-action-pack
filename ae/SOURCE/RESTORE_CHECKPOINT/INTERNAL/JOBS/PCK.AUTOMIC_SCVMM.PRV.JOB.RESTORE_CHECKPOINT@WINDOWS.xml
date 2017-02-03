@@ -161,9 +161,14 @@
 ! Get Checkpoint command
 : SET &UC4RB_VMM_GET_CHKPT_CMD# = "Get-SCVMCheckpoint -vm $vmachine"
 
+! Checkpoint
+: IF &UC4RB_VMM_CHECKPOINT# <> ""
+:   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_CHECKPOINT#
+    $checkpointName = '&UC4RB_VMM_ESC_VALUE#'
+: ENDIF
 
 ! Restore Checkpoint command
-: SET &UC4RB_VMM_RESTORE_CHKPT_CMD# = "Restore-SCVMCheckpoint -VMCheckpoint $checkpoint[$checkpoint.count - &UC4RB_VMM_NTH_CHECKPOINT#] "
+: SET &UC4RB_VMM_RESTORE_CHKPT_CMD# = "Restore-SCVMCheckpoint -VMCheckpoint $checkpoint[$checkpoint.count - (&UC4RB_VMM_NTH_CHECKPOINT# + 1)] "
 
 
 ! Advance options
@@ -184,15 +189,39 @@ try{
   Write-Host "INFO: Unique Virtual Machine found. Trying to restore to a checkpoint."
   Write-Host "INFO: Getting all the checkpoints.."
   $checkpoint = &UC4RB_VMM_GET_CHKPT_CMD#
+
   $chkPtCount = $checkpoint.count
   $expectedChkPtCount = &UC4RB_VMM_NTH_CHECKPOINT# + 1
 
-  if($chkPtCount -gt $expectedChkPtCount){
-      throw "Checkpoint(s) Found $chkPtCount. Expected: $expectedChkPtCount"
+  if($expectedChkPtCount -gt $chkPtCount){
+      throw "Checkpoint(s) Found $chkPtCount. Expected(min): $expectedChkPtCount"
   }
   Write-Host "INFO: Retoring VM to the required checkpoint.."
-  Write-Host "INFO:" &UC4RB_VMM_RESTORE_CHKPT_CMD#
-  &UC4RB_VMM_RESTORE_CHKPT_CMD#
+
+
+
+  IF ([string]::IsNullOrEmpty($checkpointName))
+   {
+
+     Write-Host "INFO:" &UC4RB_VMM_RESTORE_CHKPT_CMD#
+     &UC4RB_VMM_RESTORE_CHKPT_CMD#
+   }
+  ELSE
+   {
+    [bool]$isFound = $false
+     FOREACH($chp in $checkpoint)
+      {
+         if($checkpointName -ceq $chp.name)
+           {
+            Restore-SCVMCheckpoint -VMCheckpoint $chp
+            $isFound = $true
+           }
+      }
+     IF(-not $isFound){
+       throw "No checkpoint with given name exists "}
+   }
+
+
 
 }catch{
   $errors=1
