@@ -18,3 +18,6 @@ ${VM_Name_Remove}    newvm
 #---- Create Checkpoint----------------------------------------------------------------------------------------------------
 ${Description}    description for checkpoint
 
+#------Restore Checkpoint----------------------------------------------------------------------------------------------------
+${NthLatest_Checkpoint}    1
+${Checkpoint_Name}    Checkpoint_test
