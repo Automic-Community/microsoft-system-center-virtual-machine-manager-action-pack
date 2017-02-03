@@ -65,7 +65,6 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT"/>
 <UC4RB_VMM_CHECKPOINTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_CHECKPOINT#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT"/>
 <UC4RB_VMM_NTH_CHECKPOINTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_NTH_CHECKPOINT#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT">0</UC4RB_VMM_NTH_CHECKPOINTs.00>
@@ -135,7 +134,6 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT"/>
 <UC4RB_VMM_CHECKPOINTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_CHECKPOINT#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT"/>
 <UC4RB_VMM_NTH_CHECKPOINTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_NTH_CHECKPOINT#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT">0</UC4RB_VMM_NTH_CHECKPOINTs.00>
@@ -191,7 +189,6 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT"/>
 <UC4RB_VMM_CHECKPOINTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_CHECKPOINT#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT"/>
 <UC4RB_VMM_NTH_CHECKPOINTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_NTH_CHECKPOINT#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RESTORE_CHECKPOINT">0</UC4RB_VMM_NTH_CHECKPOINTs.00>
@@ -303,7 +300,58 @@
 <MSCRI/>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
-<DOC/>
+<DOC><![CDATA[= Action name =
+PCK.AUTOMIC_SCVMM.PUB.ACTION.RESTORE_CHECKPOINT
+
+= General description =
+This action is used to restore VM to a given checkpoint. If both nth checkpoint and checkpoint name is provided then it will ignore the nth checkpoint and will try to restore the VM with given checkpoint name..
+ You can also provide a description and additional parameters to the "Advanced Options" field.
+
+The details of Checkpoint including Checkpoint ID and Name would be printed in the Job report. 
+
+= Failure Conditions =
+* This action will fail if multiple or no VMs exist for inputs provided.
+* If number of checkpoints available are not greater then Nth checkpoint +1
+
+
+= Inputs =
+* Server IP or DNS      : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.45
+* Port		        : Specify port which will be used for connection. Default value is 8100.
+* Username	        : Username which will be used for this connection. E.g. domain\username
+* Password	        : Password to your username.
+* VM Name	        : Specify Name of the Virtual Machine for which you want to create a checkpoint. E.g. myvm.com
+* VM Host	        : Specify the host from which you want to get VM. E.g. myhost.com.
+* Nth Latest Checkpoint : Specify Nth checkpoint from the latest to store. 0 means most recent. Eg. 2 restores second-from-last created checkpoint .
+* Checkpoint Name       : Provide name for this checkpoint. E.g. myvm.com_20-Jan-2017
+* Advanced Options      : Specify parameters you want to include into command. E.g. -RunAsynchronously
+* Overwrite Agent       : Overwrites the default agent
+* Overwrite Login       : Overwrites the default login
+
+= Behaviour =
+(none)
+
+=Return Value=
+(none)
+
+= Outputs =
+* Return code is 0 in case of success.
+* Return code is 1 in case of failure.
+
+= Logging =
+Logs will be displayed in the AE report.
+
+= Example =
+1. Restore checkpoint of a VM which is unique to the VMM server
+VM Name: 		myvm_12345
+Checkpoint Name: 	myvm_12345_20-Feb2017
+Nth Latest Checkpoint: (it will be ignored)
+
+2. Restore checkpoint of a VM to the latest created checkpoint
+VM Name                      : myvm_12345
+Checkpoint Name        : (empty) 	
+Nth Latest Checkpoint: 0
+
+]]></DOC>
 </DOCU_Docu>
 </JOBP>
 </uc-export>
