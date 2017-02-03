@@ -45,9 +45,9 @@
 <OutputDbErr>0</OutputDbErr>
 <OutputFile>0</OutputFile>
 <IsGenerated>0</IsGenerated>
-<BAT>1</BAT>
+<BAT>0</BAT>
 <COM>0</COM>
-<WinBatch>0</WinBatch>
+<WinBatch>1</WinBatch>
 <Standard>1</Standard>
 <Minimized>0</Minimized>
 <Maximized>0</Maximized>
@@ -147,17 +147,14 @@
 !-------------------------------------Create VMM commandlets---------------------------------------------------------------------------------------------------
 
 ! Get Template command
-
 ! Template name and server
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_TEMP_NAME#
 : SET &UC4RB_VMM_GET_TMPL_CMD# = "Get-SCVMTemplate -VMMServer $vmmserver -Name '&UC4RB_VMM_ESC_VALUE#'"
 
 ! Create new vm from template command
-: SET &UC4RB_VMM_CREATEVM_CMD# = "New-SCVirtualMachine "
-
 ! New vm name
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMNAME#
-: SET &UC4RB_VMM_CREATEVM_CMD# = STR_CAT(&UC4RB_VMM_CREATEVM_CMD#, " -Name  '&UC4RB_VMM_ESC_VALUE#' ")
+: SET &UC4RB_VMM_CREATEVM_CMD# = "New-SCVirtualMachine -VMTemplate $template -Name '&UC4RB_VMM_ESC_VALUE#' "
 
 ! Path
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_PATH#
@@ -184,12 +181,12 @@ try{
 
 ! check if multiple template exist with the same name
   if($template.count -ne 1){
-      throw "Virtual Machines Found $($template.count). Expected: 1"
+      throw "Templates Found $($template.count). Expected: 1"
   }
 
 ! Create VM command
-  Write-Host "INFO:" &UC4RB_VMM_CREATEVM_CMD# -VMTemplate $template
-  &UC4RB_VMM_CREATEVM_CMD# -VMTemplate $template
+  Write-Host "INFO:" &UC4RB_VMM_CREATEVM_CMD#
+  &UC4RB_VMM_CREATEVM_CMD#
 
 }catch{
   $errors=1
