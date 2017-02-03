@@ -3,7 +3,7 @@ Suite Setup       Startup
 Suite Teardown    Teardown
 Force Tags        new_vm_from_template
 Default Tags
-Test Template     Create VM Template
+Test Template     New VM From Template Template
 Library           com.automic.robot.itpa.ItpaLibrary
 Library           String
 Library           DateTime
@@ -16,10 +16,6 @@ Resource          ../../Resources/actions.txt
 Create VM From Template With Valid Inputs
                       [Tags]    main_scenarios
                       OK        ${Source_VM}      ${VM_Host}    ${Path}     ${Template_Name}    -RunAsynchronously
-
-Assertion With Non-Existing VM Name
-                      [Tags]    main_scenarios
-                      NOK       Invalid           ${VM_Host}    ${Path}     ${Template_Name}    ${EMPTY}
 
 Assert Behaviour when more than one Template Name exists for provided VM Name
                       NOK       ${Source_VM}      ${VM_Host}    ${Path}     Template*           ${EMPTY}
@@ -50,22 +46,22 @@ Assertion for Template Name as Mandatory Field
 
 *** Keywords ***
 Startup
-    Log    *******Start Test "Create VM From Template"*******
+    Log    *******Start Test "New VM From Template"*******
     Log    *******Connect to AE*******
     Connect AE
 
-Create VM Template
+New VM From Template Template
     [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost} ${Path} ${TemplateName}    ${AdvancedOptions}
-    [Documentation]    This test is used to remove the given VM.
+    [Documentation]    This test is used to create the given VM form template.
     ...    -Precondition: To run this test suite, SCVMM credentials,Template name,VM host & Destination Path should be known to user
     ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
     ...    -${VMName}: This field specifies Name of the Virtual Machine you want to create.
     ...    -${VMHost}: This field Specify Name of the VM Host in which VM is located.
     ...    -${Path}: This field specify destination path for the operation.
     ...    -${TemplateName}:This field specify template name to use for creating new VM.
-    ...    -${AdvancedOptions}: This field specifies advanced parameter for remove virtual machine command.
+    ...    -${AdvancedOptions}: This field specifies advanced parameter for create virtual machine from template command.
     Generate String
-    Action Create    ${_CREATE_VM_FROM_TEMPLATE_ACTION}
+    Action Create    ${_NEW_VM_FROM_TEMPLATE_ACTION}
     Common Inputs
     Run Keyword If    '${VMName}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_VMNAME#    ${VMName}
@@ -82,4 +78,4 @@ Create VM Template
     Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
 
 Teardown
-    Log    *******End Test "Create VM From Template"*******
+    Log    *******End Test "New VM From Template"*******
