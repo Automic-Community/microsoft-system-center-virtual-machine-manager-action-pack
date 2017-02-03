@@ -12,39 +12,36 @@ Resource          ../../Resources/keywords.txt
 Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
-*** Test Cases ***    OK_NOK    VMName            VMHost        NthLatestCheckpoint        CheckpointName        AdvancedOptions
-Restore checkpoint With Valid Inputs Without Providing VM Host,CheckpointName and Advanced Options
+*** Test Cases ***    OK_NOK    VMName            VMHost        NthCheckpoint        CheckpointName        AdvancedOptions
+Restore checkpoint With Valid Inputs Without Providing VM Host,CheckpointName and Advanced Options Where Provided NthCheckpoint is greater than N+1
                       [Tags]    main_scenarios
-                      OK        ${Source_VM}      ${EMPTY}      ${NthLatest_Checkpoint}    ${EMPTY}              ${EMPTY}
+                      OK        ${Source_VM}      ${EMPTY}      ${Nth_Checkpoint}    ${EMPTY}              ${EMPTY}
 
-Restore checkpoint With Valid Inputs With Providing VM Host,CheckpointName and Advanced Options
+Restore checkpoint With Valid Inputs With Providing VM Host,CheckpointName and Advanced Options Where Provided NthCheckpoint is greater than N+1
                       [Tags]    main_scenarios
-                      OK        ${Source_VM}      ${VM_Host}    ${NthLatest_Checkpoint}    ${Checkpoint_Name}    -RunAsynchronously
+                      OK        ${Source_VM}      ${VM_Host}    ${Nth_Checkpoint}    ${Checkpoint_Name}    -RunAsynchronously
 
 Assert Behaviour when more than one VM exists for provided VM Name
                       [Tags]    main_scenarios
-                      NOK       VM*               ${EMPTY}      ${NthLatest_Checkpoint}    ${EMPTY}              ${EMPTY}
+                      NOK       VM*               ${EMPTY}      ${Nth_Checkpoint}    ${EMPTY}              ${EMPTY}
 
 Assertion With Non-Existing VM Name
-                      NOK       Invalid           ${VM_Host}    ${NthLatest_Checkpoint}    ${EMPTY}              ${EMPTY}
+                      NOK       Invalid           ${VM_Host}    ${Nth_Checkpoint}    ${EMPTY}              ${EMPTY}
 
 Assertion With Non-Existing VM Host
-                      NOK       ${Source_VM}      Invalid       ${NthLatest_Checkpoint}    ${EMPTY}              ${EMPTY}
+                      NOK       ${Source_VM}      Invalid       ${Nth_Checkpoint}    ${EMPTY}              ${EMPTY}
 
 Assertion With Non-Existing NthLatestCheckpoint
-                      NOK       ${Source_VM}      ${VM_Host}    Invalid                    ${EMPTY}              ${EMPTY}
+                      NOK       ${Source_VM}      ${VM_Host}    10000                ${EMPTY}              ${EMPTY}
 
 Assertion With Non-Existing CheckpointName
-                      NOK       ${Source_VM}      ${VM_Host}    ${NthLatest_Checkpoint}    Invalid               ${EMPTY}
+                      NOK       ${Source_VM}      ${VM_Host}    ${Nth_Checkpoint}    Invalid               ${EMPTY}
 
 Assertion for Non-Existing Advanced Parameter
-                      NOK       ${Source_VM}      ${VM_Host}    ${NthLatest_Checkpoint}    ${EMPTY}              Invalid
+                      NOK       ${Source_VM}      ${VM_Host}    ${Nth_Checkpoint}    ${EMPTY}              Invalid
 
 Assertion for VM Name as Mandatory Field
-                      NOK       ${EMPTY}          ${VM_Host}    ${NthLatest_Checkpoint}    ${Checkpoint_Name}    -RunAsynchronously
-
-Assertion for NthLatestCheckpoint as Mandatory Field
-                      NOK       ${Source_VM}      ${VM_Host}    ${EMPTY}}                  ${Checkpoint_Name}    -RunAsynchronously
+                      NOK       ${EMPTY}          ${VM_Host}    ${Nth_Checkpoint}    ${Checkpoint_Name}    -RunAsynchronously
 
 *** Keywords ***
 Startup
@@ -53,13 +50,13 @@ Startup
     Connect AE
 
 Restore Checkpoint Template
-    [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost} ${NthLatestCheckpoint} ${CheckpointName}    ${AdvancedOptions}
+    [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost} ${NthCheckpoint} ${CheckpointName}    ${AdvancedOptions}
     [Documentation]    This test is used to remove the given VM.
     ...    -Precondition: To run this test suite, SCVMM credentials should be known to user and VM state should be in stopped or save state.
     ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
     ...    -${VMName}: This field specifies Name of the Virtual Machine you want to remove.
     ...    -${VMHost}: This field Specify Name of the VM Host in which VM is located.
-    ...    -${NthLatestCheckpoint}:Specify Nth checkpoint from the latest to store. 0 means most recent. Eg. 2 restores second-from-last created checkpoint.
+    ...    -${NthCheckpoint}:Specify Nth checkpoint from the latest to store. 0 means most recent. Eg. 2 restores second-from-last created checkpoint.
     ...    -${CheckpointName}:Provide description for this checkpoint
     ...    -${AdvancedOptions}: This field specifies advanced parameter for remove virtual machine command.
     Generate String
@@ -69,8 +66,8 @@ Restore Checkpoint Template
     ...    &UC4RB_VMM_VMNAME#    ${VMName}
     Run Keyword If    '${VMHost}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_VMHOST#    ${VMHost}
-    Run Keyword If    '${NthLatestCheckpoint}' == 'Invalid'    Action Set    &UC4RB_VMM_NTH_CHECKPOINT#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_VMM_NTH_CHECKPOINT#    ${NthLatestCheckpoint}
+    Run Keyword If    '${NthCheckpoint}' == 'Invalid'    Action Set    &UC4RB_VMM_NTH_CHECKPOINT#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_NTH_CHECKPOINT#    ${NthCheckpoint}
     Run Keyword If    '${CheckpointName}' == 'Invalid'    Action Set    &UC4RB_VMM_CHECKPOINT#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_CHECKPOINT#    ${CheckpointName}
     Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
