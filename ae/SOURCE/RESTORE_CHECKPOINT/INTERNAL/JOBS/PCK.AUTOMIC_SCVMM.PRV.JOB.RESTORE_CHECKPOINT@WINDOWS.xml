@@ -196,7 +196,7 @@ try{
 
   $chkPtCount = $checkpoint.count
 
-  Write-Host "INFO: Retoring VM to the required checkpoint.."
+  Write-Host "INFO: Restoring VM to the required checkpoint.."
 
 
 
@@ -213,22 +213,13 @@ try{
    }
   ELSE
    {
-
-     [bool]$isFound = $false
-     FOREACH($chp in $checkpoint)
-      {
-         if($checkpointName -ceq $chp.name)
-           {
-              Write-Host "INFO:" &UC4RB_VMM_RESTORE_CHKPT_CMD#
-              &UC4RB_VMM_RESTORE_CHKPT_CMD#
-              $isFound = $true
-           }
-      }
-     IF(-not $isFound){
-       throw "No checkpoint with given name exists "}
-   }
-
-
+       if($checkpoint.Name -notcontains $checkpointName) {
+        throw "No checkpoint with given name exists "
+       }
+       $chp = $checkpoint | where {$_.Name -eq $checkpointName}
+       Write-Host "INFO:" &UC4RB_VMM_RESTORE_CHKPT_CMD#
+       &UC4RB_VMM_RESTORE_CHKPT_CMD#
+  }
 
 }catch{
   $errors=1
