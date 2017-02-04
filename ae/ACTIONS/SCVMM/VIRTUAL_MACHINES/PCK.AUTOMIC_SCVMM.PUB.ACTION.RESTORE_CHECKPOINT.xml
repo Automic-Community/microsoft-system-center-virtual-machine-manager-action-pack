@@ -305,7 +305,7 @@ PCK.AUTOMIC_SCVMM.PUB.ACTION.RESTORE_CHECKPOINT
 
 = General description =
 This action is used to restore VM to a given checkpoint. If both nth checkpoint and checkpoint name is provided then it will ignore the nth checkpoint and will try to restore the VM with given checkpoint name..
- You can also provide a description and additional parameters to the "Advanced Options" field.
+You can also provide additional parameters to the "Advanced Options" field.
 
 The details of Checkpoint including Checkpoint ID and Name would be printed in the Job report. 
 
