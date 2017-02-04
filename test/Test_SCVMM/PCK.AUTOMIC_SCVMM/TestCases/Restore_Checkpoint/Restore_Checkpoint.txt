@@ -13,11 +13,11 @@ Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
 *** Test Cases ***    OK_NOK    VMName            VMHost        NthCheckpoint        CheckpointName        AdvancedOptions
-Restore checkpoint With Valid Inputs Without Providing VM Host,CheckpointName and Advanced Options Where Provided NthCheckpoint is greater than N+1
+Restore checkpoint With Valid Inputs Without Providing VM Host,CheckpointName and Advanced Options,Given There Exists N+1 Checkpoints For VM To Restore To Nth Checkpoint
                       [Tags]    main_scenarios
                       OK        ${Source_VM}      ${EMPTY}      ${Nth_Checkpoint}    ${EMPTY}              ${EMPTY}
 
-Restore checkpoint With Valid Inputs With Providing VM Host,CheckpointName and Advanced Options Where Provided NthCheckpoint is greater than N+1
+Restore checkpoint With Valid Inputs With Providing VM Host,CheckpointName and Advanced Options,Given There Exists N+1 Checkpoints For VM To Restore To Nth Checkpoint
                       [Tags]    main_scenarios
                       OK        ${Source_VM}      ${VM_Host}    ${Nth_Checkpoint}    ${Checkpoint_Name}    -RunAsynchronously
 
@@ -32,7 +32,7 @@ Assertion With Non-Existing VM Host
                       NOK       ${Source_VM}      Invalid       ${Nth_Checkpoint}    ${EMPTY}              ${EMPTY}
 
 Assertion With Non-Existing NthLatestCheckpoint
-                      NOK       ${Source_VM}      ${VM_Host}    10000                ${EMPTY}              ${EMPTY}
+                      NOK       ${Source_VM}      ${VM_Host}    999                  ${EMPTY}              ${EMPTY}
 
 Assertion With Non-Existing CheckpointName
                       NOK       ${Source_VM}      ${VM_Host}    ${Nth_Checkpoint}    Invalid               ${EMPTY}
