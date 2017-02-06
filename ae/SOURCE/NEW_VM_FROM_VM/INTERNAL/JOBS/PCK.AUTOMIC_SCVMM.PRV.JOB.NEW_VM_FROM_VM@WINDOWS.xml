@@ -146,16 +146,6 @@
 
 !-------------------------------------Create VMM commandlets---------------------------------------------------------------------------------------------------
 
-! Get VM command
-: SET &UC4RB_VMM_GETVM_CMD# = "Get-SCVirtualMachine "
-
-! VM name
-: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMNAME#
-: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -Name '&UC4RB_VMM_ESC_VALUE#' ")
-
-! VMM server
-: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -VMMServer $vmmserver ")
-
 ! Create new vm from vm command
 : SET &UC4RB_VMM_CREATEVM_CMD# = "New-SCVirtualMachine "
 
@@ -180,14 +170,11 @@
 try{
 ! Connect to VMM Server
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CONNECT_CMDLET
-! logging get vm command
-  Write-Host "INFO:" &UC4RB_VMM_GETVM_CMD#
-  $vmachine = &UC4RB_VMM_GETVM_CMD#
-  if($vmachine.count -ne 1){
-      throw "Virtual Machines Found $($vmachine.count). Expected: 1"
-  }
-  Write-Host "INFO:" &UC4RB_VMM_CREATEVM_CMD# -VM $vmachine
-  &UC4RB_VMM_CREATEVM_CMD# -VM $vmachine
+
+! Get the VM
+: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.GET_VM_CMDLET
+
+  &UC4RB_VMM_CREATEVM_CMD# -VM $vm
 
 }catch{
   $errors=1

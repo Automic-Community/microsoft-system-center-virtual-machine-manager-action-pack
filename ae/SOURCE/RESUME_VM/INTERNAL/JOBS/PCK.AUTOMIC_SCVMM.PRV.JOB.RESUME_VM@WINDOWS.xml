@@ -138,16 +138,6 @@
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
 
 !-------------------------------------Resume VMM commandlets---------------------------------------------------------------------------------------------------
-! Get VM command
-
-: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMNAME#
-: SET &UC4RB_VMM_GETVM_CMD# = "Get-SCVirtualMachine -VMMServer $vmmserver -name '&UC4RB_VMM_ESC_VALUE#' "
-
-! vm host
-: IF &UC4RB_VMM_VMHOST# <> ""
-:   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMHOST#
-:   SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -VMHost  '&UC4RB_VMM_ESC_VALUE#' ")
-: ENDIF
 
 ! Resume VM command
 : SET &UC4RB_VMM_RESUMEVM_CMD# = "Resume-SCVirtualMachine -VM $vm "
@@ -163,13 +153,11 @@
 try{
 !     Connect to VMM Server
 :     INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CONNECT_CMDLET
-      WRITE-HOST "INFO:" &UC4RB_VMM_GETVM_CMD#
-      $vm = &UC4RB_VMM_GETVM_CMD#
 
-      if($vm.count -ne 1){
-           throw "Virtual Machines Found $($vm.count). Expected: 1"
-      }
-      WRITE-HOST "INFO: Unique Virtual Machine found."
+!     Get the VM
+:     INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.GET_VM_CMDLET
+
+!     Execute resume_vm command
       if($vm.Status -ne "Running"){
           WRITE-HOST "INFO: Resume VM cmdlet :: &UC4RB_VMM_RESUMEVM_CMD# "
           &UC4RB_VMM_RESUMEVM_CMD#
