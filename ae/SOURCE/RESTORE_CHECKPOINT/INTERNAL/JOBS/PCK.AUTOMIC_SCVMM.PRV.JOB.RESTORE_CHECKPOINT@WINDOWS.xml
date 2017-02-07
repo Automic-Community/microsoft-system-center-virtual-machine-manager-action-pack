@@ -147,19 +147,8 @@
 
 !-------------------------------------Restore VMM commandlets---------------------------------------------------------------------------------------------------
 
-! Get VM command
-! VM name
-: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMNAME#
-: SET &UC4RB_VMM_GETVM_CMD# = "Get-SCVirtualMachine -Name '&UC4RB_VMM_ESC_VALUE#' "
-
-! VM host
-: IF &UC4RB_VMM_VMHOST# <> ""
-:   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMHOST#
-:   SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -VMHost '&UC4RB_VMM_ESC_VALUE#' ")
-: ENDIF
-
 ! Get Checkpoint command
-: SET &UC4RB_VMM_GET_CHKPT_CMD# = "Get-SCVMCheckpoint -vm $vmachine"
+: SET &UC4RB_VMM_GET_CHKPT_CMD# = "Get-SCVMCheckpoint -vm $vm"
 
 ! Restore Checkpoint command
 : SET &UC4RB_VMM_RESTORE_CHKPT_CMD# = "Restore-SCVMCheckpoint "
@@ -184,13 +173,10 @@
 try{
 ! Connect to VMM Server
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CONNECT_CMDLET
-! logging get vm command
-  Write-Host "INFO:" &UC4RB_VMM_GETVM_CMD#
-  $vmachine = &UC4RB_VMM_GETVM_CMD#
-  if($vmachine.count -ne 1){
-      throw "Virtual Machines Found $($vmachine.count). Expected: 1"
-  }
-  Write-Host "INFO: Unique Virtual Machine found. Trying to restore to a checkpoint."
+
+! Get the VM
+: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.GET_VM_CMDLET
+
   Write-Host "INFO: Getting all the checkpoints.."
   $checkpoint = &UC4RB_VMM_GET_CHKPT_CMD#
 

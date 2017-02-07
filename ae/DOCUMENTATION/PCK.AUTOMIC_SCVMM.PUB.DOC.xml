@@ -49,7 +49,10 @@ Following actions are supported for SCVMM:
 * Action Description: This action is used to suspend a Virtual Machine
 
 * Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.RESTORE_CHECKPOINT
-* Action Description: This action is used to restore VM to a checkpoint.]]></DOC>
+* Action Description: This action is used to restore VM to a checkpoint.
+
+* Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.RESUME_VM
+* Action Description: This action is used to resume the given VM from paused state.S]]></DOC>
 </DOCU_Docu>
 </DOCU>
 </uc-export>
