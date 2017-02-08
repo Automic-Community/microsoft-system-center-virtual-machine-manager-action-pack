@@ -328,7 +328,7 @@ This action is used attach a new virtual disk drive or the existing VHD to the V
 * Port		    		: Specify port which will be used for connection. Default value is 8100.
 * Username	    		: Username which will be used for this connection. E.g. domain\username
 * Password	    		: Password to your username.
-* VM Name	    		: Specify Name of the Virtual Machine for which you want to create a checkpoint. E.g. myvm.com
+* VM Name	    		: Specify Name of the Virtual Machine where you want to attach. E.g. myvm
 * VM Host	    		: Specify the host from which you want to get VM. E.g. myhost.com
 * IDE/Bus/LUN Configuration     : Specify bus type and logical unit configuration .Eg. -IDE -Bus 1 -LUN 0 or -SCSI -Bus 0 -LUN 
 * Action                        : Specify whether if you want to create a new Disk or use existing one.
