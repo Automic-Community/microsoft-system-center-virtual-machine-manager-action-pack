@@ -51,9 +51,11 @@ Following actions are supported for SCVMM:
 * Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.RESTORE_CHECKPOINT
 * Action Description: This action is used to restore VM to a checkpoint. 
 
+* Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.RESUME_VM
+* Action Description: This action is used to resume the given VM from paused state.
+
 * Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.CREATE_DISK_DRIVE
 * Action Description: TThis action is used to creates a virtual disk drive object on a virtual machine deployed on a host managed by VMM.]]>
-
 </DOC>
 </DOCU_Docu>
 </DOCU>

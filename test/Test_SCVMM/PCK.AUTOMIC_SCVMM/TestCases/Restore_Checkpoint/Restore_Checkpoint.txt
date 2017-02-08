@@ -50,7 +50,7 @@ Startup
     Connect AE
 
 Restore Checkpoint Template
-    [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost} ${NthCheckpoint} ${CheckpointName}    ${AdvancedOptions}
+    [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost}    ${NthCheckpoint}    ${CheckpointName}    ${AdvancedOptions}
     [Documentation]    This test is used to remove the given VM.
     ...    -Precondition: To run this test suite, SCVMM credentials should be known to user and VM state should be in stopped or save state.
     ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.

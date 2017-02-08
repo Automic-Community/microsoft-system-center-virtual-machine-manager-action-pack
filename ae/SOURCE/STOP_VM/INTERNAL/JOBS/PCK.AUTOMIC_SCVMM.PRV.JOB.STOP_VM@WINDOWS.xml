@@ -146,25 +146,10 @@
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
 
 !-------------------------------------Stop VMM commandlets---------------------------------------------------------------------------------------------------
-! Get VM command
-: SET &UC4RB_VMM_GETVM_CMD# = "Get-SCVirtualMachine "
 : SET &OPTION_COUNT# = 0
 
 ! Stop VM command
 : SET &UC4RB_VMM_STOPVM_CMD# = "Stop-SCVirtualMachine "
-
-! VMM server
-: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -VMMServer $vmmserver ")
-
-! vm name
-: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMNAME#
-: SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -name  '&UC4RB_VMM_ESC_VALUE#' ")
-
-! vm host
-: IF &UC4RB_VMM_VMHOST# <> ""
-:   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMHOST#
-:   SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -VMHost  '&UC4RB_VMM_ESC_VALUE#' ")
-: ENDIF
 
 ! FORCE
 : IF &UC4RB_VMM_FORCE# <> "NO"
@@ -190,20 +175,16 @@
 try{
 !     Connect to VMM Server
 :     INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CONNECT_CMDLET
-      WRITE-HOST "INFO:" &UC4RB_VMM_GETVM_CMD#
-      $vminhost = &UC4RB_VMM_GETVM_CMD#
 
-      if($vminhost.count -ne 1){
-          throw "Virtual Machines Found $($vminhost.count). Expected: 1"
-       }
-       WRITE-HOST "INFO: Unique Virtual Machine found."
+!     Get the VM
+:     INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.GET_VM_CMDLET
 
        $op = &OPTION_COUNT#
-       if(($vminhost.Status -eq "PowerOff") -and (0 -eq $op)){
+       if(($vm.Status -eq "PowerOff") -and (0 -eq $op)){
            WRITE-HOST "INFO: VM already stopped."
        }else{
-           WRITE-HOST "INFO: Stop VM cmdlet :: &UC4RB_VMM_STOPVM_CMD# -VM $($vminhost.name)"
-           &UC4RB_VMM_STOPVM_CMD# -VM $vminhost
+           WRITE-HOST "INFO: Stop VM cmdlet :: &UC4RB_VMM_STOPVM_CMD# -VM $($vm.name)"
+           &UC4RB_VMM_STOPVM_CMD# -VM $vm
        }
 
 }catch{
