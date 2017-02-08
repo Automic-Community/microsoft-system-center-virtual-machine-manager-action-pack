@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBS_WINDOWS AttrType="WINDOWS" name="PCK.AUTOMIC_SCVMM.PRV.JOB.CREATE_DISK_DRIVE@WINDOWS">
+<JOBS_WINDOWS AttrType="WINDOWS" name="PCK.AUTOMIC_SCVMM.PRV.JOB.NEW_DISK_DRIVE@WINDOWS">
 <XHEADER state="1">
-<Title>Create new disk drive</Title>
+<Title>Attach a newly created virtual disk drive or existing VHD to a VM</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -134,6 +134,10 @@
 : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_CONFIG#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
+: SET &UC4RB_LOGGING_PARAMETER# = "Create New Disk or Use Existing VHD"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_DISK_USAGE#"
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
 : SET &UC4RB_LOGGING_PARAMETER# = "New Disk Name"
 : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_DISK_NAME#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
@@ -150,48 +154,30 @@
 : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_VHD_LOCATION#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
-: SET &UC4RB_LOGGING_PARAMETER# = "Path"
-: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_PATH#"
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
-
 : SET &UC4RB_LOGGING_PARAMETER# = "Advanced Options"
 : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_ADV_OPTIONS#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
 
-!-------------------------------------Create Disk Drive commandlets---------------------------------------------------------------------------------------------------
+!-------------------------------------New Disk Drive commandlets---------------------------------------------------------------------------------------------------
 
-! Create new disk for vm cmdlet
-: SET &UC4RB_VMM_CREATEDISK_CMD# = "New-SCVirtualDiskDrive &UC4RB_VMM_CONFIG# "
+! New disk for vm cmdlet
+: SET &UC4RB_VMM_NEWDISK_CMD# = "New-SCVirtualDiskDrive &UC4RB_VMM_CONFIG# "
 
-: IF &UC4RB_VMM_VHD_LOCATION# <> ""
-:   SET &UC4RB_VMM_CREATEDISK_CMD# = STR_CAT(&UC4RB_VMM_CREATEDISK_CMD#, " -VM $VM -VirtualHardDisk $VHDX ")
-:   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VHD_LOCATION#
-:   SET &UC4RB_VMM_GETVMD_CMD# = "Get-SCVirtualHardDisk | where {$_.Location -eq '&UC4RB_VMM_ESC_VALUE#'}"
-: ELSE
+
+: IF &UC4RB_VMM_DISK_USAGE# EQ "Create New"
 :    INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_DISK_NAME#
-:     SET &UC4RB_VMM_CREATEDISK_CMD# = STR_CAT(&UC4RB_VMM_CREATEDISK_CMD#, " -VM $vm -Filename '&UC4RB_VMM_ESC_VALUE#' -Size &UC4RB_VMM_DISK_SIZE# -&UC4RB_VMM_DISK_TYPE#")
+:    SET &UC4RB_VMM_NEWDISK_CMD# = STR_CAT(&UC4RB_VMM_NEWDISK_CMD#, " -VM $vm -Filename '&UC4RB_VMM_ESC_VALUE#'")
+:    SET &UC4RB_VMM_NEWDISK_CMD# = STR_CAT(&UC4RB_VMM_NEWDISK_CMD#, " -Size &UC4RB_VMM_DISK_SIZE# -&UC4RB_VMM_DISK_TYPE#")
+: ELSE
+:   SET &UC4RB_VMM_NEWDISK_CMD# = STR_CAT(&UC4RB_VMM_NEWDISK_CMD#, " -VM $VM -VirtualHardDisk $VHDX ")
+:   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VHD_LOCATION#
+:   SET &UC4RB_VMM_GETVHD_CMD# = "Get-SCVirtualHardDisk | where {$_.Location -eq '&UC4RB_VMM_ESC_VALUE#'}"
 : ENDIF
 
 
-! Advance options
-: IF &UC4RB_VMM_ADV_OPTIONS# <> ""
-:   SET &UC4RB_VMM_CREATEDISK_CMD# = STR_CAT(&UC4RB_VMM_CREATEDISK_CMD#, " &UC4RB_VMM_ADV_OPTIONS# ")
-: ENDIF
-
-
-! ------------------------------Forming Get VM command-----------------------------------------------------------------------
-
-! VM name and server
-: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMNAME#
-: SET &UC4RB_VMM_GETVM_CMD# = "Get-SCVirtualMachine -VMMServer $vmmserver -name '&UC4RB_VMM_ESC_VALUE#' "
-
-! vm host
-: IF &UC4RB_VMM_VMHOST# <> ""
-:   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMHOST#
-:   SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -VMHost  '&UC4RB_VMM_ESC_VALUE#' ")
-: ENDIF
+:   SET &UC4RB_VMM_NEWDISK_CMD# = STR_CAT(&UC4RB_VMM_NEWDISK_CMD#, " &UC4RB_VMM_ADV_OPTIONS#")
 
 !-------------------------------------Commandlet execution------------------------------------------------------------------------------
 
@@ -200,24 +186,16 @@ try{
 :     INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CONNECT_CMDLET
 
 !     Get the VM
-!:     INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.GET_VM_CMDLET
+:     INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.GET_VM_CMDLET
 
-   WRITE-HOST "INFO:" &UC4RB_VMM_GETVM_CMD#
- $vm = &UC4RB_VMM_GETVM_CMD#
- if($vm.count -ne 1){
-        throw "Virtual Machines Found $($vm.count). Expected: 1"
- }
-  WRITE-HOST "INFO: Unique Virtual Machine found."
-
-: IF &UC4RB_VMM_VHD_LOCATION# <> ""
-   WRITE-HOST "INFO: Getting virtual hard disk cmdlet :: "&UC4RB_VMM_GETVMD_CMD#
-   $VHDX = &UC4RB_VMM_GETVMD_CMD#
+: IF &UC4RB_VMM_DISK_USAGE# <> "Create New"
+   WRITE-HOST "INFO: Getting virtual hard disk cmdlet :: &UC4RB_VMM_GETVHD_CMD#"
+   $VHDX = &UC4RB_VMM_GETVHD_CMD#
 : ENDIF
 
 
-
-  WRITE-HOST "INFO: Create new disk cmdlet :: "&UC4RB_VMM_CREATEDISK_CMD#
-  &UC4RB_VMM_CREATEDISK_CMD#
+  WRITE-HOST "INFO: New disk cmdlet :: "&UC4RB_VMM_NEWDISK_CMD#
+  &UC4RB_VMM_NEWDISK_CMD#
 }catch{
   $errors=1
   Write-Host "ERROR: $($error[0].Exception.Message)"
@@ -226,8 +204,8 @@ try{
 
 !-----------------------------------Error Handling-------------------------------------------------------------------------------------
 !Status messages
-:SET &UC4RB_LOGGING_INFO# = "******** CREATE DISK DRIVE Action EXECUTED SUCCESSFULLY ********"
-:SET &UC4RB_LOGGING_ERROR# = "******** CREATE DISK DRIVE Action FAILED ********"
+:SET &UC4RB_LOGGING_INFO# = "******** NEW DISK DRIVE Action EXECUTED SUCCESSFULLY ********"
+:SET &UC4RB_LOGGING_ERROR# = "******** NEW DISK DRIVE Action FAILED ********"
 
 :INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CHECK_ERRORSTATUS]]></MSCRI>
 </SCRIPT>
