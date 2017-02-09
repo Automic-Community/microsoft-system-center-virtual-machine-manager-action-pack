@@ -1,0 +1,106 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        create_new_disk
+Default Tags
+Test Template     Create New disk Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    VMName            VMHost        IDE/Bus/LUN_Configuration       Action               NewDiskName         DiskType        DiskSize        VHDLocation        AdvancedOptions
+Create New Disk With Valid Inputs When User Opted Create New Disk As Action with providing VM Host & Advanced options
+                      [Tags]    main_scenarios
+                      OK        ${Source_VM}      ${VM_Host}    ${IDE/Bus/LUN_Configuration}    Create a new disk    ${New_Disk_Name}    ${Disk_Type}    ${Disk_Size}    ${EMPTY}           -RunAsynchronously
+
+Create New Disk With Valid Inputs When User Opted Create New Disk As Action without providing VM Host & Advanced options
+                      [Tags]    main_scenarios
+                      OK        ${Source_VM}      ${EMPTY}      ${IDE/Bus/LUN_Configuration}    Create a new disk    ${New_Disk_Name}    ${Disk_Type}    ${Disk_Size}    ${EMPTY}           ${EMPTY}
+
+Create New Disk With Valid Inputs When User Opted Using Existing Disk As Action with providing VM Host & Advanced options
+                      [Tags]    main_scenarios
+                      OK        ${Source_VM}      ${VM_Host}    ${IDE/Bus/LUN_Configuration}    Use existing disk    ${EMPTY}            ${EMPTY}        ${EMPTY}        ${VHD_Location}    -RunAsynchronously
+
+Create New Disk With Valid Inputs When User Opted Using Existing Disk As Action without providing VM Host & Advanced options
+                      [Tags]    main_scenarios
+                      OK        ${Source_VM}      ${EMPTY}      ${IDE/Bus/LUN_Configuration}    Use existing disk    ${EMPTY}            ${EMPTY}        ${EMPTY}        ${VHD_Location}    ${EMPTY}
+
+Assertion With Non-Existing VM Name When User Opted Create New Disk As Action
+                      [Tags]    main_scenarios
+                      NOK       Invalid           ${VM_Host}    ${IDE/Bus/LUN_Configuration}    Create a new disk    ${New_Disk_Name}    ${Disk_Type}    ${Disk_Size}    ${EMPTY}           -RunAsynchronously
+
+Assert Behaviour when more than one VM exists for provided VM Name When User Opted Create New Disk As Action
+                      NOK       VM*               ${EMPTY}      ${IDE/Bus/LUN_Configuration}    Create a new disk    ${New_Disk_Name}    ${Disk_Type}    ${Disk_Size}    ${EMPTY}           -RunAsynchronously
+
+Assertion With Non-Existing VM Host When User Opted Create New Disk As Action
+                      NOK       ${Source_VM}      Invalid       ${IDE/Bus/LUN_Configuration}    Create a new disk    ${New_Disk_Name}    ${Disk_Type}    ${Disk_Size}    ${EMPTY}           -RunAsynchronously
+
+Assertion With Non-Existing VHD Location When User Opted Using Existing Disk As Action
+                      NOK       ${Source_VM}      ${VM_Host}    ${IDE/Bus/LUN_Configuration}    Use existing disk    ${EMPTY}            ${EMPTY}        ${EMPTY}        Invalid            -RunAsynchronously
+
+Assertion With Already Existing New Disk Name When User Opted Create New Disk As Action
+                      NOK       ${Source_VM}      ${VM_Host}    ${IDE/Bus/LUN_Configuration}    Create a new disk    Invalid             ${Disk_Type}    ${Disk_Size}    ${EMPTY}           -RunAsynchronously
+
+Assertion With Non-Existing IDE/Bus/LUN_Configuration When User Opted Create New Disk As Action
+                      NOK       ${Source_VM}      ${VM_Host}    Invalid                         Create a new disk    ${New_Disk_Name}    ${Disk_Type}    ${Disk_Size}    ${EMPTY}           -RunAsynchronously
+
+Assertion for Non-Existing Advanced Parameter When User Opted Create New Disk As Action
+                      NOK       ${Source_VM}      ${VM_Host}    ${IDE/Bus/LUN_Configuration}    Create a new disk    ${New_Disk_Name}    ${Disk_Type}    ${Disk_Size}    ${EMPTY}           Invalid
+
+Assertion for VM Name as Mandatory Field When User Opted Create New Disk As Action
+                      NOK       ${EMPTY}          ${VM_Host}    ${IDE/Bus/LUN_Configuration}    Create a new disk    ${New_Disk_Name}    ${Disk_Type}    ${Disk_Size}    ${EMPTY}           -RunAsynchronously
+
+Assertion for Path IDE/Bus/LUN_Configuration as Mandatory Field When User Opted Create New Disk As Action
+                      NOK       ${EMPTY}          ${VM_Host}    ${EMPTY}                        Create a new disk    ${New_Disk_Name}    ${Disk_Type}    ${Disk_Size}    ${EMPTY}           -RunAsynchronously
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "Create New Disk"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Create New Disk Template
+    [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost}    ${IDE/Bus/LUN_Configuration}    ${Action}    ${NewDiskName}
+    ...    ${DiskType}    ${DiskSize}    ${VHDLocation}    ${AdvancedOptions}
+    [Documentation]    This action is used to creates a virtual disk drive object on a virtual machine deployed on a host managed by VMM, or on a template in the VMM library.
+    ...    -Precondition: To run this test suite, SCVMM credentials should be known to user.
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
+    ...    -${VMName}: Specify Name of the Virtual Machine wher you want to create a drive.
+    ...    -${VMHost}: This field Specify Name of the VM Host in which VM is located.
+    ...    -${IDE/Bus/LUN_Configuration}: Specify bus type and logical unit configuration. Eg. -IDE -Bus 1 -LUN 0 or -SCSI -Bus 0 -LUN 1
+    ...    -${Action}: Specify whether if you want to create a new Disk or use existing one.
+    ...    -${NewDiskName}: Specify Name of the Virtual Hard Drive you want to mount.
+    ...    -${DiskType}: Specify Name of the Virtual Hard Drive you want to mount.Eg myNewDisk.
+    ...    -${DiskSize}: Specify the size of a fixed VHD file or the maximum possible size of a dynamically expanding VHD file.
+    ...    -${VHDLocation}: Specify Location of the VHD file.
+    ...    -${AdvancedOptions}: Specify parameters you want to include into command.eg. -RunAsynchronously
+    Generate String
+    Action Create    ${_CREATE_NEW_DISK_ACTION}
+    Common Inputs
+    Run Keyword If    '${VMName}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMNAME#    ${VMName}
+    Run Keyword If    '${VMHost}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMHOST#    ${VMHost}
+    Run Keyword If    '${VHDLocation}' == 'Invalid'    Action Set    &UC4RB_VMM_VHD_LOCATION#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VHD_LOCATION#    ${VHDLocation}
+    Run Keyword If    '${NewDiskName}' == 'Invalid'    Action Set    &UC4RB_VMM_DISK_NAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_DISK_NAME#    ${NewDiskName}
+    Run Keyword If    '${DiskType}' == 'Invalid'    Action Set    &UC4RB_VMM_DISK_TYPE#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_DISK_TYPE#    ${DiskType}
+    Run Keyword If    '${IDE/Bus/LUN_Configuration}' == 'Invalid'    Action Set    &UC4RB_VMM_CONFIG#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_CONFIG#    ${IDE/Bus/LUN_Configuration}
+    Run Keyword If    '${DiskSize}' == 'Invalid'    Action Set    &UC4RB_VMM_DISK_SIZE#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_DISK_SIZE#    ${DiskSize}
+    Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
+    Action Set    &UC4RB_VMM_USAGE#    ${Action}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+
+Teardown
+    Log    *******End Test "Create New Disk"*******
