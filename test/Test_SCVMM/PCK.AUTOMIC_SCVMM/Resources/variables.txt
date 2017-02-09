@@ -17,6 +17,9 @@ ${Advance_opt}    -id 3461584e-98c6-4960-93d5-2d180ce3464b
 ${VM_Name_Remove}    newvm
 #---- Create Checkpoint----------------------------------------------------------------------------------------------------
 ${Description}    description for checkpoint
+#------New VM From Template----------------------------------------------------------------------------------------------------
+${Path}           C:\VirtualMachinePath
+${Template_Name}    Single_VM
 #------Restore Checkpoint----------------------------------------------------------------------------------------------------
 ${Nth_Checkpoint}    1
 ${Checkpoint_Name}    Checkpoint_test
