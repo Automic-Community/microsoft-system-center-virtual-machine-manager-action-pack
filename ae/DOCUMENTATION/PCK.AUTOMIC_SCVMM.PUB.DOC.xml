@@ -56,6 +56,9 @@ Following actions are supported for SCVMM:
 
 * Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.NEW_DISK_DRIVE
 * Action Description: This action is used to attach a new disk drive or existing VHD to a VM.
+
+* Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.NEW_VM_FROM_TEMPLATE
+* Action Description: This action is used to create a virtual machine from an existing template.
 ]]></DOC>
 </DOCU_Docu>
 </DOCU>

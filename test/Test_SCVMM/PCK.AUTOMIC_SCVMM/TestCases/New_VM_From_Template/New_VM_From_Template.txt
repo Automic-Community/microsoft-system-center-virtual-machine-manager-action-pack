@@ -1,0 +1,81 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        new_vm_from_template
+Default Tags
+Test Template     New VM From Template Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    VMName            VMHost        Path        TemplateName        AdvancedOptions
+Create VM From Template With Valid Inputs
+                      [Tags]    main_scenarios
+                      OK        ${Source_VM}      ${VM_Host}    ${Path}     ${Template_Name}    -RunAsynchronously
+
+Assert Behaviour when more than one Template Name exists for provided VM Name
+                      NOK       ${Source_VM}      ${VM_Host}    ${Path}     Template*           ${EMPTY}
+
+Assertion With Non-Existing VM Host
+                      NOK       ${Source_VM}      Invalid       ${Path}     ${Template_Name}    ${EMPTY}
+
+Assertion for Non-Existing Path
+                      NOK       ${Source_VM}      ${VM_Host}    Invalid     ${Template_Name}    ${EMPTY}
+
+Assertion for Non-Existing Template Name
+                      NOK       ${Source_VM}      ${VM_Host}    ${Path}     Invalid             ${EMPTY}
+
+Assertion for Non-Existing Advanced Parameter
+                      NOK       ${Source_VM}      ${VM_Host}    ${Path}     ${Template_Name}    Invalid
+
+Assertion for VM Name as Mandatory Field
+                      NOK       ${EMPTY}          ${VM_Host}    ${Path}     ${Template_Name}    -RunAsynchronously
+
+Assertion for VM Host as Mandatory Field
+                      NOK       ${Source_VM}      ${EMPTY}      ${Path}     ${Template_Name}    -RunAsynchronously
+
+Assertion for Path as Mandatory Field
+                      NOK       ${Source_VM}      ${VM_Host}    ${EMPTY}    ${Template_Name}    -RunAsynchronously
+
+Assertion for Template Name as Mandatory Field
+                      NOK       ${Source_VM}      ${VM_Host}    ${Path}     ${EMPTY}            -RunAsynchronously
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "New VM From Template"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+New VM From Template Template
+    [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost} ${Path} ${TemplateName}    ${AdvancedOptions}
+    [Documentation]    This test is used to create the given VM form template.
+    ...    -Precondition: To run this test suite, SCVMM credentials,Template name,VM host & Destination Path should be known to user
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
+    ...    -${VMName}: This field specifies Name of the Virtual Machine you want to create.
+    ...    -${VMHost}: This field Specify Name of the VM Host in which VM is located.
+    ...    -${Path}: This field specify destination path for the operation.
+    ...    -${TemplateName}:This field specify template name to use for creating new VM.
+    ...    -${AdvancedOptions}: This field specifies advanced parameter for create virtual machine from template command.
+    Generate String
+    Action Create    ${_NEW_VM_FROM_TEMPLATE_ACTION}
+    Common Inputs
+    Run Keyword If    '${VMName}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMNAME#    ${VMName}
+    Run Keyword If    '${VMHost}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMHOST#    ${VMHost}
+    Run Keyword If    '${Path}' == 'Invalid'    Action Set    &UC4RB_VMM_PATH#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_PATH#    ${Path}
+    Run Keyword If    '${TemplateName}' == 'Invalid'    Action Set    &UC4RB_VMM_TEMP_NAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_TEMP_NAME#    ${TemplateName}
+    Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+
+Teardown
+    Log    *******End Test "New VM From Template"*******
