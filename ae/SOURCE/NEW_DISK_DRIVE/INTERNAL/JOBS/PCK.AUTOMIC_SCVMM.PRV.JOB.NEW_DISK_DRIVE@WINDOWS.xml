@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBS_WINDOWS AttrType="WINDOWS" name="PCK.AUTOMIC_SCVMM.PRV.JOB.REMOVE_VM@WINDOWS">
+<JOBS_WINDOWS AttrType="WINDOWS" name="PCK.AUTOMIC_SCVMM.PRV.JOB.NEW_DISK_DRIVE@WINDOWS">
 <XHEADER state="1">
-<Title>Remove VM</Title>
+<Title>Attach a newly created virtual disk drive or existing VHD to a VM</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -117,19 +117,41 @@
 </PRE_SCRIPT>
 <SCRIPT mode="1" state="1">
 <MSCRI><![CDATA[: INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.EXECUTION_ENVIRONMENT
-
 !-------------------------------------Logging input parameters-------------------------------------------------------------------------------------------------
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.PARAM_VALIDATION
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.LOGGING_CONNECTION_DETAILS
 
 ! Log parameters specific to action
-
 : SET &UC4RB_LOGGING_PARAMETER# = "VM Name"
 : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_VMNAME#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
-: SET &UC4RB_LOGGING_PARAMETER# = "VM Host"
+: SET &UC4RB_LOGGING_PARAMETER# = "VMHost"
 : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_VMHOST#"
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "IDE/Bus/LUN Configuration"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_CONFIG#"
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "Create New Disk or Use Existing VHD"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_DISK_USAGE#"
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "New Disk Name"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_DISK_NAME#"
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "Disk Size (MB)"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_DISK_SIZE#"
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "Disk Type"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_DISK_TYPE#"
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "VHD Location"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_VHD_LOCATION#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
 : SET &UC4RB_LOGGING_PARAMETER# = "Advanced Options"
@@ -138,43 +160,60 @@
 
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
 
-!-------------------------------------Remove VMM commandlets---------------------------------------------------------------------------------------------------
+!-------------------------------------New Disk Drive commandlets---------------------------------------------------------------------------------------------------
 
-! Remove VM command
-: SET &UC4RB_VMM_REMOVEVM_CMD# = "Remove-SCVirtualMachine "
+! New disk for vm cmdlet
+: SET &UC4RB_VMM_NEWDISK_CMD# = "New-SCVirtualDiskDrive &UC4RB_VMM_CONFIG# -VM $vm "
+try{
 
-! Advance Option
-: IF &UC4RB_VMM_ADV_OPTIONS# <> ""
-:   SET &UC4RB_VMM_REMOVEVM_CMD# = STR_CAT(&UC4RB_VMM_REMOVEVM_CMD#, &UC4RB_VMM_ADV_OPTIONS#)
+: IF &UC4RB_VMM_DISK_USAGE# EQ "Create New"
+:     IF &UC4RB_VMM_DISK_NAME# EQ ""
+         throw "New Disk Name required"
+:    ENDIF
+
+:    INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_DISK_NAME#
+:    SET &UC4RB_VMM_NEWDISK_CMD# = STR_CAT(&UC4RB_VMM_NEWDISK_CMD#, " -Filename '&UC4RB_VMM_ESC_VALUE#'")
+:    SET &UC4RB_VMM_NEWDISK_CMD# = STR_CAT(&UC4RB_VMM_NEWDISK_CMD#, " -Size &UC4RB_VMM_DISK_SIZE# -&UC4RB_VMM_DISK_TYPE#")
+: ELSE
+:   SET &UC4RB_VMM_NEWDISK_CMD# = STR_CAT(&UC4RB_VMM_NEWDISK_CMD#, " -VirtualHardDisk $VHDX ")
+:   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VHD_LOCATION#
+:   SET &UC4RB_VMM_GETVHD_CMD# = "Get-SCVirtualHardDisk | where {$_.Location -eq '&UC4RB_VMM_ESC_VALUE#'}"
 : ENDIF
 
-!-------------------------------------Commandlet execution-----------------------------------------------------------------------------------------------------
 
+:   SET &UC4RB_VMM_NEWDISK_CMD# = STR_CAT(&UC4RB_VMM_NEWDISK_CMD#, " &UC4RB_VMM_ADV_OPTIONS#")
 
-try{
+!-------------------------------------Commandlet execution------------------------------------------------------------------------------
+
 !     Connect to VMM Server
 :     INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CONNECT_CMDLET
 
 !     Get the VM
 :     INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.GET_VM_CMDLET
 
-      WRITE-HOST "INFO: Remove VM cmdlet :: &UC4RB_VMM_REMOVEVM_CMD# -VM $($vm.name)"
-      &UC4RB_VMM_REMOVEVM_CMD# -VM $vm
+: IF &UC4RB_VMM_DISK_USAGE# <> "Create New"
+   WRITE-HOST "INFO: Getting virtual hard disk cmdlet :: &UC4RB_VMM_GETVHD_CMD#"
+   $VHDX = &UC4RB_VMM_GETVHD_CMD#
+   if(!$VHDX){
+     throw "Location might not exists"
+   }
+: ENDIF
 
+
+  WRITE-HOST "INFO: New disk cmdlet :: "&UC4RB_VMM_NEWDISK_CMD#
+  &UC4RB_VMM_NEWDISK_CMD#
 }catch{
   $errors=1
-  WRITE-HOST "ERROR: $($error[0].Exception.Message)"
+  Write-Host "ERROR: $($error[0].Exception.Message)"
 }
 
 
 !-----------------------------------Error Handling-------------------------------------------------------------------------------------
 !Status messages
-:SET &UC4RB_LOGGING_INFO# = "******** REMOVE VM ACTION EXECUTED SUCCESSFULLY ********"
-:SET &UC4RB_LOGGING_ERROR# = "******** REMOVE VM ACTION FAILED ********"
+:SET &UC4RB_LOGGING_INFO# = "******** NEW DISK DRIVE Action EXECUTED SUCCESSFULLY ********"
+:SET &UC4RB_LOGGING_ERROR# = "******** NEW DISK DRIVE Action FAILED ********"
 
-:INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CHECK_ERRORSTATUS
-
-]]></MSCRI>
+:INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CHECK_ERRORSTATUS]]></MSCRI>
 </SCRIPT>
 <OUTPUTSCAN state="1">
 <Inherit>N</Inherit>

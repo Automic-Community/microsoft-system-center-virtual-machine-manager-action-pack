@@ -300,7 +300,7 @@ PCK.AUTOMIC_SCVMM.PUB.ACTION.SUSPEND_VM
 = General description =
 This action is used to suspend  a virtual machine deployed on hosts managed by Virtual Machine Manager (VMM). Suspending a virtual machine pauses activity on that virtual machine and returns its object in a paused state.
 
-=NOTE+
+=NOTE=
 *If the machine is not in running state, then it cannot be suspended.
 *The VM switches to 'Pause' state on host enabled with hyper-v, else the VM will go into "Saved State"
 
@@ -312,7 +312,7 @@ This action is used to suspend  a virtual machine deployed on hosts managed by V
 * Port		    : Specify port which will be used for connection. Default value is 8100.
 * Username	    : Username which will be used for this connection. E.g. domain\username
 * Password	    : Password to your username.
-* VM Name	    : Specify name of the virtual machine you want to remove .E.g. myvm
+* VM Name	    : Specify name of the virtual machine you want to suspend .E.g. myvm
 * VM Host	    : Specify Name of the VM Host in which VM is located .E.g myhost.com
 * Advanced Options  : Specify parameters you want to include into command. E.g. -RunAsynchronously
 * Overwrite Agent   : Overwrites the default agent

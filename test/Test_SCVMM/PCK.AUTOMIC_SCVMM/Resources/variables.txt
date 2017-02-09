@@ -20,4 +20,12 @@ ${Description}    description for checkpoint
 #------New VM From Template----------------------------------------------------------------------------------------------------
 ${Path}           C:\VirtualMachinePath
 ${Template_Name}    Single_VM
-
+#------Restore Checkpoint----------------------------------------------------------------------------------------------------
+${Nth_Checkpoint}    1
+${Checkpoint_Name}    Checkpoint_test
+#------Create New Disk----------------------------------------------------------------------------------------------------
+${VHD_Location}    [Datastore3]\AutomationTest\AutomationTest_1.vmdk
+${New_Disk_Name}    NewTest_Disk
+${Disk_Type}      Dynamic
+${IDE/Bus/LUN_Configuration}    -SCSI -Bus 0 -LUN 1
+${Disk_Size}      40MB

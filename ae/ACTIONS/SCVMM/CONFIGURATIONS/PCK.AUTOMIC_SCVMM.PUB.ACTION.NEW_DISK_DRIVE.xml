@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBP AllowExternal="1" name="PCK.AUTOMIC_SCVMM.PUB.ACTION.SUSPEND_VM">
+<JOBP AllowExternal="1" name="PCK.AUTOMIC_SCVMM.PUB.ACTION.NEW_DISK_DRIVE">
 <XHEADER state="1">
-<Title>Suspend VM</Title>
+<Title>Attach a newly created virtual disk drive or existing VHD to a VM</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -62,12 +62,18 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM"/>
-<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM"/>
-<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE">
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE"/>
+<UC4RB_VMM_CONFIGs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_CONFIG#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE"/>
+<UC4RB_VMM_DISK_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DISK_NAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE"/>
+<UC4RB_VMM_DISK_SIZEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DISK_SIZE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE">3</UC4RB_VMM_DISK_SIZEs.00>
+<UC4RB_VMM_DISK_TYPEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DISK_TYPE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE">Dynamic</UC4RB_VMM_DISK_TYPEs.00>
+<UC4RB_VMM_DISK_USAGEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DISK_USAGE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE">Create New</UC4RB_VMM_DISK_USAGEs.00>
+<UC4RB_VMM_VHD_LOCATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VHD_LOCATION#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE"/>
+<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE"/>
+<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -89,7 +95,7 @@
 </PostCon>
 </postconditions>
 </task>
-<task Alias="SUSPEND_VM" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_SCVMM.PRV.JOB.SUSPEND_VM@WINDOWS" ParentAlias="" ParentObject="" Row="1" Text2="">
+<task Alias="ATTACH_VIRTUAL_DISK_DRIVE" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_SCVMM.PRV.JOB.NEW_DISK_DRIVE@WINDOWS" ParentAlias="" ParentObject="" Row="1" Text2="">
 <checkpoint RollbackFlag="1" RunPerPatch="0" RunPerTarget="0" TcpADays="0" TcpATime="00:00" TcpATimeTZ="" TcpExecute="" TcpOn="0" promptatgen="0" showprompt="0"/>
 <after ActFlg="1" AtimOn="0" ErlstStDays="0" ErlstStTime="00:00" ErlstStTimeTZ="" HoldFlg="0"/>
 <when ChkWhenExec="0" LtstEnd="0" LtstEndDays="0" LtstEndTime="00:00" LtstSt="0" LtstStDays="0" LtstStTime="00:00" LtstTimeTZ="" WCTypeAND="1" WCTypeOR="0" WElseA="1" WElseH="0" WElseS="0" WElseX="0" WhenExecute="" WtimOn="0"/>
@@ -129,12 +135,18 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM"/>
-<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM"/>
-<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE">
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE"/>
+<UC4RB_VMM_CONFIGs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_CONFIG#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE"/>
+<UC4RB_VMM_DISK_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DISK_NAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE"/>
+<UC4RB_VMM_DISK_SIZEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DISK_SIZE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE">3</UC4RB_VMM_DISK_SIZEs.00>
+<UC4RB_VMM_DISK_TYPEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DISK_TYPE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE">Dynamic</UC4RB_VMM_DISK_TYPEs.00>
+<UC4RB_VMM_DISK_USAGEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DISK_USAGE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE">Create New</UC4RB_VMM_DISK_USAGEs.00>
+<UC4RB_VMM_VHD_LOCATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VHD_LOCATION#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE"/>
+<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE"/>
+<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -182,12 +194,18 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM"/>
-<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM"/>
-<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE">
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE"/>
+<UC4RB_VMM_CONFIGs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_CONFIG#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE"/>
+<UC4RB_VMM_DISK_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DISK_NAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE"/>
+<UC4RB_VMM_DISK_SIZEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DISK_SIZE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE">3</UC4RB_VMM_DISK_SIZEs.00>
+<UC4RB_VMM_DISK_TYPEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DISK_TYPE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE">Dynamic</UC4RB_VMM_DISK_TYPEs.00>
+<UC4RB_VMM_DISK_USAGEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DISK_USAGE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE">Create New</UC4RB_VMM_DISK_USAGEs.00>
+<UC4RB_VMM_VHD_LOCATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VHD_LOCATION#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE"/>
+<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE"/>
+<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -259,9 +277,9 @@
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS" prptmode="1"/>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" parent="PRPTS" type="PROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" ontop="1">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" prptmode="1"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE" parent="PRPTS" type="PROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE" ontop="1">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE" prptmode="1"/>
 </PROMPTSET>
 </node>
 <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PRPTS" type="PROMPTSET">
@@ -295,28 +313,32 @@
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[= Action name =
-PCK.AUTOMIC_SCVMM.PUB.ACTION.SUSPEND_VM
+PCK.AUTOMIC_SCVMM.PUB.ACTION.NEW_DISK_DRIVE
 
 = General description =
-This action is used to suspend  a virtual machine deployed on hosts managed by Virtual Machine Manager (VMM). Suspending a virtual machine pauses activity on that virtual machine and returns its object in a paused state.
-
-=NOTE=
-*If the machine is not in running state, then it cannot be suspended.
-*The VM switches to 'Pause' state on host enabled with hyper-v, else the VM will go into "Saved State"
+This action is used attach a new virtual disk drive or the existing VHD to the VM.
 
 = Failure Conditions =
 * This action will fail if multiple or no VMs exist for inputs provided.
+* If name of newly created disk already exists.
+
 
 = Inputs =
-* Server IP or DNS  : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.45
-* Port		    : Specify port which will be used for connection. Default value is 8100.
-* Username	    : Username which will be used for this connection. E.g. domain\username
-* Password	    : Password to your username.
-* VM Name	    : Specify name of the virtual machine you want to suspend .E.g. myvm
-* VM Host	    : Specify Name of the VM Host in which VM is located .E.g myhost.com
-* Advanced Options  : Specify parameters you want to include into command. E.g. -RunAsynchronously
-* Overwrite Agent   : Overwrites the default agent
-* Overwrite Login   : Overwrites the default login
+* Server IP or DNS  		: Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.45
+* Port		    		: Specify port which will be used for connection. Default value is 8100.
+* Username	    		: Username which will be used for this connection. E.g. domain\username
+* Password	    		: Password to your username.
+* VM Name	    		: Specify Name of the Virtual Machine where you want to attach. E.g. myvm
+* VM Host	    		: Specify the host from which you want to get VM. E.g. myhost.com
+* IDE/Bus/LUN Configuration     : Specify bus type and logical unit configuration .Eg. -IDE -Bus 1 -LUN 0 or -SCSI -Bus 0 -LUN 
+* Action                        : Specify whether if you want to create a new Disk or use existing one.
+* New Disk Name	    	        : If you are creating, specify Name of the Disk you are creating.E.g myNewDrive. (Required in case of creating new disk)
+* Disk Size (MB) 		: Specify the size of a fixed VHD file or the maximum possible size of a dynamically expanding VHD file. (Required in case of creating new disk)
+* Disk Type 			: Specify the type of disk. Dynamic or Fixed. (Required in case of creating new disk)
+* VHD Location 		        : Specify Location of the VHD file .E.g. \\vviescvmm02.sbb01.spoc.global\MSSCVMMLibrary\VHDs\Blank Disk - Small.vhd. (Required in case of attaching existing disk)
+* Advanced Options  		: Specify parameters you want to include into command. E.g. -RunAsynchronously
+* Overwrite Agent   		: Overwrites the default agent
+* Overwrite Login   		: Overwrites the default login
 
 = Behaviour =
 (none)
@@ -332,7 +354,24 @@ This action is used to suspend  a virtual machine deployed on hosts managed by V
 Logs will be displayed in the AE report.
 
 = Example =
-(none)
+1. Attaching new disk drive(Dynamic) to VM using IDE hard disk controller
+VM Name                                     :myVM
+IDE/Bus/LUN Configuration                   : -IDE -Bus 1 -LUN 0
+New Disk Name	                            : myNewDiskDrive
+Disk Size (MB)		                    : 20000
+Disk Type                                   :Dynamic 
+
+2. Attaching new disk drive(Dynamic) to VM using SCSI hard disk controller
+VM Name                                     :myVM
+IDE/Bus/LUN Configuration                   : -SCSI -Bus 0 -LUN 0
+New Disk Name	                            : myNewDiskDrive2
+Disk Size (MB)		                    : 20000
+Disk Type
+
+3. Attaching existing VHD to VM
+VM Name                                     : myVM
+IDE/Bus/LUN Configuration                   : -IDE -Bus 1 -LUN 0
+VHD Location		                    :\\vviescvmm02.sbb01.spoc.global\MSSCVMMLibrary\VHDs\Blank Disk - Small.vhd
 ]]></DOC>
 </DOCU_Docu>
 </JOBP>
