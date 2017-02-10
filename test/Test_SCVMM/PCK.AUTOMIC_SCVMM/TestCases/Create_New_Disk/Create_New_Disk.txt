@@ -12,50 +12,50 @@ Resource          ../../Resources/keywords.txt
 Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
-*** Test Cases ***    OK_NOK    VMName            VMHost        IDE/Bus/LUN_Configuration       Action               NewDiskName         DiskType        DiskSize        VHDLocation        AdvancedOptions
+*** Test Cases ***    OK_NOK    VMName            VMHost        IDE/Bus/LUN_Configuration    Action               NewDiskName     DiskType    DiskSize        VHDLocation        AdvancedOptions
 Create New Disk With Valid Inputs When User Opted Create New Disk As Action with providing VM Host & Advanced options
                       [Tags]    main_scenarios
-                      OK        ${Source_VM}      ${VM_Host}    ${IDE/Bus/LUN_Configuration}    Create a new disk    ${New_Disk_Name}    ${Disk_Type}    ${Disk_Size}    ${EMPTY}           -RunAsynchronously
+                      OK        ${Source_VM}      ${VM_Host}    -SCSI -Bus 0 -LUN 2          Create New           NewDisk         Dynamic     ${Disk_Size}    ${EMPTY}           -RunAsynchronously
 
 Create New Disk With Valid Inputs When User Opted Create New Disk As Action without providing VM Host & Advanced options
                       [Tags]    main_scenarios
-                      OK        ${Source_VM}      ${EMPTY}      ${IDE/Bus/LUN_Configuration}    Create a new disk    ${New_Disk_Name}    ${Disk_Type}    ${Disk_Size}    ${EMPTY}           ${EMPTY}
+                      OK        ${Source_VM}      ${EMPTY}      -SCSI -Bus 0 -LUN 3          Create New           NewDisk1        Fixed       ${Disk_Size}    ${EMPTY}           ${EMPTY}
 
 Create New Disk With Valid Inputs When User Opted Using Existing Disk As Action with providing VM Host & Advanced options
                       [Tags]    main_scenarios
-                      OK        ${Source_VM}      ${VM_Host}    ${IDE/Bus/LUN_Configuration}    Use existing disk    ${EMPTY}            ${EMPTY}        ${EMPTY}        ${VHD_Location}    -RunAsynchronously
+                      OK        ${Source_VM}      ${VM_Host}    -SCSI -Bus 0 -LUN 4          Use Existing         NewDisk2        Dynamic     ${Disk_Size}    ${VHD_Location}    -RunAsynchronously
 
 Create New Disk With Valid Inputs When User Opted Using Existing Disk As Action without providing VM Host & Advanced options
                       [Tags]    main_scenarios
-                      OK        ${Source_VM}      ${EMPTY}      ${IDE/Bus/LUN_Configuration}    Use existing disk    ${EMPTY}            ${EMPTY}        ${EMPTY}        ${VHD_Location}    ${EMPTY}
+                      OK        ${Source_VM}      ${EMPTY}      -SCSI -Bus 0 -LUN 5          Use Existing         ${EMPTY}        Dynamic     ${Disk_Size}    ${VHD_Location}    ${EMPTY}
 
 Assertion With Non-Existing VM Name When User Opted Create New Disk As Action
                       [Tags]    main_scenarios
-                      NOK       Invalid           ${VM_Host}    ${IDE/Bus/LUN_Configuration}    Create a new disk    ${New_Disk_Name}    ${Disk_Type}    ${Disk_Size}    ${EMPTY}           -RunAsynchronously
+                      NOK       Invalid           ${VM_Host}    -IDE -Bus 1 -LUN 6           Create New           NewDiskTest1    Fixed       ${Disk_Size}    ${EMPTY}           ${EMPTY}
 
 Assert Behaviour when more than one VM exists for provided VM Name When User Opted Create New Disk As Action
-                      NOK       VM*               ${EMPTY}      ${IDE/Bus/LUN_Configuration}    Create a new disk    ${New_Disk_Name}    ${Disk_Type}    ${Disk_Size}    ${EMPTY}           -RunAsynchronously
+                      NOK       VM*               ${EMPTY}      -SCSI -Bus 0 -LUN 7          Create New           NewDiskTest2    Dynamic     ${Disk_Size}    ${EMPTY}           ${EMPTY}
 
 Assertion With Non-Existing VM Host When User Opted Create New Disk As Action
-                      NOK       ${Source_VM}      Invalid       ${IDE/Bus/LUN_Configuration}    Create a new disk    ${New_Disk_Name}    ${Disk_Type}    ${Disk_Size}    ${EMPTY}           -RunAsynchronously
+                      NOK       ${Source_VM}      Invalid       -IDE -Bus 1 -LUN 0           Create New           NewDiskTest3    Dynamic     ${Disk_Size}    ${EMPTY}           ${EMPTY}
 
 Assertion With Non-Existing VHD Location When User Opted Using Existing Disk As Action
-                      NOK       ${Source_VM}      ${VM_Host}    ${IDE/Bus/LUN_Configuration}    Use existing disk    ${EMPTY}            ${EMPTY}        ${EMPTY}        Invalid            -RunAsynchronously
+                      NOK       ${Source_VM}      ${VM_Host}    -SCSI -Bus 0 -LUN 9          Use existing disk    DiskTest        Dynamic     ${Disk_Size}    Invalid            ${EMPTY}
 
 Assertion With Already Existing New Disk Name When User Opted Create New Disk As Action
-                      NOK       ${Source_VM}      ${VM_Host}    ${IDE/Bus/LUN_Configuration}    Create a new disk    Invalid             ${Disk_Type}    ${Disk_Size}    ${EMPTY}           -RunAsynchronously
+                      NOK       ${Source_VM}      ${VM_Host}    -SCSI -Bus 0 -LUN 10         Create New           NewDisk         Fixed       ${Disk_Size}    ${EMPTY}           ${EMPTY}
 
 Assertion With Non-Existing IDE/Bus/LUN_Configuration When User Opted Create New Disk As Action
-                      NOK       ${Source_VM}      ${VM_Host}    Invalid                         Create a new disk    ${New_Disk_Name}    ${Disk_Type}    ${Disk_Size}    ${EMPTY}           -RunAsynchronously
+                      NOK       ${Source_VM}      ${VM_Host}    -SCSI -Bus 0 -LUN 11         Create New           NewDiskTest4    Dynamic     ${Disk_Size}    ${EMPTY}           ${EMPTY}
 
 Assertion for Non-Existing Advanced Parameter When User Opted Create New Disk As Action
-                      NOK       ${Source_VM}      ${VM_Host}    ${IDE/Bus/LUN_Configuration}    Create a new disk    ${New_Disk_Name}    ${Disk_Type}    ${Disk_Size}    ${EMPTY}           Invalid
+                      NOK       ${Source_VM}      ${VM_Host}    -SCSI -Bus 0 -LUN 12         Create New           NewDiskTest5    Dynamic     ${Disk_Size}    ${EMPTY}           Invalid
 
 Assertion for VM Name as Mandatory Field When User Opted Create New Disk As Action
-                      NOK       ${EMPTY}          ${VM_Host}    ${IDE/Bus/LUN_Configuration}    Create a new disk    ${New_Disk_Name}    ${Disk_Type}    ${Disk_Size}    ${EMPTY}           -RunAsynchronously
+                      NOK       ${EMPTY}          ${VM_Host}    -SCSI -Bus 0 -LUN 13         Create New           NewDiskTest6    Dynamic     ${Disk_Size}    ${EMPTY}           ${EMPTY}
 
-Assertion for Path IDE/Bus/LUN_Configuration as Mandatory Field When User Opted Create New Disk As Action
-                      NOK       ${EMPTY}          ${VM_Host}    ${EMPTY}                        Create a new disk    ${New_Disk_Name}    ${Disk_Type}    ${Disk_Size}    ${EMPTY}           -RunAsynchronously
+Assertion for IDE/Bus/LUN_Configuration as Mandatory Field When User Opted Create New Disk As Action
+                      NOK       ${EMPTY}          ${VM_Host}    ${EMPTY}                     Create New           NewDiskTest7    Dynamic     ${Disk_Size}    ${EMPTY}           ${EMPTY}
 
 *** Keywords ***
 Startup

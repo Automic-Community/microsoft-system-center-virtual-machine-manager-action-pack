@@ -332,7 +332,7 @@ This action is used attach a new virtual disk drive or the existing VHD to the V
 * VM Host	    		: Specify the host from which you want to get VM. E.g. myhost.com
 * IDE/Bus/LUN Configuration     : Specify bus type and logical unit configuration .Eg. -IDE -Bus 1 -LUN 0 or -SCSI -Bus 0 -LUN 
 * Action                        : Specify whether if you want to create a new Disk or use existing one.
-* New Disk Name	    	        : If you are creating, specify Name of the Disk you are creating.E.g myNewDrive. (Required in case of creating new disk)
+* New Disk Name	    	        : Specify name for the disk you are attaching.Eg myNewDisk
 * Disk Size (MB) 		: Specify the size of a fixed VHD file or the maximum possible size of a dynamically expanding VHD file. (Required in case of creating new disk)
 * Disk Type 			: Specify the type of disk. Dynamic or Fixed. (Required in case of creating new disk)
 * VHD Location 		        : Specify Location of the VHD file .E.g. \\vviescvmm02.sbb01.spoc.global\MSSCVMMLibrary\VHDs\Blank Disk - Small.vhd. (Required in case of attaching existing disk)
@@ -371,6 +371,7 @@ Disk Type
 3. Attaching existing VHD to VM
 VM Name                                     : myVM
 IDE/Bus/LUN Configuration                   : -IDE -Bus 1 -LUN 0
+New Disk Name	                            : myNewDiskDrive3
 VHD Location		                    :\\vviescvmm02.sbb01.spoc.global\MSSCVMMLibrary\VHDs\Blank Disk - Small.vhd
 ]]></DOC>
 </DOCU_Docu>
