@@ -23,7 +23,7 @@ Create New Disk With Valid Inputs When User Opted Create New Disk As Action with
 
 Create New Disk With Valid Inputs When User Opted Using Existing Disk As Action with providing VM Host & Advanced options
                       [Tags]    main_scenarios
-                      OK        ${Source_VM}      ${VM_Host}    -SCSI -Bus 0 -LUN 4          Use Existing         ${EMPTY}        Dynamic     ${Disk_Size}    ${VHD_Location}    -RunAsynchronously
+                      OK        ${Source_VM}      ${VM_Host}    -SCSI -Bus 0 -LUN 4          Use Existing         NewDisk2        Dynamic     ${Disk_Size}    ${VHD_Location}    -RunAsynchronously
 
 Create New Disk With Valid Inputs When User Opted Using Existing Disk As Action without providing VM Host & Advanced options
                       [Tags]    main_scenarios
@@ -40,7 +40,7 @@ Assertion With Non-Existing VM Host When User Opted Create New Disk As Action
                       NOK       ${Source_VM}      Invalid       -IDE -Bus 1 -LUN 0           Create New           NewDiskTest3    Dynamic     ${Disk_Size}    ${EMPTY}           ${EMPTY}
 
 Assertion With Non-Existing VHD Location When User Opted Using Existing Disk As Action
-                      NOK       ${Source_VM}      ${VM_Host}    -SCSI -Bus 0 -LUN 9          Use existing disk    ${EMPTY}        Dynamic     ${Disk_Size}    Invalid            ${EMPTY}
+                      NOK       ${Source_VM}      ${VM_Host}    -SCSI -Bus 0 -LUN 9          Use existing disk    DiskTest        Dynamic     ${Disk_Size}    Invalid            ${EMPTY}
 
 Assertion With Already Existing New Disk Name When User Opted Create New Disk As Action
                       NOK       ${Source_VM}      ${VM_Host}    -SCSI -Bus 0 -LUN 10         Create New           NewDisk         Fixed       ${Disk_Size}    ${EMPTY}           ${EMPTY}
@@ -54,7 +54,7 @@ Assertion for Non-Existing Advanced Parameter When User Opted Create New Disk As
 Assertion for VM Name as Mandatory Field When User Opted Create New Disk As Action
                       NOK       ${EMPTY}          ${VM_Host}    -SCSI -Bus 0 -LUN 13         Create New           NewDiskTest6    Dynamic     ${Disk_Size}    ${EMPTY}           ${EMPTY}
 
-Assertion for Path IDE/Bus/LUN_Configuration as Mandatory Field When User Opted Create New Disk As Action
+Assertion for IDE/Bus/LUN_Configuration as Mandatory Field When User Opted Create New Disk As Action
                       NOK       ${EMPTY}          ${VM_Host}    ${EMPTY}                     Create New           NewDiskTest7    Dynamic     ${Disk_Size}    ${EMPTY}           ${EMPTY}
 
 *** Keywords ***

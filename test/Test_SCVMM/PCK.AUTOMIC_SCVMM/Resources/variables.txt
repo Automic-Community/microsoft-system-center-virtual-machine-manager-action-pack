@@ -24,5 +24,5 @@ ${Template_Name}    Single_VM
 ${Nth_Checkpoint}    1
 ${Checkpoint_Name}    Checkpoint_test
 #------Create New Disk----------------------------------------------------------------------------------------------------
-${VHD_Location}    [Datastore3]\AutomationTest\AutomationTest_1.vmdk
+${VHD_Location}    \\vviescvmm02.sbb01.spoc.global\MSSCVMMLibrary\VHDs\Blank Disk - Large.vhdx
 ${Disk_Size}      40
