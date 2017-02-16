@@ -59,6 +59,9 @@ Following actions are supported for SCVMM:
 
 * Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.NEW_VM_FROM_TEMPLATE
 * Action Description: This action is used to create a virtual machine from an existing template.
+
+* Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_DISKS
+* Action Description: This action is used to Gets a virtual disk drive object on a virtual machine template or on a virtual machine managed by VMM.
 ]]></DOC>
 </DOCU_Docu>
 </DOCU>
