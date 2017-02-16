@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
 <JOBS_WINDOWS AttrType="WINDOWS" name="PCK.AUTOMIC_SCVMM.PRV.JOB.MOVE_VM@WINDOWS">
 <XHEADER state="1">
-<Title>move VM</Title>
+<Title>Move Virtual Machine</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -142,12 +142,16 @@
 : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_ADV_OPTIONS#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
+: SET &UC4RB_LOGGING_PARAMETER# = "Move Options"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_MOVE_OPTIONS#"
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
 
 !-------------------------------------------Move VM------------------------------------------------------------
 ! Target VM Host
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_DEST_VMHOST#
-: SET &UC4RB_VMM_MOVEVM_CMD# = STR_CAT(&UC4RB_VMM_MOVEVM_CMD#, "Move-SCVirtualMachine -VMHost '&UC4RB_VMM_ESC_VALUE#' ")
+: SET &UC4RB_VMM_MOVEVM_CMD# = "Move-SCVirtualMachine -VMHost '&UC4RB_VMM_ESC_VALUE#' "
 
 ! Destination Path
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_DEST_PATH#
@@ -163,7 +167,7 @@
 :   DEFINE &OPTIONS_ARRAY#, string, 2
 :   SET &OPTIONS_VARA# = "PCK.AUTOMIC_SCVMM.PRV.VARA.MOVE_VM_OPTIONS"
 :   SET &CHECKBOX_OPTIONS# = &UC4RB_VMM_MOVE_OPTIONS#
-:   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.PREPARE_CHECKLIST
+:   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.PREPARE_CHECKLIST_AS_ARG
 :   SET &UC4RB_VMM_MOVEVM_CMD# = STR_CAT(&UC4RB_VMM_MOVEVM_CMD#, &OPTIONS#)
 : ENDIF
 
@@ -177,7 +181,7 @@ try{
 
 ! Move VM command
 Write-Host "INFO: Executing Commandlet"
-Write-Host &UC4RB_VMM_MOVEVM_CMD#
+Write-Host &UC4RB_VMM_MOVEVM_CMD# -VM $vm
 &UC4RB_VMM_MOVEVM_CMD# -VM $vm
 
 }catch{
@@ -188,8 +192,8 @@ Write-Host &UC4RB_VMM_MOVEVM_CMD#
 
 !-----------------------------------Error Handling-------------------------------------------------------------------------------------
 !Status messages
-:SET &UC4RB_LOGGING_INFO# = "******** Move VM Action EXECUTED SUCCESSFULLY ********"
-:SET &UC4RB_LOGGING_ERROR# = "******** Move VM Action FAILED ********"
+:SET &UC4RB_LOGGING_INFO# = "******** Move VM ACTION EXECUTED SUCCESSFULLY ********"
+:SET &UC4RB_LOGGING_ERROR# = "******** Move VM ACTION FAILED ********"
 
 :INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CHECK_ERRORSTATUS]]></MSCRI>
 </SCRIPT>
