@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
 <JOBS_WINDOWS AttrType="WINDOWS" name="PCK.AUTOMIC_SCVMM.PRV.JOB.GET_DISK_DRIVE@WINDOWS">
 <XHEADER state="1">
-<Title>Get a virtual disk drive(s)</Title>
+<Title>Get virtual disk drive(s)</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -157,13 +157,15 @@ try{
 ! Get the VM
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.GET_VM_CMDLET
     WRITE-HOST "INFO: Get disk drive cmdlet - &UC4RB_VMM_GET_DISKS_CMD# -VM $($vm.name)"
-    $obj = &UC4RB_VMM_GET_DISKS_CMD# -VM $vm
+    $diskDrives = @(&UC4RB_VMM_GET_DISKS_CMD# -VM $vm)
 :  ELSE
-    WRITE-HOST "INFO:Start Vm cmdlet - &UC4RB_VMM_GET_DISKS_CMD# "
-    $obj = &UC4RB_VMM_GET_DISKS_CMD# -All
+    WRITE-HOST "INFO: Get disk drive cmdlet - &UC4RB_VMM_GET_DISKS_CMD# "
+    $diskDrives = @(&UC4RB_VMM_GET_DISKS_CMD# -All)
 : ENDIF
-    $obj
-    WRITE-HOST "UC4RB_VMM_DISK_COUNT::=$($obj.Length)"
+    $namelist = ($diskDrives | foreach-object {$_.Name} ) -join ","
+    $diskDrives | select VirtualHardDisk, BusType, Lun, Bus, Name
+    WRITE-HOST "UC4RB_VMM_DISK_NAME::=$namelist"
+    WRITE-HOST "UC4RB_VMM_DISK_COUNT::=$($diskDrives.Length)"
 }catch{
    $errors=1
    Write-Host "ERROR: $($error[0].Exception.Message)"
@@ -173,8 +175,8 @@ try{
 
 !-----------------------------------Error Handling-------------------------------------------------------------------------------------
 !Status messages
-: SET &UC4RB_LOGGING_INFO# = "******** GET_DISK_DRIVE ACTION EXECUTED SUCCESSFULLY ********"
-: SET &UC4RB_LOGGING_ERROR# = "******** GET_DISK_DRIVE ACTION FAILED ********"
+: SET &UC4RB_LOGGING_INFO# = "******** GET DISK DRIVE ACTION EXECUTED SUCCESSFULLY ********"
+: SET &UC4RB_LOGGING_ERROR# = "******** GET DISK DRIVE ACTION FAILED ********"
 
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CHECK_ERRORSTATUS]]></MSCRI>
 </SCRIPT>
@@ -187,17 +189,25 @@ try{
 <POST_SCRIPT mode="1" replacementmode="1" state="1">
 <OSCRI><![CDATA[:SET &STATUS# = GET_UC_OBJECT_STATUS(,,"RETCODE")
 :IF &STATUS# EQ 0
-:    SET &HND# = PREP_PROCESS_REPORT("JOBS",, "REP","UC4RB_VMM_DISK_COUNT*","COL=DELIMITER", 'DELIMITER=*::=*')
+:    SET &HND# = PREP_PROCESS_REPORT("JOBS",, "REP","UC4RB_VMM_DISK*","COL=DELIMITER", 'DELIMITER=*::=*')
 :    PROCESS &HND#
 :         SET &KEY# = GET_PROCESS_LINE(&HND#,1)
 :         SET &VALUE# = GET_PROCESS_LINE(&HND#,2)
-:           SET &UC4RB_VMM_DISK_COUNT# = "&VALUE#"
+:         IF &KEY# = "UC4RB_VMM_DISK_COUNT"
+:          SET &UC4RB_VMM_DISK_COUNT# = "&VALUE#"
+:         ENDIF
+:         IF &KEY# = "UC4RB_VMM_DISK_NAME"
+:          SET &UC4RB_VMM_DISK_NAME# = "&VALUE#"
+:         ENDIF
+
 :  ENDPROCESS
 :  CLOSE_PROCESS &HND#
 :ELSE
 :    SET &UC4RB_VMM_DISK_COUNT# = ""
+:    SET &UC4RB_VMM_DISK_NAME# = ""
 :ENDIF
 :    PUBLISH &UC4RB_VMM_DISK_COUNT#,,"WORKFLOW"
+:    PUBLISH &UC4RB_VMM_DISK_NAME#,,"WORKFLOW"
 ]]></OSCRI>
 </POST_SCRIPT>
 <DOCU_Docu state="1" type="text">

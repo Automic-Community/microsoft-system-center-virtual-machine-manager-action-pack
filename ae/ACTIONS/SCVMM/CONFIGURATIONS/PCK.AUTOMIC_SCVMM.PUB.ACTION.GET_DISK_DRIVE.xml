@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
 <JOBP AllowExternal="1" name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_DISK_DRIVE">
 <XHEADER state="1">
-<Title>Get a virtual disk drive(s)</Title>
+<Title>Get virtual disk drive(s)</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
