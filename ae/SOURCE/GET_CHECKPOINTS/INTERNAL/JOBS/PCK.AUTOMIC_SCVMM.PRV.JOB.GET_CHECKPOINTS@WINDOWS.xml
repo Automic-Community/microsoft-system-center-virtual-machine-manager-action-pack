@@ -161,14 +161,11 @@ try{
       if($objs.count -le 0){
         WRITE-HOST "INFO: No checkpoints available for provided VM '&UC4RB_VMM_VMNAME#'."
       }else{
-        $objs
-         foreach ($obj in $objs) {
-          $name = -join($name, ",", $obj.Name)
-         }
-          $name = $name.trimstart(",")
-          WRITE-HOST "UC4RB_VMM_CHKPNT_NAME::=$name"
-          WRITE-HOST "UC4RB_VMM_CHKPNT_COUNT::=$($objs.Length)"
+          $objs
+          $namelist = ($objs | foreach-object {$_.Name} ) -join ","
       }
+          WRITE-HOST "UC4RB_VMM_CHKPNT_NAME::=$namelist"
+          WRITE-HOST "UC4RB_VMM_CHKPNT_COUNT::=$($objs.Length)"
 
 }catch{
   $errors=1
