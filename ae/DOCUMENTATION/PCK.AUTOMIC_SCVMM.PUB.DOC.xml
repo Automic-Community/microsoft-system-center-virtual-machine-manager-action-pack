@@ -59,6 +59,9 @@ Following actions are supported for SCVMM:
 
 * Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.NEW_VM_FROM_TEMPLATE
 * Action Description: This action is used to create a virtual machine from an existing template.
+
+* Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_CHECKPOINTS
+* Action Description: This action is used to get virtual machine checkpoint object(s) from the VMM database.
 ]]></DOC>
 </DOCU_Docu>
 </DOCU>

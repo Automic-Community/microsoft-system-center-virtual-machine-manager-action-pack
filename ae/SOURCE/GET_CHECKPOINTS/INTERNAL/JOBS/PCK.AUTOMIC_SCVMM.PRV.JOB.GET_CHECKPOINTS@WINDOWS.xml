@@ -131,7 +131,7 @@
 : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_VMHOST#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
-: SET &UC4RB_LOGGING_PARAMETER# = "Advance Options"
+: SET &UC4RB_LOGGING_PARAMETER# = "Advanced Options"
 : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_VMM_ADV_OPTIONS#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
@@ -139,10 +139,10 @@
 
 !-------------------------------------Create VMM commandlets---------------------------------------------------------------------------------------------------
 
-! Start VM command
+! Get Checkpoint command
 : SET &UC4RB_VMM_GET_CHECKPOINT_CMD# = "Get-SCVMCheckpoint "
 
-! Advance options
+! Advanced options
 : IF &UC4RB_VMM_ADV_OPTIONS# <> ""
 :   SET &UC4RB_VMM_GET_CHECKPOINT_CMD# = STR_CAT(&UC4RB_VMM_GET_CHECKPOINT_CMD#, " &UC4RB_VMM_ADV_OPTIONS# ")
 : ENDIF
@@ -157,18 +157,17 @@ try{
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.GET_VM_CMDLET
 
        WRITE-HOST "INFO: Get Checkpoints - &UC4RB_VMM_GET_CHECKPOINT_CMD# -VM $($vm.name)"
-       $obj = &UC4RB_VMM_GET_CHECKPOINT_CMD# -VM $vm
-      if($obj.count -le 0){
+       $objs = &UC4RB_VMM_GET_CHECKPOINT_CMD# -VM $vm
+      if($objs.count -le 0){
         WRITE-HOST "INFO: No checkpoints available for provided VM '&UC4RB_VMM_VMNAME#'."
       }else{
-        $obj
-        For ($i=0; $i -lt $obj.Length; $i++) {
-          $checkpoint = $obj[$i]
-          $name = -join($name, ",", $checkpoint.Name)
-        }
+        $objs
+         foreach ($obj in $objs) {
+          $name = -join($name, ",", $obj.Name)
+         }
           $name = $name.trimstart(",")
           WRITE-HOST "UC4RB_VMM_CHKPNT_NAME::=$name"
-          WRITE-HOST "UC4RB_VMM_CHKPNT_COUNT::=$($obj.Length)"
+          WRITE-HOST "UC4RB_VMM_CHKPNT_COUNT::=$($objs.Length)"
       }
 
 }catch{
