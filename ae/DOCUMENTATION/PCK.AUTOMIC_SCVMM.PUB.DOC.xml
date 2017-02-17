@@ -60,6 +60,9 @@ Following actions are supported for SCVMM:
 * Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.NEW_VM_FROM_TEMPLATE
 * Action Description: This action is used to create a virtual machine from an existing template.
 
+* Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.MOVE_VM
+* Action Description: This action is used to move a Virtual Machine to a Target VM Host and Destination Path.
+
 * Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_DISK_DRIVE
 * Action Description: This action is used to get a virtual disk drive object(s).
 ]]></DOC>
