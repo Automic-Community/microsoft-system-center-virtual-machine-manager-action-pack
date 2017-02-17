@@ -26,3 +26,6 @@ ${Checkpoint_Name}    Checkpoint_test
 #------Create New Disk----------------------------------------------------------------------------------------------------
 ${VHD_Location}    \\vviescvmm02.sbb01.spoc.global\MSSCVMMLibrary\VHDs\Blank Disk - Large.vhdx
 ${Disk_Size}      40
+#------Move VM----------------------------------------------------------------------------------------------------
+${Destination_Path}    -path"[local Storage svievmw04]\file01_2\file01.vmx"
+${Target_VM_Host}    svievmw04.sbb01.spoc.global
