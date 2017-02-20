@@ -8,7 +8,7 @@ ${VMM_Port}       8100
 ${VMM_Username}    sbb01\\extata
 ${VMM_Password}    EnterPassword
 ${Source_VM}      AutomationTest
-${VM_Host}        vviescvmm12.sbb01.spoc.global
+${VM_Host}        svievmw12.sbb01.spoc.global
 #---- New VM from VM ----------------------------------------------------------------------------------------------------
 ${VM_Path}        Datastore3
 #---- Get VM----------------------------------------------------------------------------------------------------

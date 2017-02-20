@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBP AllowExternal="1" name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_DISK_DRIVE">
+<JOBP AllowExternal="1" name="PCK.AUTOMIC_SCVMM.PUB.ACTION.MOVE_VM">
 <XHEADER state="1">
-<Title>Get virtual disk drive(s)</Title>
+<Title>Move Virtual Machine</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -62,12 +62,17 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE"/>
-<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE"/>
-<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM">
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_DEST_HOSTs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DEST_HOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_DEST_PATHs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DEST_PATH#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_DEST_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DEST_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_HOSTs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_HOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_MOVE_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_MOVE_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -89,7 +94,7 @@
 </PostCon>
 </postconditions>
 </task>
-<task Alias="GET_DISK_DRIVE" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_SCVMM.PRV.JOB.GET_DISK_DRIVE@WINDOWS" ParentAlias="" ParentObject="" Row="1" Text2="">
+<task Alias="MOVE_VM" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_SCVMM.PRV.JOB.MOVE_VM@WINDOWS" ParentAlias="" ParentObject="" Row="1" Text2="">
 <checkpoint RollbackFlag="1" RunPerPatch="0" RunPerTarget="0" TcpADays="0" TcpATime="00:00" TcpATimeTZ="" TcpExecute="" TcpOn="0" promptatgen="0" showprompt="0"/>
 <after ActFlg="1" AtimOn="0" ErlstStDays="0" ErlstStTime="00:00" ErlstStTimeTZ="" HoldFlg="0"/>
 <when ChkWhenExec="0" LtstEnd="0" LtstEndDays="0" LtstEndTime="00:00" LtstSt="0" LtstStDays="0" LtstStTime="00:00" LtstTimeTZ="" WCTypeAND="1" WCTypeOR="0" WElseA="1" WElseH="0" WElseS="0" WElseX="0" WhenExecute="" WtimOn="0"/>
@@ -129,12 +134,17 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE"/>
-<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE"/>
-<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM">
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_DEST_HOSTs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DEST_HOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_DEST_PATHs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DEST_PATH#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_DEST_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DEST_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_HOSTs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_HOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_MOVE_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_MOVE_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -182,12 +192,17 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE"/>
-<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE"/>
-<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM">
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_DEST_HOSTs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DEST_HOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_DEST_PATHs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DEST_PATH#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_DEST_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DEST_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_HOSTs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_HOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_MOVE_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_MOVE_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
+<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -259,9 +274,9 @@
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS" prptmode="1"/>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" parent="PRPTS" type="PROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" ontop="1">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" prptmode="1"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM" parent="PRPTS" type="PROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM" ontop="1">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM" prptmode="1"/>
 </PROMPTSET>
 </node>
 <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PRPTS" type="PROMPTSET">
@@ -295,32 +310,40 @@
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[= Action name =
-PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_DISKS
+PCK.AUTOMIC_SCVMM.PUB.ACTION.MOVE_VM
 
 = General description =
-This action is used to get a virtual disk drive object(s). The virtual disk drive object(s) details would be printed in the Job report. You can also provide additional parameters to the "Advanced Options" field.
+This action is used to move a Virtual Machine to a new location. A new location is a combination of Target VM Host and destination Path.
+
+=NOTE=
+A VM can be moved within the same VM Host to a different Path. For this provide the current/source VM Host name in Target VM Host field.
 
 = Failure Conditions =
-* This action will fails if multiple VMs are matching when VM name is provided
+This action will fail if
+* Multiple or no VMs exist for inputs provided.
+* VM already exists in same Path.
 
 = Inputs =
-* Server IP or DNS   : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.45
-* Port		     : Specify port which will be used for connection. Default value is 8100.
-* Username	     : Username which will be used for this connection. E.g. domain\username
-* Password	     : Password to your username.
-* VM Name	     : Specify Name of the Virtual Machine from which you want to get disk list. E.g. myvm
-* VM Host	     : Specify the host on which VM is located. E.g myhost.com
-* Advanced Options   : Specify parameters you want to include into command. E.g. -OnBehalfOfUser
-* Overwrite Agent    : Overwrites the default agent
-* Overwrite Login    : Overwrites the default login
+* Server IP or DNS  : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.45
+* Port		    	: Specify port which will be used for connection. Default value is 8100.
+* Username	    	: Username which will be used for this connection. E.g. domain\username
+* Password	    	: Password to your username.
+* VM Name	    	: Specify name of the virtual machine you want to move. E.g. myvm
+* Source VM Host    	: Specify the host on which VM is located. E.g. sourcevmhost
+* Target VM Host    	: Specify the host to which VM will be moved. E.g. targetvmhost
+* Destination Path  	: Specify destination path to move VM. E.g. C:\VirtualMachinePath
+* Advanced Options  	: Specify parameters you want to include into command. E.g. -RunAsynchronously
+* Move Options		: Please specify whether you would like to
+- Discard saved state: discard the saved state associated with VM after move operation is complete.
+- Start VM after successful completion of move.
+* Overwrite Agent   : Overwrites the default agent
+* Overwrite Login   : Overwrites the default login
 
 = Behaviour =
 (none)
 
 =Return Value=
-* UC4RB_VMM_DISK_NAME : This variable will hold the disk name(s) separated by "," character.
-* UC4RB_VMM_DISK_COUNT : This variable will contain count of disk.
-
+(none)
 
 = Outputs =
 * Return code is 0 in case of success.
@@ -330,7 +353,14 @@ This action is used to get a virtual disk drive object(s). The virtual disk driv
 Logs will be displayed in the AE report.
 
 = Example =
-(none)]]></DOC>
+* Move a VM to a different Hyper-V Host and start it after Migration is complete
+VM Name		: vmachine.demo1
+Target VM Host	: target.vmhost1
+Destination Path: C:\ProgramData\Microsoft\Windows\Hyper-V
+Move Options	: Start VM after successful completion of move
+
+This will Migrate the VM to new VM Host and Path and also attempt to start the VM.
+]]></DOC>
 </DOCU_Docu>
 </JOBP>
 </uc-export>
