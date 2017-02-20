@@ -48,7 +48,7 @@ Startup
 
 Create Checkpoint Template
     [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost}    ${CheckpointName}    ${Description}    ${AdvancedOptions}
-    [Documentation]    This test is used to create checkpoint for the given VM.
+    [Documentation]    This test is used to get checkpoint for the given VM.
     ...    -Precondition: To run this test suite, SCVMM credentials should be known to user.
     ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
     ...    -${VMName}: This field Specify Name of the Virtual Machine for which you want to create a checkpoint.
@@ -71,6 +71,10 @@ Create Checkpoint Template
     Set Overwrite Agent
     Action Execute
     Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Count Value Should Be    &UC4RB_VMM_CHKPNT_COUNT#
+    Run Keyword If    '${OK_NOK}' == 'OK' and '&UC4RB_VMM_CHKPNT_COUNT#' > '0'    Action Object Variable Should Be Found    &UC4RB_VMM_CHKPNT_NAME#
+    Run Keyword If    '${OK_NOK}' == 'NOK'    Action Object Variable Count Value Should Not Be Found    &UC4RB_VMM_CHKPNT_COUNT#
+    Run Keyword If    '${OK_NOK}' == 'NOK'    Action Object Variable Should Not Be Found    &UC4RB_VMM_CHKPNT_NAME#
 
 Teardown
     Log    *******End Test "Create Checkpoint"*******

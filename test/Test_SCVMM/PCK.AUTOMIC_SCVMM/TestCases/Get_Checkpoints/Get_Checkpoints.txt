@@ -1,9 +1,9 @@
 *** Settings ***
 Suite Setup       Startup
 Suite Teardown    Teardown
-Force Tags        get_disk_drive
+Force Tags        get_checkpoints
 Default Tags
-Test Template     Get Disk Drive Template
+Test Template     Get Checkpoints Template
 Library           com.automic.robot.itpa.ItpaLibrary
 Library           String
 Library           DateTime
@@ -13,25 +13,19 @@ Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
 *** Test Cases ***    OK_NOK    VMName            VMHost        AdvancedOptions
-Get Disks With Valid Inputs With Providing VM Name,VM Host and Advanced Options
+Get checkpoints With Valid Inputs With Providing VM Host and Advanced Options
                       [Tags]    main_scenarios
                       OK        ${Source_VM}      ${VM_Host}    -Debug
 
-Get Disks With Valid Inputs Without Providing VM Host & Advanced Options
+Get checkpoints With Valid Inputs Without Providing VM Host and Advanced Options
                       OK        ${Source_VM}      ${EMPTY}      ${EMPTY}
 
-Get Disks With Valid Inputs Without Providing VM Name & Advanced Options
-                      OK        ${EMPTY}          ${VM_Host}    ${EMPTY}
-
-Assertion With VM Name & VM Host As Optional Field
-                      OK        ${EMPTY}          ${EMPTY}      ${EMPTY}
+Assertion With Non-Existing VM Name
+                      [Tags]    main_scenarios
+                      NOK       Invalid           ${VM_Host}    ${EMPTY}
 
 Assert Behaviour when more than one VM exists for provided VM Name
-                      [Tags]    main_scenarios
                       NOK       VM*               ${EMPTY}      ${EMPTY}
-
-Assertion With Non-Existing VM Name
-                      NOK       Invalid           ${VM_Host}    ${EMPTY}
 
 Assertion With Non-Existing VM Host
                       NOK       ${Source_VM}      Invalid       ${EMPTY}
@@ -39,22 +33,25 @@ Assertion With Non-Existing VM Host
 Assertion for Non-Existing Advanced Parameter
                       NOK       ${Source_VM}      ${VM_Host}    Invalid
 
+Assert VM Name as Mandatory Field
+                      NOK       ${EMPTY}          ${VM_Host}    -Debug
+
 *** Keywords ***
 Startup
-    Log    *******Start Test "Get Disk Drive"*******
+    Log    *******Start Test "Get Checkpoints"*******
     Log    *******Connect to AE*******
     Connect AE
 
-Get Disk Drive Template
+Get Checkpoints Template
     [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost}    ${AdvancedOptions}
-    [Documentation]    This test is used to get the disks for given VM.
+    [Documentation]    This test is used to get checkpoints for the given VM.
     ...    -Precondition: To run this test suite, SCVMM credentials should be known to user.
     ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
-    ...    -${VMName}: This field specifies Name of the Virtual Machine you want to get disks.
-    ...    -${VMHost}: This field Specify the host from which you want to get disks.
-    ...    -${AdvancedOptions}: This field specifies advanced parameter for get disks command.
+    ...    -${VMName}: This field specifies Name of the Virtual Machine you want to get checkpoints.
+    ...    -${VMHost}: This field Specify the host from which you want to get checkpoints.
+    ...    -${AdvancedOptions}: This field specifies advanced parameter for get checkpoints command.
     Generate String
-    Action Create    ${_GET_DISK_DRIVE_ACTION}
+    Action Create    ${_GET_CHECKPOINTS_ACTION}
     Common Inputs
     Run Keyword If    '${VMName}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_VMNAME#    ${VMName}
@@ -65,11 +62,11 @@ Get Disk Drive Template
     Set Overwrite Agent
     Action Execute
     Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
-    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Count Value Should Be    &UC4RB_VMM_DISK_COUNT#
-    Run Keyword If    '${OK_NOK}' == 'OK' and '&UC4RB_VMM_DISK_COUNT#' > '0'    Action Object Variable Should Be Found    &UC4RB_VMM_DISK_NAME#
-    Run Keyword If    '${OK_NOK}' == 'OK' and '&UC4RB_VMM_DISK_COUNT#' == '0'    Action Object Variable Should Be Found    &UC4RB_VMM_DISK_NAME#
-    Run Keyword If    '${OK_NOK}' == 'NOK'    Action Object Variable Should Not Be Found    &UC4RB_VMM_DISK_COUNT#
-    Run Keyword If    '${OK_NOK}' == 'NOK'    Action Object Variable Should Not Be Found    &UC4RB_VMM_DISK_NAME#
+    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Count Value Should Be    &UC4RB_VMM_CHKPNT_COUNT#
+    Run Keyword If    '${OK_NOK}' == 'OK' and '&UC4RB_VMM_CHKPNT_COUNT#' > '0'    Action Object Variable Should Be Found    &UC4RB_VMM_CHKPNT_NAME#
+    Run Keyword If    '${OK_NOK}' == 'OK' and '&UC4RB_VMM_CHKPNT_COUNT#' == '0'    Action Object Variable Should Not Be Found    &UC4RB_VMM_CHKPNT_NAME#
+    Run Keyword If    '${OK_NOK}' == 'NOK'    Action Object Variable Should Not Be Found    &UC4RB_VMM_CHKPNT_COUNT#
+    Run Keyword If    '${OK_NOK}' == 'NOK'    Action Object Variable Should Not Be Found    &UC4RB_VMM_CHKPNT_NAME#
 
 Teardown
-    Log    *******End Test "Get Disk Drive"*******
+    Log    *******End Test "Get Checkpoints"*******
