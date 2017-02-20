@@ -26,3 +26,6 @@ ${Checkpoint_Name}    Checkpoint_test
 #------Create New Disk----------------------------------------------------------------------------------------------------
 ${VHD_Location}    \\vviescvmm02.sbb01.spoc.global\MSSCVMMLibrary\VHDs\Blank Disk - Large.vhdx
 ${Disk_Size}      40
+#------Move VM----------------------------------------------------------------------------------------------------
+${VM_TO_MOVE}     CSGOClone
+${Source_VM_Host}    svievmw04.sbb01.spoc.global
