@@ -12,45 +12,38 @@ Resource          ../../Resources/keywords.txt
 Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
-*** Test Cases ***    OK_NOK    VM_Name           SourceVMHost    TargetVMHost         DestinationPath        MoveOptions                                     AdvancedOptions
+*** Test Cases ***    OK_NOK    VMName            SourceVMHost         TargetVMHost    DestinationPath    MoveOptions                                     AdvancedOptions
 Move VM With Valid Inputs With Providing Sorce VM Host,MoveOptions as Discard saved state and Advanced Options
                       [Tags]    main_scenarios
-                      OK        ${Source_VM}      ${VM_Host}      ${Target_VM_Host}    ${Destination_Path}    Discard saved state                             -RunAsynchronously
-
-Move VM With Valid Inputs With Providing Sorce VM Host,MoveOptions as Start VM after successful completion of move state and Advanced Options
-                      [Tags]    main_scenarios
-                      OK        ${Source_VM}      ${VM_Host}      ${Target_VM_Host}    ${Destination_Path}    Start VM after successful completion of move    -RunAsynchronously
-
-Move VM With Valid Inputs Without Providing Sorce VM Host and Advanced Options
-                      OK        ${Source_VM}      ${EMPTY}        ${Target_VM_Host}    ${Destination_Path}    ${EMPTY}
-
-Move VM With Valid Inputs When Sorce VM Host & Destination Host Are Same
-                      OK        ${Source_VM}      ${EMPTY}        ${Source_VM}         ${Destination_Path}    ${EMPTY}                                        ${EMPTY}
+                      OK        ${VM_TO_MOVE}     ${Source_VM_Host}    ${VM_Host}      [${VM_Path}]       Discard saved state                             -RunAsynchronously
 
 Assertion With Non-Existing VM Name
                       [Tags]    main_scenarios
-                      NOK       Invalid           ${VM_Host}      ${Target_VM_Host}    ${Destination_Path}    ${EMPTY}                                        ${EMPTY}
+                      NOK       Invalid           ${VM_Host}           ${VM_Host}      [${VM_Path}]       ${EMPTY}                                        ${EMPTY}
+
+Assertion when more than 1 VM exists for the provided VM name
+                      NOK       VM*               ${EMPTY}             ${VM_Host}      [${VM_Path}]       ${EMPTY}                                        ${EMPTY}
 
 Assertion With Non-Existing Source VM Host
-                      NOK       ${Source_VM}      Invalid         ${Target_VM_Host}    ${Destination_Path}    Discard saved state                             ${EMPTY}
+                      NOK       ${VM_TO_MOVE}     Invalid              ${VM_Host}      [${VM_Path}]       Discard saved state                             ${EMPTY}
 
 Assertion With Non-Existing Target VM Host
-                      NOK       ${Source_VM}      ${VM_Host}      Invalid              ${Destination_Path}    Discard saved state                             ${EMPTY}
+                      NOK       ${VM_TO_MOVE}     ${VM_Host}           Invalid         [${VM_Path}]       Discard saved state                             ${EMPTY}
 
 Assertion With Non-Existing Destination Path
-                      NOK       ${Source_VM}      ${VM_Host}      ${Target_VM_Host}    Invalid                Start VM after successful completion of move    ${EMPTY}
+                      NOK       ${VM_TO_MOVE}     ${VM_Host}           ${VM_Host}      Invalid            Start VM after successful completion of move    ${EMPTY}
 
 Assertion for Non-Existing Advanced Parameter
-                      NOK       ${Source_VM}      ${VM_Host}      ${Target_VM_Host}    ${Destination_Path}    Discard saved state                             Invalid
+                      NOK       ${VM_TO_MOVE}     ${VM_Host}           ${VM_Host}      [${VM_Path}]       Discard saved state                             Invalid
 
 Assert VM Name as Mandatory Field
-                      NOK       ${EMPTY}          ${VM_Host}      ${Target_VM_Host}    ${Destination_Path}    Discard saved state                             -RunAsynchronously
+                      NOK       ${EMPTY}          ${VM_Host}           ${VM_Host}      [${VM_Path}]       Discard saved state                             -RunAsynchronously
 
 Assert Target VM Host as Mandatory Field
-                      NOK       ${EMPTY}          ${VM_Host}      ${EMPTY}             ${Destination_Path}    Start VM after successful completion of move    -RunAsynchronously
+                      NOK       ${VM_TO_MOVE}     ${VM_Host}           ${EMPTY}        [${VM_Path}]       Start VM after successful completion of move    -RunAsynchronously
 
 Assert Destination Path as Mandatory Field
-                      NOK       ${EMPTY}          ${VM_Host}      ${Target_VM_Host}    ${EMPTY}               Start VM after successful completion of move    -RunAsynchronously
+                      NOK       ${VM_TO_MOVE}     ${VM_Host}           ${VM_Host}      ${EMPTY}           Start VM after successful completion of move    -RunAsynchronously
 
 *** Keywords ***
 Startup
@@ -59,12 +52,12 @@ Startup
     Connect AE
 
 Move VM Template
-    [Arguments]    ${OK_NOK}    ${VM_Name}    ${SourceVMHost}    ${TargetVMHost}    ${DestinationPath}    ${MoveOptions}
+    [Arguments]    ${OK_NOK}    ${VMName}    ${SourceVMHost}    ${TargetVMHost}    ${DestinationPath}    ${MoveOptions}
     ...    ${AdvancedOptions}
-    [Documentation]    This test is used to move the given VM to the provided host.
+    [Documentation]    This test is used to move the given VM to the provided host/path.
     ...    -Precondition: To run this test suite, SCVMM credentials should be known to user.
     ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
-    ...    -${VM_Name}: This field specifies Name of the Virtual Machine you want to move to the provided host.
+    ...    -${VMName}: This field specifies Name of the Virtual Machine you want to move to the provided host.
     ...    -${SourceVMHost}:This field specify the host on which VM is located.
     ...    -${TargetVMHost}: This field specify the host to which VM will be moved.
     ...    -${DestinationPath }: This field specify destination path to move VM.
@@ -73,14 +66,14 @@ Move VM Template
     Generate String
     Action Create    ${_MOVE_VM_ACTION}
     Common Inputs
-    Run Keyword If    '${VM_Name}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_VMM_VMNAME#    ${VM_Name}
+    Run Keyword If    '${VMName}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMNAME#    ${VMName}
     Run Keyword If    '${SourceVMHost}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_VMHOST#    ${SourceVMHost}
-    Run Keyword If    '${TargetVMHost}' == 'Invalid'    Action Set    &UC4RB_VMM_DEST_HOST#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_VMM_DEST_HOST#    ${TargetVMHost}
-    Run Keyword If    '${DestinationPath}' == 'Invalid'    Action Set    &UC4RB_VMM_DEST_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_VMM_DEST_VMHOST#    ${DestinationPath}
+    Run Keyword If    '${TargetVMHost}' == 'Invalid'    Action Set    &UC4RB_VMM_DEST_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_DEST_VMHOST#    ${TargetVMHost}
+    Run Keyword If    '${DestinationPath}' == 'Invalid'    Action Set    &UC4RB_VMM_DEST_PATH#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_DEST_PATH#    ${DestinationPath}
     Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
     Action Set    &UC4RB_VMM_MOVE_OPTIONS#    ${MoveOptions}

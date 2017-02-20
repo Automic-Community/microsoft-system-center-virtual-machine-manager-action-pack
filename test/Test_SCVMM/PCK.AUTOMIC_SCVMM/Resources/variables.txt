@@ -8,7 +8,7 @@ ${VMM_Port}       8100
 ${VMM_Username}    sbb01\\extata
 ${VMM_Password}    EnterPassword
 ${Source_VM}      AutomationTest
-${VM_Host}        vviescvmm12.sbb01.spoc.global
+${VM_Host}        svievmw12.sbb01.spoc.global
 #---- New VM from VM ----------------------------------------------------------------------------------------------------
 ${VM_Path}        Datastore3
 #---- Get VM----------------------------------------------------------------------------------------------------
@@ -27,5 +27,5 @@ ${Checkpoint_Name}    Checkpoint_test
 ${VHD_Location}    \\vviescvmm02.sbb01.spoc.global\MSSCVMMLibrary\VHDs\Blank Disk - Large.vhdx
 ${Disk_Size}      40
 #------Move VM----------------------------------------------------------------------------------------------------
-${Destination_Path}    -path"[local Storage svievmw04]\file01_2\file01.vmx"
-${Target_VM_Host}    svievmw04.sbb01.spoc.global
+${VM_TO_MOVE}     CSGOClone
+${Source_VM_Host}    svievmw04.sbb01.spoc.global
