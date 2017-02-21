@@ -295,13 +295,15 @@
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[= Action name =
-PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_DISKS
+PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_DISK_DRIVE
 
 = General description =
 This action is used to get a virtual disk drive object(s). The virtual disk drive object(s) details would be printed in the Job report. You can also provide additional parameters to the "Advanced Options" field.
 
 = Failure Conditions =
-* This action will fails if multiple VMs are matching when VM name is provided
+* This action will fail if multiple or no VMs found for provided VM Name.
+
+Note: If VM Name and VM Host not provided, all disk drives will be fetched.
 
 = Inputs =
 * Server IP or DNS   : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.45

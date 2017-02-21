@@ -298,7 +298,7 @@
 PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_CHECKPOINTS
 
 = General description =
-This action is used to Gets virtual machine checkpoint objects from the VMM database. The Virtual Machine details would be printed in the Job report.
+This action is used to get virtual machine checkpoint object(s) from the VMM database. The virtual machine checkpoint object(s) details would be printed in the Job report.
 
 = Failure Conditions =
 * This action will fail if multiple or no VMs exist for inputs provided.

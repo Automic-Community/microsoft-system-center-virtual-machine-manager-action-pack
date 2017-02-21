@@ -159,13 +159,17 @@ try{
     WRITE-HOST "INFO: Get disk drive cmdlet - &UC4RB_VMM_GET_DISKS_CMD# -VM $($vm.name)"
     $diskDrives = @(&UC4RB_VMM_GET_DISKS_CMD# -VM $vm)
 :  ELSE
-    WRITE-HOST "INFO: Get disk drive cmdlet - &UC4RB_VMM_GET_DISKS_CMD# "
+    WRITE-HOST "INFO: Get disk drive cmdlet - &UC4RB_VMM_GET_DISKS_CMD# -All"
     $diskDrives = @(&UC4RB_VMM_GET_DISKS_CMD# -All)
 : ENDIF
-    $namelist = ($diskDrives | foreach-object {$_.Name} ) -join ","
-    $diskDrives | select VirtualHardDisk, BusType, Lun, Bus, Name
-    WRITE-HOST "UC4RB_VMM_DISK_NAME::=$namelist"
-    WRITE-HOST "UC4RB_VMM_DISK_COUNT::=$($diskDrives.Length)"
+    if($diskDrives.Length -eq 0){
+        WRITE-HOST "INFO: No disk drive available."
+      }else{
+        $namelist = ($diskDrives | foreach-object {$_.VirtualHardDisk} ) -join ","
+        $diskDrives | select VirtualHardDisk, BusType, Lun, Bus, Name
+     }
+     WRITE-HOST "UC4RB_VMM_DISK_NAME::=$namelist"
+     WRITE-HOST "UC4RB_VMM_DISK_COUNT::=$($diskDrives.Length)"
 }catch{
    $errors=1
    Write-Host "ERROR: $($error[0].Exception.Message)"
