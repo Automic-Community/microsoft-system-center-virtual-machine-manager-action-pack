@@ -143,7 +143,7 @@
 
 !-------------------------------------Create VMM commandlets---------------------------------------------------------------------------------------------------
 
-! Get Checkpoint command
+! Remove Checkpoint command
 : SET &UC4RB_VMM_REMOVE_CHECKPOINT_CMD# = "Remove-SCVMCheckpoint "
 
 ! Advanced options
@@ -161,7 +161,7 @@ try{
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.GET_VM_CMDLET
 
 
-WRITE-HOST "INFO: Get Checkpoints - Get-SCVMCheckpoint -VM $($vm.name)"
+WRITE-HOST "INFO: Get-SCVMCheckpoint -VM $($vm.name)"
 : IF &UC4RB_VMM_DAYS# EQ "0"
   $checkpoints = Get-SCVMCheckpoint -VM $vm
   $message = "All Checkpoints will be deleted."
@@ -170,15 +170,14 @@ WRITE-HOST "INFO: Get Checkpoints - Get-SCVMCheckpoint -VM $($vm.name)"
   $currentDate = Get-Date
   $datecheck = $currentDate.Date.AddDays(-&UC4RB_VMM_DAYS#)
   $checkpoints = Get-SCVMCheckpoint -VM $vm | where {$_.AddedTime.Date -lt $datecheck }
-  $message = "All Checkpoints older than '&UC4RB_VMM_DAYS#' will be deleted."
+  $message = "All Checkpoints older than '&UC4RB_VMM_DAYS#' days and created before $datecheck will be deleted."
 : ENDIF
 
   if($checkpoints.count -le 0){
       WRITE-HOST "INFO: No checkpoints available for provided VM."
   }else{
-      Write-Host "INFO: "$message
-      Write-Host "INFO: Remove Checkpoints - " &UC4RB_VMM_REMOVE_CHECKPOINT_CMD#
-      $checkpoints | Format-List CheckpointID, Name, AddedTime
+      Write-Host "INFO:"$message
+      Write-Host "INFO:" &UC4RB_VMM_REMOVE_CHECKPOINT_CMD#
       $checkpoints | ForEach-Object { &UC4RB_VMM_REMOVE_CHECKPOINT_CMD# -VMCheckpoint $_ }
   }
 

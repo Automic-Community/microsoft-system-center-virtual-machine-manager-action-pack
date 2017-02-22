@@ -300,7 +300,53 @@
 <MSCRI/>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
-<DOC/>
+<DOC><![CDATA[= Action name =
+PCK.AUTOMIC_SCVMM.PUB.ACTION.REMOVE_CHECKPOINTS
+
+= General description =
+This action is used to remove checkpoints of a Virtual Machine. Checkpoints created before specified days are considered for deletion. The details of removed checkpoint objects are also printed in Job report. To delete all Checkpoints of a VM you can provide 0 in Days field.
+
+= Failure Conditions =
+* This action will fail if multiple or no VMs exist for inputs provided.
+
+= Inputs =
+* Server IP or DNS   : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.45
+* Port		     : Specify port which will be used for connection. Default value is 8100.
+* Username	     : Username which will be used for this connection. E.g. domain\username
+* Password	     : Password to your username.
+* VM Name	     : Specify Name of the Virtual Machine to which checkpoints belong. E.g. myVM
+* VM Host	     : Specify the host on which VM is located. E.g myhost.com
+* Days		     : Remove all checkpoints older than a given day. E.g. if given day is 5 then 6, 7, 8+ days old checkpoints are removed.
+* Advanced Options   : Specify parameters you want to include into command. E.g. -MostRecent
+* Overwrite Agent    : Overwrites the default agent
+* Overwrite Login    : Overwrites the default login
+
+= Behaviour =
+(none)
+
+=Return Value=
+(none)
+
+= Outputs =
+* Return code is 0 in case of success.
+* Return code is 1 in case of failure.
+
+= Logging =
+Logs will be displayed in the AE report.
+
+= Example =
+* If you want to delete all Checkpoints older than 10 days
+VM Name: 	myvm
+VM Host:	myhost.com
+Days:		10
+Advanced Options: 
+
+
+* If you want to delete all Checkpoints of a VM
+VM Name:	myvm
+VM Host:	myhost.com
+Days:		0
+Advanced Options:]]></DOC>
 </DOCU_Docu>
 </JOBP>
 </uc-export>
