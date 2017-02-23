@@ -48,6 +48,8 @@
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.RESTORE_CHECKPOINT/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.RESUME_VM/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.RESUME_VM/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.SAVE_STATE_VM/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.SAVE_STATE_VM/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.START_VM/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.START_VM/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.STOP_VM/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
