@@ -169,8 +169,8 @@ WRITE-HOST "INFO: Get-SCVMCheckpoint -VM $($vm.name)"
 
   $currentDate = Get-Date
   $datecheck = $currentDate.Date.AddDays(-&UC4RB_VMM_DAYS#)
-  $checkpoints = Get-SCVMCheckpoint -VM $vm | where {$_.AddedTime.Date -lt $datecheck }
-  $message = "All Checkpoints older than '&UC4RB_VMM_DAYS#' days and created before $datecheck will be deleted."
+  $checkpoints = Get-SCVMCheckpoint -VM $vm | where {$_.AddedTime.Date -le $datecheck }
+  $message = "All Checkpoints older than '&UC4RB_VMM_DAYS#' days and created on or before $datecheck will be deleted."
 : ENDIF
 
   if($checkpoints.count -le 0){
