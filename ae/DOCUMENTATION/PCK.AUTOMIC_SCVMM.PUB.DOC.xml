@@ -69,6 +69,9 @@ Following actions are supported for SCVMM:
 * Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_DISK_DRIVE
 * Action Description: This action is used to get a virtual disk drive object(s).
 
+* Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_NAMES
+* Action Description: This action is used to retrieve VM(s).
+
 ]]></DOC>
 </DOCU_Docu>
 </DOCU>
