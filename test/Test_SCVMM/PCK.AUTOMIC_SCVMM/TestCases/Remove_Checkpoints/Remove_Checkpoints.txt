@@ -1,0 +1,68 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        remove_checkpoints
+Test Template     Remove Checkpoints Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    VMName            VMHost        Days    AdvancedOptions
+Remove all checkpoints which are created a day before or before that with valid inputs without providing VM Host and Advanced Options
+                      [Tags]    main_scenarios
+                      OK        ${Source_VM}      ${EMPTY}      1       ${EMPTY}
+
+Remove all the checkpoints with valid inputs also providing VM Host and Advanced Options
+                      OK        ${Source_VM}      ${VM_Host}    0       -RunAsynchronously
+
+Assertion With Non-Existing VM Name
+                      [Tags]    main_scenarios
+                      NOK       Invalid           ${VM_Host}    0       ${EMPTY}
+
+Assert Behaviour when more than one VM exists for provided VM Name
+                      NOK       VM*               ${EMPTY}      0       ${EMPTY}
+
+Assertion With Non-Existing VM Host
+                      NOK       ${Source_VM}      Invalid       0       ${EMPTY}
+
+Assertion for Non-Existing Advanced Parameter
+                      NOK       ${Source_VM}      ${VM_Host}    0       Invalid
+
+Assertion for VM Name as Mandatory Field
+                      NOK       ${EMPTY}          ${VM_Host}    0       -RunAsynchronously
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "Remove Checkpoints"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Remove Checkpoints Template
+    [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost}    ${Days}    ${AdvancedOptions}
+    [Documentation]    This test is used to remove checkpoints for the given VM.
+    ...    -Precondition: To run this test suite, SCVMM credentials should be known to user.
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
+    ...    -${VMName}: This field specifies Name of the Virtual Machine for which you want to remove checkpoints.
+    ...    -${VMHost}: This field Specify Name of the VM Host in which VM is located.
+    ...    -${Days}: This field Specify number of days after which you want to remove checkpoints. 0 means removing all checkpoints.
+    ...    -${AdvancedOptions}: This field specifies advanced parameter for remove checkpoints command.
+    Generate String
+    Action Create    ${_REMOVE_CHECKPOINTS_ACTION}
+    Common Inputs
+    Run Keyword If    '${VMName}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMNAME#    ${VMName}
+    Run Keyword If    '${VMHost}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMHOST#    ${VMHost}
+    Action Set    &UC4RB_VMM_DAYS#    ${Days}
+    Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+
+Teardown
+    Log    *******End Test "Remove Checkpoints"*******
