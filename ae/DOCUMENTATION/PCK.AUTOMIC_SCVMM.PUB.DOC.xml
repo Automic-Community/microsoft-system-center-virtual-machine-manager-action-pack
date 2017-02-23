@@ -69,6 +69,10 @@ Following actions are supported for SCVMM:
 * Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_DISK_DRIVE
 * Action Description: This action is used to get a virtual disk drive object(s).
 
+* Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.REMOVE_LATEST_CHECKPOINT
+* Action Description: This action is used to remove the latest checkpoint of a virtual machine
+
+
 ]]></DOC>
 </DOCU_Docu>
 </DOCU>
