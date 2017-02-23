@@ -13,7 +13,7 @@ Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
 *** Test Cases ***    OK_NOK    VMName               VMHost        AdvancedOptions
-Remove VM With Valid Inputs Without Providing VM Host,Force and Advanced Options
+Remove VM With Valid Inputs Without Providing VM Host and Advanced Options
                       [Tags]    main_scenarios
                       OK        ${VM_Name_Remove}    ${EMPTY}      ${EMPTY}
 
