@@ -11,29 +11,32 @@ Resource          ../../Resources/keywords.txt
 Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
-*** Test Cases ***    OK_NOK    VMNameFilter      VMHost        AdvancedOptions
+*** Test Cases ***    OK_NOK    VMNameFilter       VMHost        AdvancedOptions
 Get VM while providing VM name Filter
                       [Tags]    main_scenarios
-                      OK        VM*               ${EMPTY}      ${EMPTY}
+                      OK        VM*                ${EMPTY}      ${EMPTY}
 
 Get VM without providing any input
-                      OK        ${EMPTY}          ${EMPTY}      ${EMPTY}
+                      OK        ${EMPTY}           ${EMPTY}      ${EMPTY}
 
 Get VM while providing Advanced Option only
-                      OK        ${EMPTY}          ${EMPTY}      ${Advance_opt}
+                      OK        ${EMPTY}           ${EMPTY}      ${Advance_opt}
 
 Get VM while providing VM Host only
-                      OK        ${EMPTY}          V*            ${EMPTY}
+                      OK        ${EMPTY}           V*            ${EMPTY}
+
+Assertion when no VM should be found
+                      OK        SpartanAutomic*    ${EMPTY}      ${EMPTY}
 
 Assertion With Non-Existing VM Name
                       [Tags]    main_scenarios
-                      NOK       Invalid           ${VM_Host}    ${EMPTY}
+                      NOK       Invalid            ${VM_Host}    ${EMPTY}
 
 Assertion With Non-Existing VM Host
-                      NOK       ${Source_VM}      Invalid       ${EMPTY}
+                      NOK       ${Source_VM}       Invalid       ${EMPTY}
 
 Assertion for Non-Existing Advanced Parameter
-                      NOK       ${Source_VM}      ${VM_Host}    Invalid
+                      NOK       ${Source_VM}       ${VM_Host}    Invalid
 
 *** Keywords ***
 Startup
