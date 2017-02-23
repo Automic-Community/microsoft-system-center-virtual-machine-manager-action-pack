@@ -73,7 +73,11 @@ Following actions are supported for SCVMM:
 * Action Description: This action is used to retrieve VM(s).
 
 * Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.REMOVE_CHECKPOINTS
-* Action Description: This action is used to remove checkpoints of a Virtual Machine.]]></DOC>
+* Action Description: This action is used to remove checkpoints of a Virtual Machine
+
+* Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.REMOVE_LATEST_CHECKPOINT
+* Action Description: This action is used to remove the latest checkpoint of a virtual machine
+]]></DOC>
 </DOCU_Docu>
 </DOCU>
 </uc-export>
