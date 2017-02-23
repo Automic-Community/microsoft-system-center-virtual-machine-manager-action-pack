@@ -11,29 +11,35 @@ Resource          ../../Resources/keywords.txt
 Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
-*** Test Cases ***    OK_NOK    VMName            VMHost        Days    AdvancedOptions
+*** Test Cases ***    OK_NOK    VMName            VMHost        Days        AdvancedOptions
 Remove all checkpoints which are created a day before or before that with valid inputs without providing VM Host and Advanced Options
                       [Tags]    main_scenarios
-                      OK        ${Source_VM}      ${EMPTY}      1       ${EMPTY}
+                      OK        ${Source_VM}      ${EMPTY}      1           ${EMPTY}
 
 Remove all the checkpoints with valid inputs also providing VM Host and Advanced Options
-                      OK        ${Source_VM}      ${VM_Host}    0       -RunAsynchronously
+                      OK        ${Source_VM}      ${VM_Host}    0           -RunAsynchronously
 
 Assertion With Non-Existing VM Name
                       [Tags]    main_scenarios
-                      NOK       Invalid           ${VM_Host}    0       ${EMPTY}
+                      NOK       Invalid           ${VM_Host}    0           ${EMPTY}
 
 Assert Behaviour when more than one VM exists for provided VM Name
-                      NOK       VM*               ${EMPTY}      0       ${EMPTY}
+                      NOK       VM*               ${EMPTY}      0           ${EMPTY}
 
 Assertion With Non-Existing VM Host
-                      NOK       ${Source_VM}      Invalid       0       ${EMPTY}
+                      NOK       ${Source_VM}      Invalid       0           ${EMPTY}
+
+Assertion With Invalid value for days
+                      NOK       ${Source_VM}      ${EMPTY}      -1          ${EMPTY}
 
 Assertion for Non-Existing Advanced Parameter
-                      NOK       ${Source_VM}      ${VM_Host}    0       Invalid
+                      NOK       ${Source_VM}      ${VM_Host}    0           Invalid
 
 Assertion for VM Name as Mandatory Field
-                      NOK       ${EMPTY}          ${VM_Host}    0       -RunAsynchronously
+                      NOK       ${EMPTY}          ${VM_Host}    0           -RunAsynchronously
+
+Assertion for Days as Mandatory Field
+                      NOK       ${Source_VM}      ${VM_Host}    ${EMPTY}    -RunAsynchronously
 
 *** Keywords ***
 Startup
