@@ -70,7 +70,7 @@ Following actions are supported for SCVMM:
 * Action Description: This action is used to get a virtual disk drive object(s).
 
 * Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_NAMES
-* Action Description: This action is used to retrieve VM(s).
+* Action Description: This action is used to retrieve VM(s) and publish VM(s) name separated by comma along with the total count
 
 * Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.REMOVE_CHECKPOINTS
 * Action Description: This action is used to remove checkpoints of a Virtual Machine
