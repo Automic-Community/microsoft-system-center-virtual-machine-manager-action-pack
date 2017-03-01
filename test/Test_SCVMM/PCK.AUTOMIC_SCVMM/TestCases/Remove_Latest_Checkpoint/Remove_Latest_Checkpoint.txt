@@ -1,9 +1,8 @@
 *** Settings ***
 Suite Setup       Startup
 Suite Teardown    Teardown
-Force Tags        remove_vm
-Default Tags
-Test Template     Remove VM Template
+Force Tags        remove_latest_checkpoint
+Test Template     Remove Latest Checkpoint Template
 Library           com.automic.robot.itpa.ItpaLibrary
 Library           String
 Library           DateTime
@@ -12,47 +11,46 @@ Resource          ../../Resources/keywords.txt
 Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
-*** Test Cases ***    OK_NOK    VMName               VMHost        AdvancedOptions
-Remove VM With Valid Inputs Without Providing VM Host and Advanced Options
+*** Test Cases ***    OK_NOK    VMName            VMHost        AdvancedOptions
+Remove Latest Checkpoint with valid inputs without providing VM Host and Advanced Options
                       [Tags]    main_scenarios
-                      OK        ${VM_Name_Remove}    ${EMPTY}      ${EMPTY}
+                      OK        ${Source_VM}      ${EMPTY}      ${EMPTY}
 
-Remove VM With Valid Inputs With Providing VM Host and Advanced Options
-                      [Tags]    main_scenarios
-                      OK        ${VM_Name_Remove}    ${VM_Host}    -RunAsynchronously
+Remove Latest Checkpoint with valid Inputs while providing VM Host and Advanced Options
+                      OK        ${Source_VM}      ${VM_Host}    -RunAsynchronously
 
 Assertion With Non-Existing VM Name
                       [Tags]    main_scenarios
-                      NOK       Invalid              ${VM_Host}    ${EMPTY}
+                      NOK       Invalid           ${VM_Host}    ${EMPTY}
 
 Assert Behaviour when more than one VM exists for provided VM Name
-                      NOK       VM*                  ${EMPTY}      ${EMPTY}
+                      NOK       VM*               ${EMPTY}      ${EMPTY}
 
 Assertion With Non-Existing VM Host
-                      NOK       ${VM_Name_Remove}    Invalid       ${EMPTY}
+                      NOK       ${Source_VM}      Invalid       ${EMPTY}
 
 Assertion for Non-Existing Advanced Parameter
-                      NOK       ${VM_Name_Remove}    ${VM_Host}    Invalid
+                      NOK       ${Source_VM}      ${VM_Host}    Invalid
 
 Assertion for VM Name as Mandatory Field
-                      NOK       ${EMPTY}             ${VM_Host}    -RunAsynchronously
+                      NOK       ${EMPTY}          ${VM_Host}    -RunAsynchronously
 
 *** Keywords ***
 Startup
-    Log    *******Start Test "Remove VM"*******
+    Log    *******Start Test "Remove Latest Checkpoint"*******
     Log    *******Connect to AE*******
     Connect AE
 
-Remove VM Template
+Remove Latest Checkpoint Template
     [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost}    ${AdvancedOptions}
-    [Documentation]    This test is used to remove the given VM.
-    ...    -Precondition: To run this test suite, SCVMM credentials should be known to user and VM state should be in stopped or save state.
+    [Documentation]    This test is used to remove latest checkpoint for given VM.
+    ...    -Precondition: To run this test suite, SCVMM credentials should be known to user.
     ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
-    ...    -${VMName}: This field specifies Name of the Virtual Machine you want to remove.
+    ...    -${VMName}: This field specifies Name of the Virtual Machinefor which you want to remove latest checkpoint.
     ...    -${VMHost}: This field Specify Name of the VM Host in which VM is located..
-    ...    -${AdvancedOptions}: This field specifies advanced parameter for remove virtual machine command.
+    ...    -${AdvancedOptions}: This field specifies advanced parameter for remove-scvmcheckpoint command.
     Generate String
-    Action Create    ${_REMOVE_VM_ACTION}
+    Action Create    ${_REMOVE_LATEST_CHECKPOINT_ACTION}
     Common Inputs
     Run Keyword If    '${VMName}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_VMNAME#    ${VMName}
@@ -65,4 +63,4 @@ Remove VM Template
     Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
 
 Teardown
-    Log    *******End Test "Remove VM"*******
+    Log    *******End Test "Remove Latest Checkpoint"*******
