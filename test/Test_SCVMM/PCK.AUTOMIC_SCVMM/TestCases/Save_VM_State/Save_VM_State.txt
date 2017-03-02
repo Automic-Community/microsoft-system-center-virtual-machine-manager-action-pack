@@ -19,6 +19,9 @@ Save VM State with Valid Inputs without providing VM Host and Advanced Options
 Saving VM State which is already in saved state also providing VM Host and Advanced Options
                       OK        ${Source_VM}      ${VM_Host}    -RunAsynchronously
 
+Assertion when more than 1 VM exists for the provided VM name
+                      NOK       VM*               ${EMPTY}      ${EMPTY}
+
 Assert Behaviour for Non-Existing VM
                       NOK       Invalid           ${VM_Host}    ${EMPTY}
 
