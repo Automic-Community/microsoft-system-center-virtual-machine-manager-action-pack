@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
 <JOBS_WINDOWS AttrType="WINDOWS" name="PCK.AUTOMIC_SCVMM.PRV.JOB.GET_HOST_GROUPS@WINDOWS">
 <XHEADER state="1">
-<Title>Get Host Group(s)</Title>
+<Title>Get Host Groups</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>

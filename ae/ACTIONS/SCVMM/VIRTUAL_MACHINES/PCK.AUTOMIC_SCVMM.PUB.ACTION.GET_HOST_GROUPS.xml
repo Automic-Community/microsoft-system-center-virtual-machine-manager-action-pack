@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
 <JOBP AllowExternal="1" name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_HOST_GROUPS">
 <XHEADER state="1">
-<Title>Get Host Group(s)</Title>
+<Title>Get Host Groups</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -65,7 +65,6 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS"/>
 <UC4RB_VMM_HOST_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_HOST_GROUP#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS"/>
 <UC4RB_VMM_PARENT_HOST_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PARENT_HOST_GROUP#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS"/>
@@ -133,7 +132,6 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS"/>
 <UC4RB_VMM_HOST_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_HOST_GROUP#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS"/>
 <UC4RB_VMM_PARENT_HOST_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PARENT_HOST_GROUP#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS"/>
@@ -187,7 +185,6 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS"/>
 <UC4RB_VMM_HOST_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_HOST_GROUP#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS"/>
 <UC4RB_VMM_PARENT_HOST_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PARENT_HOST_GROUP#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_HOST_GROUPS"/>
