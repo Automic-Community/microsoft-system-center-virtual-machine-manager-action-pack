@@ -32,6 +32,8 @@
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_CHECKPOINTS/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_DISK_DRIVE/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_DISK_DRIVE/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_HOST_GROUPS/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_HOST_GROUPS/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_NAMES/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>

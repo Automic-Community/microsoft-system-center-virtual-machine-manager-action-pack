@@ -83,6 +83,9 @@ Following actions are supported for SCVMM:
 
 * Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.DISCARD_SAVED_STATE_VM
 * Action Description: This action is used to discard the saved state of a virtual machine
+
+* Action Name: PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_HOST_GROUPS
+* Action Description: This action is used to get one or more host groups from a SCVMM database.
 ]]></DOC>
 </DOCU_Docu>
 </DOCU>
