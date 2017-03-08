@@ -94,10 +94,44 @@
         <entry name="resetable">1</entry>
       <entry name="initvalue"/>
          </properties>
-    </text></readpanel></dialog>]]></XUIEDITOR>
+    </text><dyncheckgroup alt="1" enabled="1" fill="b" focus="0" id="UC4RB_VMM_PER_COUNTERs.00" nl="1" required="1" separator=";" text="Performance Counter" tooltip="Specify which performance details you want to retrieve.">
+      <properties>
+        <entry listparam="C,N" name="reference" reftype="STATIC">PCK.AUTOMIC_SCVMM.PRV.VARA.PERFORMANCE_COUNTER</entry>
+        <entry name="xmlkey"/>
+        <entry name="xmlpath"/>
+        <entry name="text">Performance Counter</entry>
+        <entry alias="multiselect" name="cgmultiselect">1</entry>
+        <entry alias="separator" name="cgseparator">;</entry>
+        <entry alias="haslist" name="cghaslist">0</entry>
+        <entry name="quotes"/>
+        <entry name="id">UC4RB_VMM_PER_COUNTERs.00</entry>
+        <entry name="enabled">0</entry>
+        <entry name="required">1</entry>
+        <entry name="focus">0</entry>
+        <entry name="tooltip">Specify which performance details you want to retrieve.</entry>
+        <entry name="modifiable">1</entry>
+        <entry name="customfield"/>
+        <entry name="onchangereset"/>
+        <entry name="resetable">1</entry>
+      <entry name="initvalue"/></properties>
+    </dyncheckgroup><dynradiogroup alt="1" enabled="1" fill="b" focus="" id="UC4RB_VMM_PERIODs.00" nl="1" text="Period" tooltip="Specify whether if you want to get performance data for the last hour, day or month." required="0">
+      <properties>
+        <entry listparam="C,N" name="reference" reftype="STATIC">PCK.AUTOMIC_SCVMM.PRV.VARA.PERFORMANCE_PERIOD</entry>
+        <entry name="xmlkey"/>
+        <entry name="xmlpath"/>
+        <entry name="text">Period</entry>
+        <entry name="quotes"/>
+        <entry name="id">UC4RB_VMM_PERIODs.00</entry>
+        <entry name="enabled">0</entry>
+        <entry name="focus">0</entry>
+        <entry name="tooltip">Specify whether if you want to get performance data for the last hour, day or month.</entry>
+        <entry name="modifiable">1</entry>
+        <entry name="customfield"/>
+      <entry name="initvalue"/></properties>
+    </dynradiogroup></readpanel></dialog>]]></XUIEDITOR>
 </PROMPTSETXUI>
 <PROMPTSETDATA state="1">
-<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_VMM_VMNAMEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_VMNAME#" ReadFromTable="OPSE"></UC4RB_VMM_VMNAMEs.00><UC4RB_VMM_VMHOSTs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_VMHOST#" ReadFromTable="OPSE"></UC4RB_VMM_VMHOSTs.00><UC4RB_VMM_ADV_OPTIONSs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_ADV_OPTIONS#" ReadFromTable="OPSE"></UC4RB_VMM_ADV_OPTIONSs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
+<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_VMM_VMNAMEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_VMNAME#" ReadFromTable="OPSE"></UC4RB_VMM_VMNAMEs.00><UC4RB_VMM_VMHOSTs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_VMHOST#" ReadFromTable="OPSE"></UC4RB_VMM_VMHOSTs.00><UC4RB_VMM_ADV_OPTIONSs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_ADV_OPTIONS#" ReadFromTable="OPSE"></UC4RB_VMM_ADV_OPTIONSs.00><UC4RB_VMM_PER_COUNTERs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_PER_COUNTER#" ReadFromTable="OPSE">CPUUsage</UC4RB_VMM_PER_COUNTERs.00><UC4RB_VMM_PERIODs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_PERIOD#" ReadFromTable="OPSE">Hour</UC4RB_VMM_PERIODs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
 </PROMPTSETDATA>
 <DOCU_Docu state="1" type="text">
 <DOC/>
