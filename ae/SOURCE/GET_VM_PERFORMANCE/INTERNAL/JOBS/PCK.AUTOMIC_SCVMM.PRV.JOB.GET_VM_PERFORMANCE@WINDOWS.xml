@@ -147,21 +147,15 @@
 
 !-------------------------------------commandlet creation---------------------------------------------------------------------------------------------------
 
-! Get Performance Data command
-: SET &UC4RB_VMM_GETPERFROM_CMD# = "Get-SCPerformanceData -PerformanceCounter '&UC4RB_VMM_PER_COUNTER#' "
-
-
-
 ! VM name check
 : IF &UC4RB_VMM_VMNAME# EQ "*"
-:    SET &UC4RB_VMM_GETPERFROM_CMD# = STR_CAT(&UC4RB_VMM_GETPERFROM_CMD#, " -AllVM ")
+:    SET &UC4RB_VMM_GETPERFROM_CMD# = "Get-SCPerformanceData -PerformanceCounter '&UC4RB_VMM_PER_COUNTER#' -AllVM ")
 : ELSE
-:    SET &UC4RB_VMM_GETPERFROM_CMD# = STR_CAT(&UC4RB_VMM_GETPERFROM_CMD#, " -VM  $vm ")
-!    Period
-:    SET &UC4RB_VMM_GETPERFROM_CMD# = STR_CAT(&UC4RB_VMM_GETPERFROM_CMD#, " -TimeFrame  '&UC4RB_VMM_PERIOD#' ")
+!    VM Name and Period
+:    SET &UC4RB_VMM_GETPERFROM_CMD# = "Get-SCPerformanceData -PerformanceCounter '&UC4RB_VMM_PER_COUNTER#' -TimeFrame '&UC4RB_VMM_PERIOD#' ")
 : ENDIF
 
-! Advance options
+! Advanced Options
 : IF &UC4RB_VMM_ADV_OPTIONS# <> ""
 :   SET &UC4RB_VMM_GETPERFROM_CMD# = STR_CAT(&UC4RB_VMM_GETPERFROM_CMD#, " &UC4RB_VMM_ADV_OPTIONS# ")
 : ENDIF
@@ -175,19 +169,19 @@ try{
 !   Get VM
 :   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.GET_VM_CMDLET
 
+    Write-Host "INFO:" &UC4RB_VMM_GETPERFROM_CMD# -VM $vm
+    &UC4RB_VMM_GETPERFROM_CMD# -VM $vm
+: ELSE
+    Write-Host "INFO:" &UC4RB_VMM_GETPERFROM_CMD#
+    &UC4RB_VMM_GETPERFROM_CMD#
 : ENDIF
 
-  Write-Host "INFO:" &UC4RB_VMM_GETPERFROM_CMD#
-  $performanceData = &UC4RB_VMM_GETPERFROM_CMD#
-   Write-Host "INFO: Total VM(s)= $($performanceData.count)"
-  $performanceData
 
 }catch{
   $errors=1
   Write-Host "ERROR: $($error[0].Exception.Message)"
 
 }
-
 
 !-----------------------------------Error Handling-------------------------------------------------------------------------------------
 !Status messages
