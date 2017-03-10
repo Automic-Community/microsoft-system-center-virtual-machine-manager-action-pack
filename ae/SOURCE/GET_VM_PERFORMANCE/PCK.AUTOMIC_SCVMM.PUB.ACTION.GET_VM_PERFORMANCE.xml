@@ -320,7 +320,7 @@ When getting performance data for all the VM's:
 * Password	     : Password to your username.
 * VM Name            : Specify name of the VM to get its performance data. For all VMs use asterisk *. Eg myVM or * 
 * VM Host	     : Specify the host on which VM is located. E.g myhost.com
-* Performance Counter :  Specify which performance details you want to retrieve. Available values CPUUsage (default),MemoryUsage,StorageIOPSUsage,NetworkIOUsage,PowerSavings
+* Performance Counter :  Specify which performance details you want to retrieve. Available values CPUUsage(default) ,MemoryUsage,StorageIOPSUsage,NetworkIOUsage
 * Period 	     :  Specify whether you want to get performance data for the last hour, day or month. Available values are Hour, Day, Month.
 * Advanced Options   : Specify parameters you want to include into command. E.g. -Verbose. 
 * Overwrite Agent    : Overwrites the default agent

@@ -27,7 +27,6 @@
 <row Name="CPUUsage" Value="CPUUsage" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="MemoryUsage" Value="MemoryUsage" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="NetworkIOUsage" Value="NetworkIOUsage" Value1="" Value2="" Value3="" Value4=""/>
-<row Name="PowerSavings" Value="PowerSavings" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="StorageIOPSUsage" Value="StorageIOPSUsage" Value1="" Value2="" Value3="" Value4=""/>
 </Variables>
 </VARA>
