@@ -1,0 +1,76 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        get_vm_performance
+Default Tags
+Test Template     Get VM Performance Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    VMName            VMHost        PerformanceCounter    Period    AdvancedOptions
+Get CPU Usage Performance of a specific VM while providing VM Host as well
+                      [Tags]    main_scenarios
+                      OK        ${Source_VM}      ${VM_Host}    CPUUsage              Hour      -Debug
+
+Get Memory Usage Performance of VM for a day and Asserting VM Host and Advanced Option as Optional Field
+                      OK        ${Source_VM}      ${EMPTY}      MemoryUsage           Day       ${EMPTY}
+
+Get Storage Usage Performance of all VM(s) for an Hour
+                      OK        *                 ${EMPTY}      StorageIOPSUsage      Hour      ${EMPTY}
+
+Get Network Usage Performance of a specific VM for a Month
+                      OK        ${Source_VM}      ${VM_Host}    NetworkIOUsage        Month     ${EMPTY}
+
+Assertion With Non-Existing VM Name
+                      NOK       Invalid           ${VM_Host}    CPUUsage              Hour      ${EMPTY}
+
+Assertion when Multiple VM's are found for provided VM Name
+                      NOK       VM*               ${EMPTY}      CPUUsage              Hour      ${EMPTY}
+
+Assertion With Non-Existing VM Host
+                      NOK       ${Source_VM}      Invalid       CPUUsage              Hour      ${EMPTY}
+
+Assertion for Non-Existing Advanced Parameter
+                      NOK       ${Source_VM}      ${VM_Host}    CPUUsage              Hour      Invalid
+
+Assertion for VM Name as Mandatory Field
+                      NOK       ${EMPTY}          ${VM_Host}    CPUUsage              Hour      -Debug
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "Get VM Performance"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Get VM Performance Template
+    [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost}    ${PerformanceCounter}    ${Period}    ${AdvancedOptions}
+    [Documentation]    This test is used to performance for VM(s).
+    ...    -Precondition: To run this test suite, SCVMM credentials should be known to user
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
+    ...    -${VMName}: This field specifies Name of the Virtual Machine for which you want to retrieve performance details.
+    ...    -${VMHost}: This field Specify Name of the VM Host in which VM is located.
+    ...    -${PerformanceCounter}: This field specifies which performance details you want to retrieve out of "CPUUsage,MemoryUsage,StorageIOPSUsage,NetworkIOUsage,PowerSavings"
+    ...    -${Period}:This field specifies whether if you want to get performance data for the last Hour, Day or Month
+    ...    -${AdvancedOptions}: This field specifies advanced parameter for Get-SCPerformanceData command.
+    Generate String
+    Action Create    ${_GET_VM_PERFORMANCE_ACTION}
+    Common Inputs
+    Run Keyword If    '${VMName}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMNAME#    ${VMName}
+    Run Keyword If    '${VMHost}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMHOST#    ${VMHost}
+    Action Set    &    UC4RB_VMM_PER_COUNTER#    ${PerformanceCounter}
+    Action Set    &UC4RB_VMM_PERIOD#    ${Period}
+    Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+
+Teardown
+    Log    *******End Test "Get VM Performance"*******
