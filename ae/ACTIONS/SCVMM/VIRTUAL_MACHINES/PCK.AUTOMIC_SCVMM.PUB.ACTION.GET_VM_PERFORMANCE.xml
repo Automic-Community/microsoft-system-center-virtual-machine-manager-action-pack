@@ -304,11 +304,11 @@
 PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_PERFORMANCE
 
 = General description =
-This action is used to get the performance data for a specific virtual machine or all virtual machines in an SCVMM server.
+This action is used to get the performance data for the specified virtual machine or all virtual machines in SCVMM.
+If 
 
 =NOTE=
-When getting performance data for all the VM's:
-* Period and VM Host field will be ignored. The default Period in this case is Hour.
+Specify * in VM Name, if you want to get the performance metrics for all the VMs. Period and VM Host field will be ignored and the default Period in this case will be Hour.
 
 = Failure Conditions =
 * This action will fail if no or multiple VM's found for the provided VM name.
@@ -319,9 +319,9 @@ When getting performance data for all the VM's:
 * Username	     : Username which will be used for this connection. E.g. domain\username
 * Password	     : Password to your username.
 * VM Name            : Specify name of the VM to get its performance data. For all VMs use asterisk *. Eg myVM or * 
-* VM Host	     : Specify the host on which VM is located. E.g myhost.com
+* VM Host	     : Specify the host on which VM is located. This value will be ignored if you specify * as VM Name. E.g myhost.com
 * Performance Counter :  Specify which performance details you want to retrieve. Available values CPUUsage(default) ,MemoryUsage,StorageIOPSUsage,NetworkIOUsage
-* Period 	     :  Specify whether you want to get performance data for the last hour, day or month. Available values are Hour, Day, Month.
+* Period 	     :  Specify whether you want to get performance data for the last hour, day or month. This field will be ignored if you specify * as VM Name. Available values are Hour, Day, Month.
 * Advanced Options   : Specify parameters you want to include into command. E.g. -Verbose. 
 * Overwrite Agent    : Overwrites the default agent
 * Overwrite Login    : Overwrites the default login
