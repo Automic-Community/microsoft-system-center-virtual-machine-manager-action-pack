@@ -311,6 +311,7 @@ PCK.AUTOMIC_SCVMM.PUB.ACTION.RECONFIGURE_VM
 
 = General description =
 This action is used to change the properties of  provided virtual machine managed by Virtual Machine Manager (VMM). If no parameter is provided for reconfiguration, action will pass and will fetch the current properties of provided VM.
+To reconfigure CPU count or Memory, VM should be Turned Off.
 
 = Failure Conditions =
 * This action will fail if multiple or no VMs exist for inputs provided.
@@ -320,8 +321,8 @@ This action is used to change the properties of  provided virtual machine manage
 * Port		    : Specify port which will be used for connection. Default value is 8100.
 * Username	    : Username which will be used for this connection. E.g. domain\username
 * Password	    : Password to your username.
-* VM Name	    : Specify name of the virtual machine to discard its saved state. E.g. myvm
-* VM Host	    : Specify name of the virtual machine that you want to reconfigure. E.g myhost.com
+* VM Name	    : Specify name of the virtual machine that you want to reconfigure. E.g. myvm
+* VM Host	    : Specify the host on which VM is located. E.g myhost.com
 * CPU Count	    : Specify number of CPUs to be set. E.g. 3
 		      - Hyper-V. Up to four CPUs per virtual machine, depending on guest operating system.
    	              - VMware ESX. Up to four CPUs per virtual machine for any supported guest operating system, except for a virtual machine that runs Windows NT 4.0, which supports one CPU.
