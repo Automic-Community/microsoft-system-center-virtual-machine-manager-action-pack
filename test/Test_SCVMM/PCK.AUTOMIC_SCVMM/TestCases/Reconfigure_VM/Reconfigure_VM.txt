@@ -1,0 +1,97 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        reconfigure_vm
+Default Tags
+Test Template     Reconfigure VM Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    VMName            VMHost        CPUCount    CPUMax      CPUReserve    Memory      AdvancedOptions
+Reconfiguring CPU count and Memory for a VM
+                      [Tags]    main_scenarios
+                      OK        ${Source_VM}      ${VM_Host}    2           ${EMPTY}    ${EMPTY}      512         -Description Reconfigured
+
+Reconfiguring CPU Max and CPU Reserve for a VM and Asserting VM Host and Advanced Option as Optional Field
+                      OK        ${Source_VM}      ${EMPTY}      ${EMPTY}    50          50            ${EMPTY}    ${EMPTY}
+
+Reconfiguring VM while providing all reconfiguring parameters
+                      OK        ${Source_VM}      ${EMPTY}      3           60          30            256         ${EMPTY}
+
+Asserting behavior when no Reconfiguring parameter is provided
+                      OK        ${Source_VM}      ${VM_Host}    ${EMPTY}    ${EMPTY}    ${EMPTY}      ${EMPTY}    ${EMPTY}
+
+Assertion With Non-Existing VM Name
+                      NOK       Invalid           ${VM_Host}    3           60          30            256         ${EMPTY}
+
+Assertion when Multiple VM's are found for provided VM Name
+                      NOK       VM*               ${EMPTY}      3           60          30            256         ${EMPTY}
+
+Assertion With Non-Existing VM Host
+                      NOK       ${Source_VM}      Invalid       3           60          30            256         ${EMPTY}
+
+Assertion With Invalid CPU Count
+                      NOK       ${Source_VM}      ${EMPTY}      Invalid     60          30            256         ${EMPTY}
+
+Assertion With Invalid CPU Max
+                      NOK       ${Source_VM}      ${EMPTY}      3           Invalid     30            256         ${EMPTY}
+
+Assertion With Invalid CPU Reserve
+                      NOK       ${Source_VM}      ${EMPTY}      3           60          Invalid       256         ${EMPTY}
+
+Assertion With Invalid Memory
+                      NOK       ${Source_VM}      ${EMPTY}      3           60          30            Invalid     ${EMPTY}
+
+Assertion for Non-Existing Advanced Parameter
+                      NOK       ${Source_VM}      ${VM_Host}    3           60          30            256         Invalid
+
+Assertion for VM Name as Mandatory Field
+                      NOK       ${EMPTY}          ${VM_Host}    3           60          30            256         -Description Reconfigured
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "Reconfigure VM"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Reconfigure VM Template
+    [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost}    ${CPUCount}    ${CPUMax}    ${CPUReserve}
+    ...    ${Memory}    ${AdvancedOptions}
+    [Documentation]    This test is used to reconfigure VM.
+    ...    -Precondition: To run this test suite, SCVMM credentials should be known to user
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
+    ...    -${VMName}: This field specifies Name of the Virtual Machine which you want to reconfigure
+    ...    -${VMHost}: This field Specify Name of the VM Host in which VM is located.
+    ...    -${CPUCount}: This field specifies number of CPUs to be set.
+    ...    -${CPUMax}:This field specifies maximum percentage of the total resources of a single CPU on the host that can be used.
+    ...    -${CPUReserve}:This field specifies minimum percentage of the resources of a single CPU on the host to allocate to this virtual machine
+    ...    -${Memory}:This field specifies the amount of RAM on the host that is allocated to this VM.
+    ...    -${AdvancedOptions}: This field specifies advanced parameter for Set-SCVirtualMachine command.
+    Generate String
+    Action Create    ${_RECONFIGURE_VM_ACTION}
+    Common Inputs
+    Run Keyword If    '${VMName}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMNAME#    ${VMName}
+    Run Keyword If    '${VMHost}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMHOST#    ${VMHost}
+    Run Keyword If    '${CPUCount}' == 'Invalid'    Action Set    &UC4RB_VMM_CPU_COUNT#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_CPU_COUNT#    ${CPUCount}
+    Run Keyword If    '${CPUMax}' == 'Invalid'    Action Set    &UC4RB_VMM_CPU_MAX#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_CPU_MAX#    ${CPUMax}
+    Run Keyword If    '${CPUReserve}' == 'Invalid'    Action Set    &UC4RB_VMM_CPU_RESV#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_CPU_RESV#    ${CPUReserve}
+    Run Keyword If    '${Memory}' == 'Invalid'    Action Set    &UC4RB_VMM_MEMORY#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_MEMORY#    ${Memory}
+    Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+
+Teardown
+    Log    *******End Test "Reconfigure VM"*******
