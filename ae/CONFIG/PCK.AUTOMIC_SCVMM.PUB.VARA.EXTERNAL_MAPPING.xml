@@ -24,6 +24,8 @@
 </ATTR_VARA>
 <VARA state="1">
 <Variables>
+<row Name=" PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_HOST_VOLUMES/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name=" PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_HOST_VOLUMES/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.CREATE_CHECKPOINT/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.CREATE_CHECKPOINT/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.DISCARD_SAVED_STATE_VM/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
@@ -48,6 +50,8 @@
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.NEW_VM_FROM_TEMPLATE/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.NEW_VM_FROM_VM/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.NEW_VM_FROM_VM/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.RECONFIGURE_VM/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.RECONFIGURE_VM/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.REMOVE_CHECKPOINTS/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.REMOVE_CHECKPOINTS/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.REMOVE_LATEST_CHECKPOINT/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
