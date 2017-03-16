@@ -156,40 +156,34 @@
 !-------------------------------------RECONFIGURE VMM commandlets---------------------------------------------------------------------------------------------------
 
 ! Reconfigure VM command
-: SET &UC4RB_VMM_RECONFIGURE_VM_CMD# = "Set-SCVirtualMachine "
-: SET &FLAG# = 0
+: SET &UC4RB_VMM_RECONFIGURE_VM_CMD# = ""
 ! CPU Count
 : IF &UC4RB_VMM_CPU_COUNT# <> ""
 :   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_CPU_COUNT#
 :   SET &UC4RB_VMM_RECONFIGURE_VM_CMD# = STR_CAT(&UC4RB_VMM_RECONFIGURE_VM_CMD#, " -CPUCount  '&UC4RB_VMM_ESC_VALUE#' ")
-:   SET &FLAG# = 1
 : ENDIF
 
 ! CPU Max (%)
 : IF &UC4RB_VMM_CPU_MAX# <> ""
 :   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_CPU_MAX#
 :   SET &UC4RB_VMM_RECONFIGURE_VM_CMD# = STR_CAT(&UC4RB_VMM_RECONFIGURE_VM_CMD#, " -CPUMaximumPercent  '&UC4RB_VMM_ESC_VALUE#' ")
-:   SET &FLAG# = 1
 : ENDIF
 
 ! CPU Reserve (%)
 : IF &UC4RB_VMM_CPU_RESV# <> ""
 :   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_CPU_RESV#
 :   SET &UC4RB_VMM_RECONFIGURE_VM_CMD# = STR_CAT(&UC4RB_VMM_RECONFIGURE_VM_CMD#, " -CPUReserve  '&UC4RB_VMM_ESC_VALUE#' ")
-:   SET &FLAG# = 1
 : ENDIF
 
 ! Memory (MB)
 : IF &UC4RB_VMM_MEMORY# <> ""
 :   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_MEMORY#
 :   SET &UC4RB_VMM_RECONFIGURE_VM_CMD# = STR_CAT(&UC4RB_VMM_RECONFIGURE_VM_CMD#, " -MemoryMB  '&UC4RB_VMM_ESC_VALUE#' ")
-:   SET &FLAG# = 1
 : ENDIF
 
 ! Advance Option
 : IF &UC4RB_VMM_ADV_OPTIONS# <> ""
 :   SET &UC4RB_VMM_RECONFIGURE_VM_CMD# = STR_CAT(&UC4RB_VMM_RECONFIGURE_VM_CMD#, &UC4RB_VMM_ADV_OPTIONS#)
-:   SET &FLAG# = 1
 : ENDIF
 
 !-------------------------------------Commandlet execution-----------------------------------------------------------------------------------------------------
@@ -201,19 +195,16 @@ try{
 
 !     Get the VM
 :    INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.GET_VM_CMDLET
-:    IF &FLAG# EQ 1
-       WRITE-HOST "INFO: &UC4RB_VMM_RECONFIGURE_VM_CMD# -VM $vm"
-       $configObj = &UC4RB_VMM_RECONFIGURE_VM_CMD# -VM $vm
-       WRITE-HOST "INFO: Initial configuration of VM &UC4RB_VMM_VMNAME#"
-       $vm | select CPUCount, CPUMax, CPUReserve, Memory
-       WRITE-HOST "INFO: Updated configuration of VM &UC4RB_VMM_VMNAME#"
-       $configObj | select CPUCount, CPUMax, CPUReserve, Memory
-:    ELSE
-      $configObj = $vm
-:    ENDIF
-
-     $configObj
-
+     WRITE-HOST "INFO: Current Configuration"
+     $vm | select CPUCount, CPUMax, CPUReserve, Memory
+:    IF &UC4RB_VMM_RECONFIGURE_VM_CMD# <> ""
+:        SET &UC4RB_VMM_RECONFIGURE_VM_CMD# = STR_CAT("Set-SCVirtualMachine ",&UC4RB_VMM_RECONFIGURE_VM_CMD#)
+         WRITE-HOST "INFO: &UC4RB_VMM_RECONFIGURE_VM_CMD# -VM $vm"
+         $vm=&UC4RB_VMM_RECONFIGURE_VM_CMD# -VM $vm
+         WRITE-HOST "INFO: Updated Configuration"
+         $vm | select CPUCount, CPUMax, CPUReserve, Memory
+:     ENDIF
+      $vm
 }catch{
   $errors=1
   WRITE-HOST "ERROR: $($error[0].Exception.Message)"

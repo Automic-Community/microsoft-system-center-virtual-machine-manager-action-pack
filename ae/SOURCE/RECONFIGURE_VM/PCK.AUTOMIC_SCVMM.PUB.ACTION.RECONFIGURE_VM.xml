@@ -65,7 +65,6 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM"/>
 <UC4RB_VMM_CPU_COUNTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_CPU_COUNT#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM"/>
 <UC4RB_VMM_CPU_MAXs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_CPU_MAX#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM"/>
@@ -137,7 +136,6 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM"/>
 <UC4RB_VMM_CPU_COUNTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_CPU_COUNT#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM"/>
 <UC4RB_VMM_CPU_MAXs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_CPU_MAX#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM"/>
@@ -195,7 +193,6 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM"/>
 <UC4RB_VMM_CPU_COUNTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_CPU_COUNT#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM"/>
 <UC4RB_VMM_CPU_MAXs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_CPU_MAX#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.RECONFIGURE_VM"/>
@@ -330,7 +327,7 @@ This action is used to change the properties of  provided virtual machine manage
    	              - VMware ESX. Up to four CPUs per virtual machine for any supported guest operating system, except for a virtual machine that runs Windows NT 4.0, which supports one CPU.
 		      - Citrix XenServer. Up to eight CPUs per virtual machine, depending on guest operating system.
 * CPU Max (%)       : Specify maximum percentage of the total resources of a single CPU on the host that can be used. E.g. 70
-* CPU Reserve (%)   : Specify minimum percentage of the resources of a single CPU on the host to allocate to this virtual machine. The percentage of CPU capacity that is available to the virtual machine is never less than this 				      percentage. E.g. 70
+* CPU Reserve (%)   : Specify minimum percentage of the resources of a single CPU on the host to allocate to this virtual machine. The percentage of CPU capacity that is available to the virtual machine is never less than this percentage. E.g. 70
 * Memory (MB)       : Specify the amount of RAM on the host that is allocated to this VM. The default value is 512 MB. E.g. 513
 		      The maximum host memory assignable to a virtual machine is:
 			- Hyper-V: Up to 65536 MB RAM per virtual machine.
