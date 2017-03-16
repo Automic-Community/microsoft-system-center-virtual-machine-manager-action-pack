@@ -189,7 +189,7 @@
 ! Advance Option
 : IF &UC4RB_VMM_ADV_OPTIONS# <> ""
 :   SET &UC4RB_VMM_RECONFIGURE_VM_CMD# = STR_CAT(&UC4RB_VMM_RECONFIGURE_VM_CMD#, &UC4RB_VMM_ADV_OPTIONS#)
-:   SET &FLAG# = true
+:   SET &FLAG# = 1
 : ENDIF
 
 !-------------------------------------Commandlet execution-----------------------------------------------------------------------------------------------------
