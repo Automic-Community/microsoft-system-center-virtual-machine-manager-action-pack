@@ -324,7 +324,7 @@ This action is used to change the properties of  provided virtual machine manage
 * Username	    : Username which will be used for this connection. E.g. domain\username
 * Password	    : Password to your username.
 * VM Name	    : Specify name of the virtual machine to discard its saved state. E.g. myvm
-* VM Host	    : Specify Name of the VM Host in which VM is located. E.g myhost.com
+* VM Host	    : Specify name of the virtual machine that you want to reconfigure. E.g myhost.com
 * CPU Count	    : Specify number of CPUs to be set. E.g. 3
 		      - Hyper-V. Up to four CPUs per virtual machine, depending on guest operating system.
    	              - VMware ESX. Up to four CPUs per virtual machine for any supported guest operating system, except for a virtual machine that runs Windows NT 4.0, which supports one CPU.
@@ -337,7 +337,7 @@ This action is used to change the properties of  provided virtual machine manage
 			- VMware ESX Server 3.0.x: Up to 16384 MB RAM per virtual machine.
 			- VMware ESX Server 3.5.x: Up to 65532 MB RAM per virtual machine.
 			- Citrix XenServer: Up to 32265 MB RAM per virtual machine.
-* Advanced Options  : Specify parameters you want to include into command. E.g. -RunAsynchronously
+* Advanced Options  : Specify parameters you want to include into command. E.g. -Enabled $True -EnableBackup $True
 * Overwrite Agent   : Overwrites the default agent
 * Overwrite Login   : Overwrites the default login
 
