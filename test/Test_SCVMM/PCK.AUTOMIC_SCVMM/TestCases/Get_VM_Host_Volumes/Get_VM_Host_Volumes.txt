@@ -17,8 +17,8 @@ Get VM Host Volumes With Valid Inputs With Providing Advanced Options
                       [Tags]    main_scenarios
                       OK        ${VM_Host}        -Name test
 
-Get VM Host Volumes With Valid Inputs Without Providing VM Host Name and Advanced Options
-                      OK        ${EMPTY}          ${EMPTY}
+Get VM Host Volumes With Valid Inputs Without Providing Advanced Options
+                      OK        ${VM_Host}        ${EMPTY}
 
 Assertion With Non-Existing VM Host Name
                       [Tags]    main_scenarios
