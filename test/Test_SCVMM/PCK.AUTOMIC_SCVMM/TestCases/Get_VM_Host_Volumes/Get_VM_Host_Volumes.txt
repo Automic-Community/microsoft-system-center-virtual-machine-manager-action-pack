@@ -1,0 +1,67 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        get_vm_host_volumes
+Default Tags
+Test Template     Get VM Host Volumes Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    VMHostName        AdvancedOptions
+Get VM Host Volumes With Valid Inputs With Providing Advanced Options
+                      [Tags]    main_scenarios
+                      OK        ${VM_Host}        -Name test
+
+Get VM Host Volumes With Valid Inputs Without Providing Advanced Options
+                      OK        ${VM_Host}        ${EMPTY}
+
+Assertion With Non-Existing VM Host Name
+                      [Tags]    main_scenarios
+                      NOK       Invalid           ${EMPTY}
+
+Assert Behaviour when more than one VM Host exists for provided VM Host Name
+                      NOK       SVIEVMW*          ${EMPTY}
+
+Assertion for Non-Existing Advanced Parameter
+                      [Tags]
+                      NOK       ${VM_Host}        Invalid
+
+Assert VM Host Name as Mandatory Field
+                      [Tags]
+                      NOK       ${EMPTY}          -Name test
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "Get VM Host Volumes"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Get VM Host Volumes Template
+    [Arguments]    ${OK_NOK}    ${VMHostName}    ${AdvancedOptions}
+    [Documentation]    This test is used to get vm host volumes for the given VM host name.
+    ...    -Precondition: To run this test suite, SCVMM credentials should be known to user.
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
+    ...    -${VMHostName}: This field Specify name of the VM Host to get volumes.
+    ...    -${AdvancedOptions}: This field specifies advanced parameter for get vm host volumes command.
+    Generate String
+    Action Create    ${_GET_VM_HOST_VOLUMES_ACTION}
+    Common Inputs
+    Run Keyword If    '${VM_Host}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMHOST#    ${VM_Host}
+    Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Count Value Should Be    &UC4RB_VMM_HOST_VOL_NAME_COUNT#
+    Run Keyword If    '${OK_NOK}' == 'OK' and '&UC4RB_VMM_HOST_VOL_NAME_COUNT#' > '0'    Action Object Variable Should Be Found    &UC4RB_VMM_HOST_VOL_NAME#
+    Run Keyword If    '${OK_NOK}' == 'NOK'    Action Object Variable Count Value Should Not Be Found    &UC4RB_VMM_HOST_VOL_NAME_COUNT#
+    Run Keyword If    '${OK_NOK}' == 'NOK'    Action Object Variable Should Not Be Found    &UC4RB_VMM_HOST_VOL_NAME#
+
+Teardown
+    Log    *******End Test "Get VM Host Volumes"*******
