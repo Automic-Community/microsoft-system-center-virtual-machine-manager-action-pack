@@ -135,12 +135,9 @@
 
 !-------------------------------------Create VMM commandlets---------------------------------------------------------------------------------------------------
 
-! Get VM host Command
-: SET &UC4RB_VMM_GET_VM_HOST_CMD# = "Get-SCVMHost "
-
 !   VM host name
 :   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMHOST#
-:   SET &UC4RB_VMM_GET_VM_HOST_CMD# = STR_CAT(&UC4RB_VMM_GET_VM_HOST_CMD#, " -ComputerName  '&UC4RB_VMM_ESC_VALUE#' ")
+:   SET &UC4RB_VMM_GET_VM_HOST_CMD# = "Get-SCVMHost -ComputerName  '&UC4RB_VMM_ESC_VALUE#' "
 
 ! Get host volume Command
 : SET &UC4RB_VMM_GET_VM_HOST_VOL_CMD# = "Get-SCStorageVolume "
@@ -174,8 +171,6 @@ try{
    Write-Host "ERROR: $($error[0].Exception.Message)"
 }
 
-
-
 !-----------------------------------Error Handling-------------------------------------------------------------------------------------
 !Status messages
 : SET &UC4RB_LOGGING_INFO# = "******** GET VM HOST VOLUMES ACTION EXECUTED SUCCESSFULLY ********"
@@ -202,7 +197,6 @@ try{
 :         IF &KEY# = "UC4RB_VMM_HOST_VOL_NAME"
 :          SET &UC4RB_VMM_HOST_VOL_NAME# = "&VALUE#"
 :         ENDIF
-
 :  ENDPROCESS
 :  CLOSE_PROCESS &HND#
 :ELSE

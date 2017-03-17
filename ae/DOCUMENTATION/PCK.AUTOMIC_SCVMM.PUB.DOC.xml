@@ -94,7 +94,7 @@ Following actions are supported for SCVMM:
 * Action Description: This action is used to change the properties of  provided virtual machine managed by Virtual Machine Manager (VMM).
 
 * Action Name:  PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_HOST_VOLUMES
-* Action Description: This action is used to get one or more storage volume objects from a host managed by Virtual Machine Manager (VMM).]]></DOC>
+* Action Description: This action is used to get one or more storage volume objects for the specified VM Host managed by Virtual Machine Manager (VMM).]]></DOC>
 </DOCU_Docu>
 </DOCU>
 </uc-export>
