@@ -65,7 +65,6 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE"/>
 <UC4RB_VMM_PATHs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PATH#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE"/>
 <UC4RB_VMM_TEMP_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_TEMP_NAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE"/>
@@ -135,7 +134,6 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE"/>
 <UC4RB_VMM_PATHs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PATH#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE"/>
 <UC4RB_VMM_TEMP_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_TEMP_NAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE"/>
@@ -191,7 +189,6 @@
 <node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE"/>
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE"/>
 <UC4RB_VMM_PATHs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PATH#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE"/>
 <UC4RB_VMM_TEMP_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_TEMP_NAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_VM_FROM_TEMPLATE"/>

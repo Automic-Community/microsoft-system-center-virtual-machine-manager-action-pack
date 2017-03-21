@@ -66,6 +66,8 @@
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM">
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM"/>
+<UC4RB_VMM_PER_COUNTERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PER_COUNTER#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM">CPUUsage</UC4RB_VMM_PER_COUNTERs.00>
+<UC4RB_VMM_PERIODs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PERIOD#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM">Hour</UC4RB_VMM_PERIODs.00>
 <UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM"/>
 <UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM"/>
 </PRPTBOX>
@@ -133,6 +135,8 @@
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM">
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM"/>
+<UC4RB_VMM_PER_COUNTERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PER_COUNTER#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM">CPUUsage</UC4RB_VMM_PER_COUNTERs.00>
+<UC4RB_VMM_PERIODs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PERIOD#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM">Hour</UC4RB_VMM_PERIODs.00>
 <UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM"/>
 <UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM"/>
 </PRPTBOX>
@@ -186,6 +190,8 @@
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM">
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM"/>
+<UC4RB_VMM_PER_COUNTERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PER_COUNTER#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM">CPUUsage</UC4RB_VMM_PER_COUNTERs.00>
+<UC4RB_VMM_PERIODs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_PERIOD#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM">Hour</UC4RB_VMM_PERIODs.00>
 <UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM"/>
 <UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM"/>
 </PRPTBOX>

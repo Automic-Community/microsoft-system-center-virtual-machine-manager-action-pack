@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBP AllowExternal="1" name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_NAMES">
+<JOBP AllowExternal="1" name="PCK.AUTOMIC_SCVMM.PUB.ACTION.SUSPEND_VM">
 <XHEADER state="1">
-<Title>Get VM Name(s)</Title>
+<Title>Suspend VM</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -62,12 +62,12 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES"/>
-<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES"/>
-<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM">
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM"/>
+<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM"/>
+<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -89,7 +89,7 @@
 </PostCon>
 </postconditions>
 </task>
-<task Alias="GET_VM_NAMES" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_SCVMM.PRV.JOB.GET_VM_NAMES@WINDOWS" ParentAlias="" ParentObject="" Row="1" Text2="">
+<task Alias="SUSPEND_VM" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_SCVMM.PRV.JOB.SUSPEND_VM@WINDOWS" ParentAlias="" ParentObject="" Row="1" Text2="">
 <checkpoint RollbackFlag="1" RunPerPatch="0" RunPerTarget="0" TcpADays="0" TcpATime="00:00" TcpATimeTZ="" TcpExecute="" TcpOn="0" promptatgen="0" showprompt="0"/>
 <after ActFlg="1" AtimOn="0" ErlstStDays="0" ErlstStTime="00:00" ErlstStTimeTZ="" HoldFlg="0"/>
 <when ChkWhenExec="0" LtstEnd="0" LtstEndDays="0" LtstEndTime="00:00" LtstSt="0" LtstStDays="0" LtstStTime="00:00" LtstTimeTZ="" WCTypeAND="1" WCTypeOR="0" WElseA="1" WElseH="0" WElseS="0" WElseX="0" WhenExecute="" WtimOn="0"/>
@@ -129,12 +129,12 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES"/>
-<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES"/>
-<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM">
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM"/>
+<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM"/>
+<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -182,12 +182,12 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES"/>
-<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES"/>
-<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM">
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM"/>
+<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM"/>
+<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -259,9 +259,9 @@
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS" prptmode="1"/>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES" parent="PRPTS" type="PROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES" ontop="1">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_NAMES" prptmode="1"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" parent="PRPTS" type="PROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" ontop="1">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.SUSPEND_VM" prptmode="1"/>
 </PROMPTSET>
 </node>
 <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PRPTS" type="PROMPTSET">
@@ -295,33 +295,34 @@
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[= Action name =
-PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_NAMES
+PCK.AUTOMIC_SCVMM.PUB.ACTION.SUSPEND_VM
 
 = General description =
-This action is used to retrieve VM(s) and publish VM(s) name separated by comma along with the total count. 
+This action is used to suspend  a virtual machine deployed on hosts managed by Virtual Machine Manager (VMM). Suspending a virtual machine pauses activity on that virtual machine and returns its object in a paused state.
 
-Note:
-* All the VM(s) in VMM database are fetched when VM name filter and VM Host are not provided. 
-* All VM(s) which belong to VM Host are fetched if VM host is provided and VM Name Filter is left blank. 
+=NOTE=
+*If the machine is not in running state, then it cannot be suspended.
+*The VM switches to 'Pause' state on host enabled with hyper-v, else the VM will go into "Saved State"
+
+= Failure Conditions =
+* This action will fail if multiple or no VMs exist for inputs provided.
 
 = Inputs =
-* Server IP or DNS   : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.45
-* Port		     : Specify port which will be used for connection. Default value is 8100.
-* Username	     : Username which will be used for this connection. E.g. domain\username
-* Password	     : Password to your username.
-* VM Name Filter     : Specify full name or include wild-card to filter VMs. E.g. Dev* lists all VMs with name starting with Dev.
-* VM Host	     : Specify the host on which VM is located. E.g myhost.com
-* Advanced Options   : Specify parameters you want to include into command. E.g. -OnBehalfOfUser
-* Overwrite Agent    : Overwrites the default agent
-* Overwrite Login    : Overwrites the default login
+* Server IP or DNS  : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.45
+* Port		    : Specify port which will be used for connection. Default value is 8100.
+* Username	    : Username which will be used for this connection. E.g. domain\username
+* Password	    : Password to your username.
+* VM Name	    : Specify name of the virtual machine you want to suspend .E.g. myvm
+* VM Host	    : Specify Name of the VM Host in which VM is located .E.g myhost.com
+* Advanced Options  : Specify parameters you want to include into command. E.g. -RunAsynchronously
+* Overwrite Agent   : Overwrites the default agent
+* Overwrite Login   : Overwrites the default login
 
 = Behaviour =
 (none)
 
 =Return Value=
-* UC4RB_VMM_VM_NAME  : This variable will hold the VM name(s) separated by "," character.
-* UC4RB_VMM_VM_COUNT : This variable will contain count of VM(s).
-
+(none)
 
 = Outputs =
 * Return code is 0 in case of success.
@@ -331,7 +332,8 @@ Note:
 Logs will be displayed in the AE report.
 
 = Example =
-(none)]]></DOC>
+(none)
+]]></DOC>
 </DOCU_Docu>
 </JOBP>
 </uc-export>

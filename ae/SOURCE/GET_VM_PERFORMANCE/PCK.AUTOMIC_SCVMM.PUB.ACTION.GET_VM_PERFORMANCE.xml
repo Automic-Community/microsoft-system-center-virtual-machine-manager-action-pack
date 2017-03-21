@@ -305,7 +305,6 @@ PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_PERFORMANCE
 
 = General description =
 This action is used to get the performance data for the specified virtual machine or all virtual machines in SCVMM.
-If 
 
 =NOTE=
 Specify * in VM Name, if you want to get the performance metrics for all the VMs. Period and VM Host field will be ignored and the default Period in this case will be Hour.

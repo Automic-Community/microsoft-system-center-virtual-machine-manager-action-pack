@@ -306,10 +306,10 @@
 PCK.AUTOMIC_SCVMM.PUB.ACTION.NEW_VM_FROM_VM
 
 = General description =
-This action is used to create a virtual machine from an existing stopped virtual machine deployed on a host. User can also provide additional parameters like Id in "Advance options" field. The Virtual Machine details would be printed in the Job report.
+This action is used to create a virtual machine from an existing stopped virtual machine deployed on a host. User can also provide additional parameters like Id in "Advanced options" field. The Virtual Machine details would be printed in the Job report.
 
 NOTE: 
-* Virtual machine must be in Poweroff or Stored state in order to be cloned.
+* Virtual machine must be in Poweroff state in order to be cloned.
 * When you deploy a new virtual machine to a Hyper-V host, you can specify a location for the virtual machine files, or use the default path of <C>:\ProgramData\Microsoft\Windows\Hyper-V.
 
 = Failure Conditions =
@@ -332,7 +332,7 @@ NOTE:
 					UNC: "\\VMHostServer\MyVMs\*VM*"
 * VM Host	    : Specify the host on which you want to create the new virtual machine.VMM supports Hyper-V hosts, VMware ESX hosts, and Citrix XenServer hosts.	
 * VM Name to use    : Existing VM Name which will be used for creating new one.    
-* Advance Options   : Specify parameters you want to include into command. E.g. -MemoryMB 6553 -CPUCount 4
+* Advanced Options   : Specify parameters you want to include into command. E.g. -MemoryMB 6553 -CPUCount 4
 * Overwrite Agent   : Overwrites the default agent
 * Overwrite Login   : Overwrites the default login
 
