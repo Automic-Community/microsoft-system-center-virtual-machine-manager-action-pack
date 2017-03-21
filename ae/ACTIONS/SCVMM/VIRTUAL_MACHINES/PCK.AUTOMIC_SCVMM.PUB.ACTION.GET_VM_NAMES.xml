@@ -298,7 +298,10 @@
 PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_NAMES
 
 = General description =
-This action is used to retrieve VM(s) and publish VM(s) name separated by comma along with the total count. All the VM(s) in VMM database are fetched when VM name filter and VM Host are not provided. The virtual machine details would be printed in the Job report.
+This action is used to retrieve VM(s) and publish VM(s) name separated by comma along with the total count. 
+Note:
+* All the VM(s) in VMM database are fetched when VM name filter and VM Host are not provided. 
+* All VM(s) which belong to VM Host are fetched if VM host is provided and VM Name Filter is left blank. 
 
 = Failure Conditions =
 * This action will fails if no VM is found for the provided VM name Filter.
