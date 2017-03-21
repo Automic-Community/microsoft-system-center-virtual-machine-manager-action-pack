@@ -303,9 +303,6 @@ Note:
 * All the VM(s) in VMM database are fetched when VM name filter and VM Host are not provided. 
 * All VM(s) which belong to VM Host are fetched if VM host is provided and VM Name Filter is left blank. 
 
-= Failure Conditions =
-* This action will fails if no VM is found for the provided VM name Filter.
-
 = Inputs =
 * Server IP or DNS   : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.45
 * Port		     : Specify port which will be used for connection. Default value is 8100.
