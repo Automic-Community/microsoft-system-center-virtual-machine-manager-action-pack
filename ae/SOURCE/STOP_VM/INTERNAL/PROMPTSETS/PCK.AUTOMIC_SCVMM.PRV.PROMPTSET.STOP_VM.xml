@@ -66,7 +66,7 @@
         <entry name="resetable">1</entry>
       <entry name="initvalue"/>
          </properties>
-    </text><dynradiogroup alt="1" enabled="1" fill="b" focus="" id="UC4RB_VMM_FORCEs.00" nl="1" text="Force" tooltip="Specify whether command will be forced." required="0">
+    </text><dynradiogroup alt="1" enabled="1" fill="b" focus="" id="UC4RB_VMM_FORCEs.00" nl="1" text="Force" tooltip="Specify yes, if you want to stop the VM forcefully." required="0">
       <properties>
         <entry listparam="C,N" name="reference" reftype="STATIC">PCK.ITPA_SHARED.PRV.VARA.YES_NO</entry>
         <entry name="xmlkey"/>
@@ -76,12 +76,12 @@
         <entry name="id">UC4RB_VMM_FORCEs.00</entry>
         <entry name="enabled">0</entry>
         <entry name="focus">0</entry>
-        <entry name="tooltip">Specify whether command will be forced.</entry>
+        <entry name="tooltip">Specify yes, if you want to stop the VM forcefully.</entry>
         <entry name="modifiable">1</entry>
         <entry name="customfield"/>
       <entry name="initvalue"/>
          </properties>
-    </dynradiogroup><dynradiogroup alt="1" enabled="1" fill="b" focus="" id="UC4RB_VMM_SAVE_STATEs.00" nl="1" text="Save state" tooltip="Specify whether you want to save the state." required="0">
+    </dynradiogroup><dynradiogroup alt="1" enabled="1" fill="b" focus="" id="UC4RB_VMM_SAVE_STATEs.00" nl="1" text="Save state" tooltip="Specify yes, if you want to save the state while stopping the VM." required="0">
       <properties>
         <entry listparam="C,N" name="reference" reftype="STATIC">PCK.ITPA_SHARED.PRV.VARA.YES_NO</entry>
         <entry name="xmlkey"/>
@@ -91,7 +91,7 @@
         <entry name="id">UC4RB_VMM_SAVE_STATEs.00</entry>
         <entry name="enabled">0</entry>
         <entry name="focus">0</entry>
-        <entry name="tooltip">Specify whether you want to save the state.</entry>
+        <entry name="tooltip">Specify yes, if you want to save the state while stopping the VM.</entry>
         <entry name="modifiable">1</entry>
         <entry name="customfield"/>
       <entry name="initvalue"/>

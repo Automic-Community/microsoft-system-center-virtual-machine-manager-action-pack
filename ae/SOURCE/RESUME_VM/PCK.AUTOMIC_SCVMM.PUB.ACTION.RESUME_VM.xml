@@ -298,7 +298,7 @@
 PCK.AUTOMIC_SCVMM.PUB.ACTION.RESUME_VM
 
 = General description =
-This action is used to resume the given VM from paused state.
+This action is used to resume the given VM from paused state. This action does not do anything if specified VM status is Running.
 
 =NOTE=
 * If the machine is not in the paused state, then it cannot be resumed.

@@ -327,9 +327,9 @@ This action will fail if
 * Target VM Host    	: Specify the host to which VM will be moved. E.g. targetvmhost
 * Destination Path  	: Specify destination path to move VM. E.g. C:\VirtualMachinePath
 * Advanced Options  	: Specify parameters you want to include into command. E.g. -RunAsynchronously
-* Move Options		: Please specify whether you would like to
-- Discard saved state: discard the saved state associated with VM after move operation is complete.
-- Start VM after successful completion of move.
+* Move Options		: Specify following options while moving vm.
+                          - Discard saved state: discard the saved state associated with VM after move operation is complete.
+                          - Start VM after successful completion of move.
 * Overwrite Agent   : Overwrites the default agent
 * Overwrite Login   : Overwrites the default login
 

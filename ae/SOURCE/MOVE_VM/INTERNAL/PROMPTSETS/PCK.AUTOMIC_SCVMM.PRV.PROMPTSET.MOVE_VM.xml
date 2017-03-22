@@ -122,7 +122,28 @@
         <entry name="resetable">1</entry>
       <entry name="initvalue"/>
          </properties>
-    </text><text alt="1" enabled="1" fill="b" focus="0" id="UC4RB_VMM_ADV_OPTIONSs.00" inputassistance="0" len="" multiline="0" multilineIcon="0" nl="1" regex="" required="0" separator=";" showaspassword="0" text="Advanced Options" tooltip="Specify parameters you want to include into command. E.g. -RunAsynchronously" upper="0"><oninputassistant><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptvalue|@value"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptinputassistance" target="_chainwindow"/></oninputassistant>
+    </text><dyncheckgroup alt="1" enabled="1" fill="b" focus="0" id="UC4RB_VMM_MOVE_OPTIONSs.00" mode="list" nl="1" required="0" separator=";" text="Move Options" tooltip="Specify options while moving VM.">
+      <properties>
+        <entry listparam="C,N" name="reference" reftype="STATIC">PCK.AUTOMIC_SCVMM.PRV.VARA.MOVE_VM_OPTIONS</entry>
+        <entry name="xmlkey"/>
+        <entry name="xmlpath"/>
+        <entry name="text">Move Options</entry>
+        <entry alias="multiselect" name="cgmultiselect">1</entry>
+        <entry alias="separator" name="cgseparator">;</entry>
+        <entry alias="haslist" name="cghaslist">0</entry>
+        <entry name="quotes"/>
+        <entry name="id">UC4RB_VMM_MOVE_OPTIONSs.00</entry>
+        <entry name="enabled">0</entry>
+        <entry name="required">0</entry>
+        <entry name="focus">0</entry>
+        <entry name="tooltip">Specify options while moving VM.</entry>
+        <entry name="modifiable">1</entry>
+        <entry name="customfield"/>
+        <entry name="onchangereset"/>
+        <entry name="resetable">1</entry>
+      <entry name="initvalue"/>
+         </properties>
+    </dyncheckgroup><text alt="1" enabled="1" fill="b" focus="0" id="UC4RB_VMM_ADV_OPTIONSs.00" inputassistance="0" len="" multiline="0" multilineIcon="0" nl="1" regex="" required="0" separator=";" showaspassword="0" text="Advanced Options" tooltip="Specify parameters you want to include into command. E.g. -RunAsynchronously" upper="0"><oninputassistant><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptvalue|@value"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptinputassistance" target="_chainwindow"/></oninputassistant>
          
       <properties>
         <entry listparam="C,N" name="reference" reftype="STATIC">UC_DATATYPE_STRING</entry>
@@ -150,31 +171,10 @@
         <entry name="resetable">1</entry>
       <entry name="initvalue"/>
          </properties>
-    </text><dyncheckgroup alt="1" enabled="1" fill="b" focus="0" id="UC4RB_VMM_MOVE_OPTIONSs.00" mode="list" nl="1" required="0" separator=";" text="Move Options" tooltip="Please check the following options">
-      <properties>
-        <entry listparam="C,N" name="reference" reftype="STATIC">PCK.AUTOMIC_SCVMM.PRV.VARA.MOVE_VM_OPTIONS</entry>
-        <entry name="xmlkey"/>
-        <entry name="xmlpath"/>
-        <entry name="text">Move Options</entry>
-        <entry alias="multiselect" name="cgmultiselect">1</entry>
-        <entry alias="separator" name="cgseparator">;</entry>
-        <entry alias="haslist" name="cghaslist">0</entry>
-        <entry name="quotes"/>
-        <entry name="id">UC4RB_VMM_MOVE_OPTIONSs.00</entry>
-        <entry name="enabled">0</entry>
-        <entry name="required">0</entry>
-        <entry name="focus">0</entry>
-        <entry name="tooltip">Please check the following options</entry>
-        <entry name="modifiable">1</entry>
-        <entry name="customfield"/>
-        <entry name="onchangereset"/>
-        <entry name="resetable">1</entry>
-      <entry name="initvalue"/>
-         </properties>
-    </dyncheckgroup></readpanel></dialog>]]></XUIEDITOR>
+    </text></readpanel></dialog>]]></XUIEDITOR>
 </PROMPTSETXUI>
 <PROMPTSETDATA state="1">
-<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_VMM_VMNAMEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_VMNAME#" ReadFromTable="OPSE"></UC4RB_VMM_VMNAMEs.00><UC4RB_VMM_VMHOSTs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_VMHOST#" ReadFromTable="OPSE"></UC4RB_VMM_VMHOSTs.00><UC4RB_VMM_DEST_VMHOSTs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_DEST_VMHOST#" ReadFromTable="OPSE"></UC4RB_VMM_DEST_VMHOSTs.00><UC4RB_VMM_DEST_PATHs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_DEST_PATH#" ReadFromTable="OPSE"></UC4RB_VMM_DEST_PATHs.00><UC4RB_VMM_ADV_OPTIONSs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_ADV_OPTIONS#" ReadFromTable="OPSE"></UC4RB_VMM_ADV_OPTIONSs.00><UC4RB_VMM_MOVE_OPTIONSs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_MOVE_OPTIONS#" ReadFromTable="OPSE"></UC4RB_VMM_MOVE_OPTIONSs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
+<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_VMM_VMNAMEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_VMNAME#" ReadFromTable="OPSE"></UC4RB_VMM_VMNAMEs.00><UC4RB_VMM_VMHOSTs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_VMHOST#" ReadFromTable="OPSE"></UC4RB_VMM_VMHOSTs.00><UC4RB_VMM_DEST_VMHOSTs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_DEST_VMHOST#" ReadFromTable="OPSE"></UC4RB_VMM_DEST_VMHOSTs.00><UC4RB_VMM_DEST_PATHs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_DEST_PATH#" ReadFromTable="OPSE"></UC4RB_VMM_DEST_PATHs.00><UC4RB_VMM_MOVE_OPTIONSs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_MOVE_OPTIONS#" ReadFromTable="OPSE"></UC4RB_VMM_MOVE_OPTIONSs.00><UC4RB_VMM_ADV_OPTIONSs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_ADV_OPTIONS#" ReadFromTable="OPSE"></UC4RB_VMM_ADV_OPTIONSs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
 </PROMPTSETDATA>
 <DOCU_Docu state="1" type="text">
 <DOC/>

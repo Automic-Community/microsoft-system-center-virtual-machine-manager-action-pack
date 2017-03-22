@@ -319,8 +319,8 @@ If VM is in state PowerOff then its state cannot be saved ,it needs to be in Run
 * Password	    : Password to your username.
 * VM Name	    : Specify name of the virtual machine you want to stop.E.g. myvm
 * VM Host	    : Specify the host on which you want to stop VM.E.g myhost.com
-* Force             : Specify whether command will be forced.Default is NO
-* Save State        : Specify whether if you want to save the state.Default is NO
+* Force             : Specify yes, if you want to stop the VM forcefully. Force stops virtual machine in the same manner as turning off a computer. Default is NO.
+* Save State        : Specify yes, if you want to save the state while stopping the VM. Default is NO.
 * Advanced Options   : Specify parameters you want to include into command. E.g. -RunAsynchronously
 * Overwrite Agent   : Overwrites the default agent
 * Overwrite Login   : Overwrites the default login
@@ -328,7 +328,7 @@ If VM is in state PowerOff then its state cannot be saved ,it needs to be in Run
 = Behaviour =
 (none)
 
-=Return Value=
+= Return Value =
 (none)
 
 = Outputs =

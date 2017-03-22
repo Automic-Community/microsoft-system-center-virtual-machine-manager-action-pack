@@ -313,7 +313,7 @@ This action is used to remove checkpoints of a Virtual Machine. Checkpoints crea
 * Password	     : Password to your username.
 * VM Name	     : Specify Name of the Virtual Machine to which checkpoints belong. E.g. myVM
 * VM Host	     : Specify the host on which VM is located. E.g myhost.com
-* Days		     : Remove all checkpoints older than a given day. E.g. if given day is 5 then 5, 6, 7, 8+ days old checkpoints are removed.
+* Days		     : Remove all checkpoints older than a given day. E.g. if given day is 5 and current date is 10-MAR-2017, then all the checkpoints will be removed which were added on or before 05-MAR-2017. Current date will be taken from the system where corresponding agent is running. If you specify 0, it will remove all the checkpoints.
 * Advanced Options   : Specify parameters you want to include into command. E.g. -MostRecent
 * Overwrite Agent    : Overwrites the default agent
 * Overwrite Login    : Overwrites the default login

@@ -148,23 +148,24 @@
 :   SET &UC4RB_VMM_GET_VM_NAMES_CMD# = STR_CAT(&UC4RB_VMM_GET_VM_NAMES_CMD#, " -Name  '&UC4RB_VMM_ESC_VALUE#' ")
 : ENDIF
 
-! VM Host
-: IF &UC4RB_VMM_VMHOST# <> ""
-:   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMHOST#
-:   SET &UC4RB_VMM_GET_VM_NAMES_CMD# = STR_CAT(&UC4RB_VMM_GET_VM_NAMES_CMD#, " -VMHost  '&UC4RB_VMM_ESC_VALUE#' ")
-: ENDIF
-
 ! Advanced options
 : IF &UC4RB_VMM_ADV_OPTIONS# <> ""
 :   SET &UC4RB_VMM_GET_VM_NAMES_CMD# = STR_CAT(&UC4RB_VMM_GET_VM_NAMES_CMD#, " &UC4RB_VMM_ADV_OPTIONS# ")
 : ENDIF
+
+! VM Host
+: IF &UC4RB_VMM_VMHOST# <> ""
+:   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMHOST#
+:   SET &UC4RB_VMM_GET_VM_NAMES_CMD# = STR_CAT("Get-SCVMHost -ComputerName '&UC4RB_VMM_ESC_VALUE#' | ",&UC4RB_VMM_GET_VM_NAMES_CMD#)
+: ENDIF
+
 !-------------------------------------Commandlet execution-----------------------------------------------------------------------------------------------------
 
 try{
 ! Connect to VMM Server
 : INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.CONNECT_CMDLET
     WRITE-HOST "INFO: Get vm names cmdlet - &UC4RB_VMM_GET_VM_NAMES_CMD# "
-    $vms = @(&UC4RB_VMM_GET_VM_NAMES_CMD#)
+    $vms=&UC4RB_VMM_GET_VM_NAMES_CMD#
     if($vms.Length -eq 0){
         WRITE-HOST "INFO: No VM found for provided VM Name Filter :&UC4RB_VMM_VMNAME#"
       }else{
@@ -193,7 +194,10 @@ try{
 <LoginFsc/>
 </OUTPUTSCAN>
 <POST_SCRIPT mode="1" replacementmode="1" state="1">
-<OSCRI><![CDATA[:SET &STATUS# = GET_UC_OBJECT_STATUS(,,"RETCODE")
+<OSCRI><![CDATA[:SET &UC4RB_VMM_VM_COUNT# = ""
+:SET &UC4RB_VMM_VM_NAME# = ""
+
+:SET &STATUS# = GET_UC_OBJECT_STATUS(,,"RETCODE")
 :IF &STATUS# EQ 0
 :    SET &HND# = PREP_PROCESS_REPORT("JOBS",, "REP","UC4RB_VMM_VM*","COL=DELIMITER", 'DELIMITER=*::=*')
 :    PROCESS &HND#
@@ -205,15 +209,12 @@ try{
 :         IF &KEY# = "UC4RB_VMM_VM_NAME"
 :          SET &UC4RB_VMM_VM_NAME# = "&VALUE#"
 :         ENDIF
-
-:  ENDPROCESS
+:    ENDPROCESS
 :  CLOSE_PROCESS &HND#
-:ELSE
-:    SET &UC4RB_VMM_VM_COUNT# = ""
-:    SET &UC4RB_VMM_VM_NAME# = ""
 :ENDIF
-:    PUBLISH &UC4RB_VMM_VM_COUNT#,,"WORKFLOW"
-:    PUBLISH &UC4RB_VMM_VM_NAME#,,"WORKFLOW"
+
+:PUBLISH &UC4RB_VMM_VM_COUNT#,,"WORKFLOW"
+:PUBLISH &UC4RB_VMM_VM_NAME#,,"WORKFLOW"
 ]]></OSCRI>
 </POST_SCRIPT>
 <DOCU_Docu state="1" type="text">

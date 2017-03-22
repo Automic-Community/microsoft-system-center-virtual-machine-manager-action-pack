@@ -94,7 +94,7 @@
 <task Alias="RESTORE_CHECKPOINT" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_SCVMM.PRV.JOB.RESTORE_CHECKPOINT@WINDOWS" ParentAlias="" ParentObject="" Row="1" Text2="">
 <checkpoint RollbackFlag="1" RunPerPatch="0" RunPerTarget="0" TcpADays="0" TcpATime="00:00" TcpATimeTZ="" TcpExecute="" TcpOn="0" promptatgen="0" showprompt="0"/>
 <after ActFlg="1" AtimOn="0" ErlstStDays="0" ErlstStTime="00:00" ErlstStTimeTZ="" HoldFlg="0"/>
-<when ChkWhenExec="0" LtstEnd="0" LtstEndDays="0" LtstEndTime="00:00" LtstSt="0" LtstStDays="0" LtstStTime="00:00" LtstTimeTZ="" WCTypeAND="1" WCTypeOR="0" WElseA="0" WElseH="1" WElseS="0" WElseX="0" WhenExecute="" WtimOn="0"/>
+<when ChkWhenExec="0" LtstEnd="0" LtstEndDays="0" LtstEndTime="00:00" LtstSt="0" LtstStDays="0" LtstStTime="00:00" LtstTimeTZ="" WCTypeAND="1" WCTypeOR="0" WElseA="1" WElseH="0" WElseS="0" WElseX="0" WhenExecute="" WtimOn="0"/>
 <preconditions>
 <PreCon>
 <conditions id="CONDITIONS"/>
@@ -304,10 +304,10 @@
 PCK.AUTOMIC_SCVMM.PUB.ACTION.RESTORE_CHECKPOINT
 
 = General description =
-This action is used to restore VM to a given checkpoint. If both nth checkpoint and checkpoint name is provided then it will ignore the nth checkpoint and will try to restore the VM with given checkpoint name..
- You can also provide a description and additional parameters to the "Advanced Options" field.
+This action is used to restore VM to a given checkpoint. If both nth checkpoint and checkpoint name is provided then it will ignore the nth checkpoint and will try to restore the VM with given checkpoint name.
+You can also provide additional parameters to the "Advanced Options" field.
 
-The details of Checkpoint including Checkpoint ID and Name would be printed in the Job report. 
+The details of Checkpoint including Checkpoint ID and Name would be printed in the Job report.
 
 = Failure Conditions =
 * This action will fail if multiple or no VMs exist for inputs provided.

@@ -310,7 +310,7 @@ This action is used to create a virtual machine from an existing stopped virtual
 
 NOTE: 
 * Virtual machine must be in Poweroff state in order to be cloned.
-* When you deploy a new virtual machine to a Hyper-V host, you can specify a location for the virtual machine files, or use the default path of <C>:\ProgramData\Microsoft\Windows\Hyper-V.
+* When you deploy a new virtual machine to a Hyper-V host, you can specify a location for the virtual machine files, or use the default path of C:\ProgramData\Microsoft\Windows\Hyper-V.
 
 = Failure Conditions =
 * This action will fail if multiple or no VMs exist for inputs provided.
@@ -328,8 +328,7 @@ NOTE:
 			    		VMware ESX:  "[storage1]\MyVMwareFolderForVMs\MyVM.vmx"
 			    		Citrix XenServer:  "Local storage[99b6212f-b63d-c676-25f9-d6c460992de7]"
 					Wildcards are supported for Get- cmdlets and when you specify the UNC path.
-					Example format:
-					UNC: "\\VMHostServer\MyVMs\*VM*"
+					Example format:  UNC: "\\VMHostServer\MyVMs\*VM*"
 * VM Host	    : Specify the host on which you want to create the new virtual machine.VMM supports Hyper-V hosts, VMware ESX hosts, and Citrix XenServer hosts.	
 * VM Name to use    : Existing VM Name which will be used for creating new one.    
 * Advanced Options   : Specify parameters you want to include into command. E.g. -MemoryMB 6553 -CPUCount 4
@@ -339,7 +338,7 @@ NOTE:
 = Behaviour =
 (none)
 
-=Return Value=
+= Return Value =
 (none)
 
 = Outputs =
