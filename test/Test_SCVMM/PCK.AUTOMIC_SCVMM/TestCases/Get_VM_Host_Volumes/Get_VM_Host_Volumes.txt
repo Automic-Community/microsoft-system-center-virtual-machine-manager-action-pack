@@ -51,8 +51,8 @@ Get VM Host Volumes Template
     Generate String
     Action Create    ${_GET_VM_HOST_VOLUMES_ACTION}
     Common Inputs
-    Run Keyword If    '${VM_Host}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_VMM_VMHOST#    ${VM_Host}
+    Run Keyword If    '${VMHostName}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMHOST#    ${VMHostName}
     Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
     Set Overwrite Agent
