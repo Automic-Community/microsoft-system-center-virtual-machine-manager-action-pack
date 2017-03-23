@@ -311,7 +311,7 @@ The details of Checkpoint including Checkpoint ID and Name would be printed in t
 
 = Failure Conditions =
 * This action will fail if multiple or no VMs exist for inputs provided.
-* If number of checkpoints available are not greater then Nth checkpoint.
+* If available checkpoints are less than Nth checkpoint.
 
 = Inputs =
 * Server IP or DNS      : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.45

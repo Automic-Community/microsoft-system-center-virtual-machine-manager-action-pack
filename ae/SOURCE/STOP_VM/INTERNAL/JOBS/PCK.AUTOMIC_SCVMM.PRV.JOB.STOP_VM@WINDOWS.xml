@@ -176,14 +176,12 @@ try{
 !     Get the VM
 :     INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.GET_VM_CMDLET
 
-       $op = &OPTION_COUNT#
-       if( $vm.Status -eq "PowerOff" ) {
+      if( $vm.Status -eq "PowerOff" ) {
            WRITE-HOST "INFO: VM already stopped."
-       }else{
+      }else{
            WRITE-HOST "INFO: Stop VM cmdlet :: &UC4RB_VMM_STOPVM_CMD# -VM $($vm.name)"
            &UC4RB_VMM_STOPVM_CMD# -VM $vm
-       }
-
+      }
 }catch{
   $errors=1
   WRITE-HOST "ERROR: $($error[0].Exception.Message)"
