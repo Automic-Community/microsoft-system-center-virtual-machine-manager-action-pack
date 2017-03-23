@@ -1,0 +1,71 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        get_host_groups
+Default Tags
+Test Template     Get Host Groups Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    HostGroupName         ParentHostGroupName          AdvancedOptions
+Get Host Groups With Valid Inputs With Providing Host Group Name ,Parent Host Group Name and Advanced Options
+                      [Tags]    main_scenarios
+                      OK        ${Host_Group_Name}    ${Parent_Host_Group_Name}    ${Advance_opt}
+
+Get Host Groups With Valid Inputs Without Providing Parent HostGroup Name & Advanced Options
+                      OK        ${Host_Group_Name}    ${EMPTY}                     ${EMPTY}
+
+Get Host Groups With Valid Inputs Without Providing Host Group Name & Advanced Options
+                      OK        ${EMPTY}              ${Parent_Host_Group_Name}    ${EMPTY}
+
+Assertion With Host Group Name & Parent Host Group Name As Optional Field
+                      OK        ${EMPTY}              ${EMPTY}                     ${EMPTY}
+
+Assertion With Non-Existing Host Group Name
+                      OK        Invalid               ${Parent_Host_Group_Name}    ${EMPTY}
+
+Assertion With Non-Existing Parent Host GroupName
+                      [Tags]    main_scenarios
+                      NOK       ${Host_Group_Name}    Invalid                      ${EMPTY}
+
+Assertion for Non-Existing Advanced Parameter
+                      NOK       ${Host_Group_Name}    ${Parent_Host_Group_Name}    Invalid
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "GET HOST GROUPS"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Get Host Groups Template
+    [Arguments]    ${OK_NOK}    ${HostGroupName }    ${ParentHostGroupName}    ${AdvancedOptions}
+    [Documentation]    This test is used to get the one or more host groups from a SCVMM database.
+    ...    -Precondition: To run this test suite, SCVMM credentials should be known to user. For valid test using advanced option, id should be known.
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
+    ...    -${HostGroupName}: This field specifies Name of the Host Group to get details.
+    ...    -${ParentHostGroupName}: This field specify name of the parent Host group in which Host group is located.
+    ...    -${AdvancedOptions}: This field specifies advanced parameter for get host groups command.
+    Generate String
+    Action Create    ${_GET_HOST_GROUPS_ACTION}
+    Common Inputs
+    Run Keyword If    '${HostGroupName}' == 'Invalid'    Action Set    &UC4RB_VMM_HOST_GROUP#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_HOST_GROUP#    ${HostGroupName}
+    Run Keyword If    '${ParentHostGroupName}' == 'Invalid'    Action Set    &UC4RB_VMM_PARENT_HOST_GROUP#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_PARENT_HOST_GROUP#    ${ParentHostGroupName}
+    Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Should Be Found    &UC4RB_VMM_HOST_GROUP_COUNT#
+    Run Keyword If    '${OK_NOK}' == 'OK' and '&UC4RB_VMM_HOST_GROUP_COUNT#' > '0'    Action Object Variable Should Be Found    &UC4RB_VMM_HOST_GROUPS#
+    Run Keyword If    '${OK_NOK}' == 'NOK'    Action Object Variable Should Not Be Found    &UC4RB_VMM_HOST_GROUP_COUNT#
+    Run Keyword If    '${OK_NOK}' == 'NOK'    Action Object Variable Should Not Be Found    &UC4RB_VMM_HOST_GROUPS#
+
+Teardown
+    Log    *******End Test "GET HOST GROUPS"*******
