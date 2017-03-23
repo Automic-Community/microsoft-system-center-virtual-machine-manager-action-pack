@@ -58,9 +58,9 @@ Get VM Host Volumes Template
     Set Overwrite Agent
     Action Execute
     Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
-    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Count Value Should Be    &UC4RB_VMM_HOST_VOL_NAME_COUNT#
-    Run Keyword If    '${OK_NOK}' == 'OK' and '&UC4RB_VMM_HOST_VOL_NAME_COUNT#' > '0'    Action Object Variable Should Be Found    &UC4RB_VMM_HOST_VOL_NAME#
-    Run Keyword If    '${OK_NOK}' == 'NOK'    Action Object Variable Count Value Should Not Be Found    &UC4RB_VMM_HOST_VOL_NAME_COUNT#
+    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Should Be Found    &UC4RB_VMM_HOST_VOL_COUNT#
+    Run Keyword If    '${OK_NOK}' == 'OK' and '&UC4RB_VMM_HOST_VOL_COUNT#' > '0'    Action Object Variable Should Be Found    &UC4RB_VMM_HOST_VOL_NAME#
+    Run Keyword If    '${OK_NOK}' == 'NOK'    Action Object Variable Should Not Be Found    &UC4RB_VMM_HOST_VOL_COUNT#
     Run Keyword If    '${OK_NOK}' == 'NOK'    Action Object Variable Should Not Be Found    &UC4RB_VMM_HOST_VOL_NAME#
 
 Teardown

@@ -28,10 +28,6 @@ Get VM while providing VM Host only
 Assertion when no VM should be found
                       OK        SpartanAutomic*    ${EMPTY}      ${EMPTY}
 
-Assertion With Non-Existing VM Name
-                      [Tags]    main_scenarios
-                      NOK       Invalid            ${VM_Host}    ${EMPTY}
-
 Assertion With Non-Existing VM Host
                       NOK       ${Source_VM}       Invalid       ${EMPTY}
 
