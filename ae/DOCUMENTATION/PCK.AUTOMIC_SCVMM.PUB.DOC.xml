@@ -9,19 +9,27 @@
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[About Automic's SCVMM Package
 ================================
-System Center Virtual Machine Manager (SCVMM) forms part of Microsoft's System Center line of virtual machine management and reporting tools, alongside previously established tools such as System Center Operations Manager and System Center Configuration Manager. SCVMM is designed for management of large numbers of Virtual Servers based on Microsoft Virtual Server and Hyper-V, and was released for enterprise customers in October 2007. A standalone version for small and medium business customers is available.
-System Center Virtual Machine Manager enables increased physical server utilization by making possible simple and fast consolidation on virtual infrastructure. This is supported by consolidation candidate identification, fast Physical-to-Virtual (P2V) migration and intelligent workload placement based on performance data and user defined business policies (NOTE: P2V Migration capability was removed in SCVMM 2012r2). VMM enables rapid provisioning of new virtual machines by the administrator and end users using a self-service provisioning tool. Finally, VMM provides the central management console to manage all the building blocks of a virtualized data center
+System Center Virtual Machine Manager (SCVMM) forms part of Microsoft's System Center line of virtual machine management and reporting tools, alongside previously established tools such as System Center Operations Manager and System Center Configuration Manager. SCVMM is designed for management of large numbers of Virtual Servers based on Microsoft Virtual Server and Hyper-V.
+System Center Virtual Machine Manager enables increased physical server utilization by making possible simple and fast consolidation on virtual infrastructure. VMM enables rapid provisioning of new virtual machines by the administrator and end users using a self-service provisioning tool. VMM also provides the central management console to manage all the building blocks of a virtualized data center.
+
+This Action pack can be used to automate the provisioning of Virtual Machines in SCVMM environment such as follows.
+* Virtual Machine Poer Management. E.g. Start/Stop/Resume VM.
+* Clone VM, Create VM from template, ReConfigure VM.
+* Add Virtual Drive to VM
+* Retrieve VM(s)/VM Details/VM Performance Data.
+* Managing Checkpoints of VM
 
 =Supported versions=
 System Center Virtual Machine Manager 2012
 
 =Limitations=
-* We are only supporting Windows Agent with PowerShell.
 
 =Setup=
-* Oracle JDK 1.7 or higher must be installed on Agent OS and "java" must be set as executable on the same.
-* The Agent should be able to access the VMM servers in order to make HTTP requests.
-* Powershell version 4 or higher with Module VirtualMachineManager should be present on Agent machine.
+* Oracle JRE 1.7 or higher must be installed on Agent OS and "java" must be set as executable on the same.
+* The Agent should be able to access the VMM server.
+* Powershell version 4 or higher. 
+* Module VirtualMachineManager should be present on Agent machine which comes with VMM admin console installation.
+* If you are using PowerShell version 5 or above on agent OS, then this action pack will require Automic ITPA Shared package version 1.2.2 or higher.
 * Connection details to the VMM server.
 
 =Actions=

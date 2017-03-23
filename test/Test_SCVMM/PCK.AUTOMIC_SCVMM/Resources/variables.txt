@@ -29,3 +29,6 @@ ${Disk_Size}      40
 #------Move VM----------------------------------------------------------------------------------------------------
 ${VM_TO_MOVE}     CSGOClone
 ${Source_VM_Host}    svievmw04.sbb01.spoc.global
+#------Get Host Groups----------------------------------------------------------------------------------------------------
+${Host_Group_Name}    UlansHostGroup
+${Parent_Host_Group_Name}    All Hosts

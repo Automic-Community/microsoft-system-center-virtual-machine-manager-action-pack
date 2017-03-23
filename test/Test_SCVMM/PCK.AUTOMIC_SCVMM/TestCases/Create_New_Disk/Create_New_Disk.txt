@@ -97,7 +97,7 @@ Create New Disk Template
     ...    &UC4RB_VMM_DISK_SIZE#    ${DiskSize}
     Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
-    Action Set    &UC4RB_VMM_USAGE#    ${Action}
+    Action Set    &UC4RB_VMM_DISK_USAGE#    ${Action}
     Set Overwrite Agent
     Action Execute
     Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure

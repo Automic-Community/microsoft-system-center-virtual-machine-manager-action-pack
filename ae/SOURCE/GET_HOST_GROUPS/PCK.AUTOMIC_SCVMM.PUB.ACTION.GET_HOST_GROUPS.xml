@@ -306,7 +306,7 @@ This action is used to get one or more host groups from a SCVMM database.
 * Username	          : Username which will be used for this connection. E.g. domain\username
 * Password	          : Password to your username.
 * Host Group Name         : Specify Name of the Host Group to get details. E.g. myHost* lists all host groups with name starting with myHost.
-* Parent Host Group Name  : Specify the host on which VM is located. E.g parentHostGroup
+* Parent Host Group Name  : Specify the parent host group in which host group is located. E.g parentHostGroup
 * Advanced Options        : Specify parameters you want to include into command. E.g. -ID c11861f4-aeac-4726-ace3-6990388bb4b6
 * Overwrite Agent         : Overwrites the default agent
 * Overwrite Login         : Overwrites the default login

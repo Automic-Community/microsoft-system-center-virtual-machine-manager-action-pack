@@ -170,13 +170,29 @@ try{
 :   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.GET_VM_CMDLET
 
     Write-Host "INFO:" &UC4RB_VMM_GETPERFROM_CMD# -VM $vm
-    &UC4RB_VMM_GETPERFROM_CMD# -VM $vm
+    $vmperf=&UC4RB_VMM_GETPERFROM_CMD# -VM $vm
 : ELSE
     Write-Host "INFO:" &UC4RB_VMM_GETPERFROM_CMD#
-    &UC4RB_VMM_GETPERFROM_CMD#
+    $vmperf=&UC4RB_VMM_GETPERFROM_CMD#
 : ENDIF
-
-
+Write-Host "Total VM Found : $($vmperf.length)"
+! vm name, metrics and counter
+$vmperf | foreach-object {
+   Write-Host "Performance History for VM: $($_.Name)"
+   $perfdata=$_.performancehistory
+   $samples=$_.timesamples
+   if( $perfdata.length -eq 0 ) {
+      Write-Host "No Performance data available."
+   } else {
+      Write-Host "Time Sample($($_.TimeFrame))          :  $($_.PerformanceCounter)"
+      For ($i=$perfdata.length; $i -ge 1; $i--) {
+         $temp1=$samples[$i-1].tostring('dd-MMM-yyyy HH:mm:ss tt')
+         $temp2=$perfdata[$i-1]
+         Write-Host "$temp1 :    $temp2"
+      }
+   }
+   Write-Host '========================================'
+}
 }catch{
   $errors=1
   Write-Host "ERROR: $($error[0].Exception.Message)"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBP AllowExternal="1" name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_DISK_DRIVE">
+<JOBP AllowExternal="1" name="PCK.AUTOMIC_SCVMM.PUB.ACTION.REMOVE_LATEST_CHECKPOINT">
 <XHEADER state="1">
-<Title>Get virtual disk drive(s)</Title>
+<Title>Remove latest checkpoint</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -62,12 +62,12 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE"/>
-<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE"/>
-<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT">
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT"/>
+<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT"/>
+<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -89,7 +89,7 @@
 </PostCon>
 </postconditions>
 </task>
-<task Alias="GET_DISK_DRIVE" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_SCVMM.PRV.JOB.GET_DISK_DRIVE@WINDOWS" ParentAlias="" ParentObject="" Row="1" Text2="">
+<task Alias="REMOVE_LATEST_CHECKPOINT" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_SCVMM.PRV.JOB.REMOVE_LATEST_CHECKPOINT@WINDOWS" ParentAlias="" ParentObject="" Row="1" Text2="">
 <checkpoint RollbackFlag="1" RunPerPatch="0" RunPerTarget="0" TcpADays="0" TcpATime="00:00" TcpATimeTZ="" TcpExecute="" TcpOn="0" promptatgen="0" showprompt="0"/>
 <after ActFlg="1" AtimOn="0" ErlstStDays="0" ErlstStTime="00:00" ErlstStTimeTZ="" HoldFlg="0"/>
 <when ChkWhenExec="0" LtstEnd="0" LtstEndDays="0" LtstEndTime="00:00" LtstSt="0" LtstStDays="0" LtstStTime="00:00" LtstTimeTZ="" WCTypeAND="1" WCTypeOR="0" WElseA="1" WElseH="0" WElseS="0" WElseX="0" WhenExecute="" WtimOn="0"/>
@@ -129,12 +129,12 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE"/>
-<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE"/>
-<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT">
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT"/>
+<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT"/>
+<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -182,12 +182,12 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE">
-<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE"/>
-<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE"/>
-<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT">
+<UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT"/>
+<UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT"/>
+<UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -259,9 +259,9 @@
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PUB.PROMPTSET.CONNECTION_DETAILS" prptmode="1"/>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" parent="PRPTS" type="PROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" ontop="1">
-<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_DISK_DRIVE" prptmode="1"/>
+<node content="1" id="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT" name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT" parent="PRPTS" type="PROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT" ontop="1">
+<PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.REMOVE_LATEST_CHECKPOINT" prptmode="1"/>
 </PROMPTSET>
 </node>
 <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PRPTS" type="PROMPTSET">
@@ -295,30 +295,22 @@
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[= Action name =
-PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_DISK_DRIVE
+PCK.AUTOMIC_SCVMM.PUB.ACTION.REMOVE_LATEST_CHECKPOINT
 
 = General description =
-This action is used to get a virtual disk drive object(s). The virtual disk drive object(s) details would be printed in the Job report. You can also provide additional parameters to the "Advanced Options" field.
-
-If you don't specify VM name, it will get all virtual disk drive object(s). VM Host will be ignored in this case.
-
-This action supports following use cases.
-1. You can get virtual disk drive objects(s) for the specified VM.
-2. You can get all virtual disk drive objects(s). 
-
+This action is used to remove latest checkpoint of a Virtual Machine. 
+Action succeeds if VM does not have any checkpoint.
 = Failure Conditions =
-* This action will fail if multiple or no VMs found for provided VM Name.
-
-Note: If VM Name and VM Host not provided, all disk drives will be fetched.
+* This action will fail if multiple or no VMs exist for inputs provided.
 
 = Inputs =
 * Server IP or DNS   : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.45
 * Port		     : Specify port which will be used for connection. Default value is 8100.
 * Username	     : Username which will be used for this connection. E.g. domain\username
 * Password	     : Password to your username.
-* VM Name	     : Specify Name of the Virtual Machine from which you want to get disk list. E.g. myvm
-* VM Host	     : Specify the host on which VM is located. E.g myhost.com. This input will be ignored if you don't specify the VM Name.
-* Advanced Options   : Specify parameters you want to include into command. E.g. -OnBehalfOfUser
+* VM Name	     : Specify Name of the Virtual Machine to which checkpoint is belonging. E.g. myVM
+* VM Host	     : Specify name of the VM Host on which VMs are located. E.g myhost.com
+* Advanced Options   : Specify parameters you want to include into command. E.g. -RunAsynchronously
 * Overwrite Agent    : Overwrites the default agent
 * Overwrite Login    : Overwrites the default login
 
@@ -326,9 +318,7 @@ Note: If VM Name and VM Host not provided, all disk drives will be fetched.
 (none)
 
 =Return Value=
-* UC4RB_VMM_DISK_NAME : This variable will hold the disk name(s) separated by "," character.
-* UC4RB_VMM_DISK_COUNT : This variable will contain count of disk.
-
+(none)
 
 = Outputs =
 * Return code is 0 in case of success.

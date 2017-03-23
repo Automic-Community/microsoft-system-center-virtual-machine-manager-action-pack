@@ -305,6 +305,7 @@ PCK.AUTOMIC_SCVMM.PUB.ACTION.STOP_VM
 
 = General description =
 This action is used to stop a virtual machine based on name and VM Host on which it is hosted. If VM Host is not provided then VM would be searched in whole VMM server based on VM name. User can also provide additional parameters like Id in "Advance options" field. The Virtual Machine details will be printed in the Job report.
+This action doesnot do anything if VM status is already powerOff.
 
 =NOTE=
 If VM is in state PowerOff then its state cannot be saved ,it needs to be in Running state for its state to be saved.
@@ -319,8 +320,8 @@ If VM is in state PowerOff then its state cannot be saved ,it needs to be in Run
 * Password	    : Password to your username.
 * VM Name	    : Specify name of the virtual machine you want to stop.E.g. myvm
 * VM Host	    : Specify the host on which you want to stop VM.E.g myhost.com
-* Force             : Specify whether command will be forced.Default is NO
-* Save State        : Specify whether if you want to save the state.Default is NO
+* Force             : Specify yes, if you want to stop the VM forcefully. Force stops virtual machine in the same manner as turning off a computer. Default is NO.
+* Save State        : Specify yes, if you want to save the state while stopping the VM. Default is NO.
 * Advanced Options   : Specify parameters you want to include into command. E.g. -RunAsynchronously
 * Overwrite Agent   : Overwrites the default agent
 * Overwrite Login   : Overwrites the default login
@@ -328,7 +329,7 @@ If VM is in state PowerOff then its state cannot be saved ,it needs to be in Run
 = Behaviour =
 (none)
 
-=Return Value=
+= Return Value =
 (none)
 
 = Outputs =

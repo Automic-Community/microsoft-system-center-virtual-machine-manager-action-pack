@@ -51,7 +51,7 @@ Startup
     Connect AE
 
 New VM From Template Template
-    [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost} ${Path} ${TemplateName}    ${AdvancedOptions}
+    [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost}    ${Path}    ${TemplateName}    ${AdvancedOptions}
     [Documentation]    This test is used to create the given VM form template.
     ...    -Precondition: To run this test suite, SCVMM credentials,Template name,VM host & Destination Path should be known to user
     ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.

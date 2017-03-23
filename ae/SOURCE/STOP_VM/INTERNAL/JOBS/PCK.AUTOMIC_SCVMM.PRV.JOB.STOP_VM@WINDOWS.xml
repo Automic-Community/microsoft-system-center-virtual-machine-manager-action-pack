@@ -146,7 +146,6 @@
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
 
 !-------------------------------------Stop VMM commandlets---------------------------------------------------------------------------------------------------
-: SET &OPTION_COUNT# = 0
 
 ! Stop VM command
 : SET &UC4RB_VMM_STOPVM_CMD# = "Stop-SCVirtualMachine "
@@ -154,13 +153,11 @@
 ! FORCE
 : IF &UC4RB_VMM_FORCE# <> "NO"
 :   SET &UC4RB_VMM_STOPVM_CMD# = STR_CAT(&UC4RB_VMM_STOPVM_CMD#, " -Force ")
-:   SET &OPTION_COUNT# = 1
 : ENDIF
 
 ! Save State
 : IF &UC4RB_VMM_SAVE_STATE# <> "NO"
 :   SET &UC4RB_VMM_STOPVM_CMD# = STR_CAT(&UC4RB_VMM_STOPVM_CMD#, " -SaveState ")
-:   SET &OPTION_COUNT# = 1
 : ENDIF
 
 
@@ -179,14 +176,12 @@ try{
 !     Get the VM
 :     INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.GET_VM_CMDLET
 
-       $op = &OPTION_COUNT#
-       if(($vm.Status -eq "PowerOff") -and (0 -eq $op)){
+      if( $vm.Status -eq "PowerOff" ) {
            WRITE-HOST "INFO: VM already stopped."
-       }else{
+      }else{
            WRITE-HOST "INFO: Stop VM cmdlet :: &UC4RB_VMM_STOPVM_CMD# -VM $($vm.name)"
            &UC4RB_VMM_STOPVM_CMD# -VM $vm
-       }
-
+      }
 }catch{
   $errors=1
   WRITE-HOST "ERROR: $($error[0].Exception.Message)"

@@ -66,10 +66,8 @@
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM">
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
-<UC4RB_VMM_DEST_HOSTs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DEST_HOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
 <UC4RB_VMM_DEST_PATHs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DEST_PATH#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
 <UC4RB_VMM_DEST_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DEST_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
-<UC4RB_VMM_HOSTs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_HOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
 <UC4RB_VMM_MOVE_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_MOVE_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
 <UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
 <UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
@@ -138,10 +136,8 @@
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM">
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
-<UC4RB_VMM_DEST_HOSTs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DEST_HOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
 <UC4RB_VMM_DEST_PATHs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DEST_PATH#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
 <UC4RB_VMM_DEST_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DEST_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
-<UC4RB_VMM_HOSTs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_HOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
 <UC4RB_VMM_MOVE_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_MOVE_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
 <UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
 <UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
@@ -196,10 +192,8 @@
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM">
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
-<UC4RB_VMM_DEST_HOSTs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DEST_HOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
 <UC4RB_VMM_DEST_PATHs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DEST_PATH#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
 <UC4RB_VMM_DEST_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_DEST_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
-<UC4RB_VMM_HOSTs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_HOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
 <UC4RB_VMM_MOVE_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_MOVE_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
 <UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
 <UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.MOVE_VM"/>
@@ -333,9 +327,9 @@ This action will fail if
 * Target VM Host    	: Specify the host to which VM will be moved. E.g. targetvmhost
 * Destination Path  	: Specify destination path to move VM. E.g. C:\VirtualMachinePath
 * Advanced Options  	: Specify parameters you want to include into command. E.g. -RunAsynchronously
-* Move Options		: Please specify whether you would like to
-- Discard saved state: discard the saved state associated with VM after move operation is complete.
-- Start VM after successful completion of move.
+* Move Options		: Specify following options while moving vm.
+                          - Discard saved state: discard the saved state associated with VM after move operation is complete.
+                          - Start VM after successful completion of move.
 * Overwrite Agent   : Overwrites the default agent
 * Overwrite Login   : Overwrites the default login
 

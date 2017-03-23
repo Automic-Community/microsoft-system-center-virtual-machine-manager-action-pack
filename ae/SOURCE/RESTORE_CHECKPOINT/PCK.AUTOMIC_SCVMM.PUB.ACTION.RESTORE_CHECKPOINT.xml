@@ -94,7 +94,7 @@
 <task Alias="RESTORE_CHECKPOINT" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_SCVMM.PRV.JOB.RESTORE_CHECKPOINT@WINDOWS" ParentAlias="" ParentObject="" Row="1" Text2="">
 <checkpoint RollbackFlag="1" RunPerPatch="0" RunPerTarget="0" TcpADays="0" TcpATime="00:00" TcpATimeTZ="" TcpExecute="" TcpOn="0" promptatgen="0" showprompt="0"/>
 <after ActFlg="1" AtimOn="0" ErlstStDays="0" ErlstStTime="00:00" ErlstStTimeTZ="" HoldFlg="0"/>
-<when ChkWhenExec="0" LtstEnd="0" LtstEndDays="0" LtstEndTime="00:00" LtstSt="0" LtstStDays="0" LtstStTime="00:00" LtstTimeTZ="" WCTypeAND="1" WCTypeOR="0" WElseA="0" WElseH="1" WElseS="0" WElseX="0" WhenExecute="" WtimOn="0"/>
+<when ChkWhenExec="0" LtstEnd="0" LtstEndDays="0" LtstEndTime="00:00" LtstSt="0" LtstStDays="0" LtstStTime="00:00" LtstTimeTZ="" WCTypeAND="1" WCTypeOR="0" WElseA="1" WElseH="0" WElseS="0" WElseX="0" WhenExecute="" WtimOn="0"/>
 <preconditions>
 <PreCon>
 <conditions id="CONDITIONS"/>
@@ -304,15 +304,14 @@
 PCK.AUTOMIC_SCVMM.PUB.ACTION.RESTORE_CHECKPOINT
 
 = General description =
-This action is used to restore VM to a given checkpoint. If both nth checkpoint and checkpoint name is provided then it will ignore the nth checkpoint and will try to restore the VM with given checkpoint name..
- You can also provide a description and additional parameters to the "Advanced Options" field.
+This action is used to restore VM to a given checkpoint. If both nth checkpoint and checkpoint name is provided then it will ignore the nth checkpoint and will try to restore the VM with given checkpoint name.
+You can also provide additional parameters to the "Advanced Options" field.
 
-The details of Checkpoint including Checkpoint ID and Name would be printed in the Job report. 
+The details of Checkpoint including Checkpoint ID and Name would be printed in the Job report.
 
 = Failure Conditions =
 * This action will fail if multiple or no VMs exist for inputs provided.
-* If number of checkpoints available are not greater then Nth checkpoint +1
-
+* If available checkpoints are less than Nth checkpoint.
 
 = Inputs =
 * Server IP or DNS      : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.45
@@ -321,7 +320,8 @@ The details of Checkpoint including Checkpoint ID and Name would be printed in t
 * Password	        : Password to your username.
 * VM Name	        : Specify Name of the Virtual Machine for which you want to create a checkpoint. E.g. myvm.com
 * VM Host	        : Specify the host from which you want to get VM. E.g. myhost.com.
-* Nth Latest Checkpoint : Specify Nth checkpoint from the latest to store. 0 means most recent. Eg. 2 restores second-from-last created checkpoint .
+* Nth Latest Checkpoint : Specify Nth checkpoint from the last checkpoint to restore. E.g. 2 means restore VM to the second-from-last checkpoint.
+0 means most recent. If you want to remove the most recent checkpoint and there are no checkpoints available, this action will not fail.
 * Checkpoint Name       : Provide name for this checkpoint. E.g. myvm.com_20-Jan-2017
 * Advanced Options      : Specify parameters you want to include into command. E.g. -RunAsynchronously
 * Overwrite Agent       : Overwrites the default agent
@@ -346,7 +346,7 @@ VM Name: 		myvm_12345
 Checkpoint Name: 	myvm_12345_20-Feb2017
 Nth Latest Checkpoint: (it will be ignored)
 
-2. Restore checkpoint of a VM to the latest created checkpoint
+2. Restore checkpoint of a VM to the most recent checkpoint
 VM Name                      : myvm_12345
 Checkpoint Name        : (empty) 	
 Nth Latest Checkpoint: 0
