@@ -300,6 +300,12 @@ PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_DISK_DRIVE
 = General description =
 This action is used to get a virtual disk drive object(s). The virtual disk drive object(s) details would be printed in the Job report. You can also provide additional parameters to the "Advanced Options" field.
 
+If you don't specify VM name, it will get all virtual disk drive object(s). VM Host will be ignored in this case.
+
+This action supports following use cases.
+1. You can get virtual disk drive objects(s) for the specified VM.
+2. You can get all virtual disk drive objects(s). 
+
 = Failure Conditions =
 * This action will fail if multiple or no VMs found for provided VM Name.
 
@@ -311,7 +317,7 @@ Note: If VM Name and VM Host not provided, all disk drives will be fetched.
 * Username	     : Username which will be used for this connection. E.g. domain\username
 * Password	     : Password to your username.
 * VM Name	     : Specify Name of the Virtual Machine from which you want to get disk list. E.g. myvm
-* VM Host	     : Specify the host on which VM is located. E.g myhost.com
+* VM Host	     : Specify the host on which VM is located. E.g myhost.com. This input will be ignored if you don't specify the VM Name.
 * Advanced Options   : Specify parameters you want to include into command. E.g. -OnBehalfOfUser
 * Overwrite Agent    : Overwrites the default agent
 * Overwrite Login    : Overwrites the default login

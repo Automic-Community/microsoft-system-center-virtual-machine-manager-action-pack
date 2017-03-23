@@ -184,13 +184,14 @@ $vmperf | foreach-object {
    if( $perfdata.length -eq 0 ) {
       Write-Host "No Performance data available."
    } else {
-      Write-Host 'Sample Time(&UC4RB_VMM_PERIOD#)      : &UC4RB_VMM_PER_COUNTER#'
+      Write-Host "Time Sample($($_.TimeFrame))      : $($_.PerformanceCounter)"
       For ($i=$perfdata.length; $i -ge 1; $i--) {
          $temp1=$samples[$i-1].tostring('dd-MMM-yyyy HH:mm:ss tt')
          $temp2=$perfdata[$i-1]
          Write-Host "$temp1 :    $temp2"
       }
    }
+   Write-Host '========================================'
 }
 }catch{
   $errors=1

@@ -306,12 +306,14 @@ PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_PERFORMANCE
 = General description =
 This action is used to get the performance data for the specified virtual machine or all virtual machines in SCVMM.
 
-By default, SCVMM collects the VM statistics every 9 minutes.
-If you specify Period as Hour, VM performance data will be logged for every 9 minutes sample.
-If you specify Period as Day, VM performance data will be logged for every hour sample.
-If you specify Period as Month, VM performance data will be logged for every day sample.
+By default, SCVMM refreshes the VM statistics every 9 minutes.
+* If you are retrieving performance data for the specific VM, Performance data will be logged for each time sample. Performance data will be logged in the descending order of date time.
+* If you are retrieving the performance data for all VMs, Performance data will be logged  for most recent time sample.
 
-Performance data will be logged in the descending order of date time and all the available time samples will be logged.
+Time Sample frequency.
+If you specify Period as Hour, time sample frequency is 9 minutes.
+If you specify Period as Day, time sample frequency is 1 hour.
+If you specify Period as Month, time sample frequency is 1 day.
 
 =NOTE=
 Specify * in VM Name, if you want to get the performance metrics for all the VMs. In this case, Period and VM Host field will be ignored and the default Period will be Hour.
