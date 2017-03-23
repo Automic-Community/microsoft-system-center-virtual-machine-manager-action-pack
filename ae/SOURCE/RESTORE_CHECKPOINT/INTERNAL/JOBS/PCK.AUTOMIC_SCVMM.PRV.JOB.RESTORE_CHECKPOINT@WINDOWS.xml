@@ -173,7 +173,7 @@ try{
 :    ENDIF
 : ENDIF
   $checkpoint = &UC4RB_VMM_GET_CHKPT_CMD#
-
+  Write-Host "INFO: Checkpoints count : $($checkpoint.Length)"
 : IF &UC4RB_VMM_CHECKPOINT# <> ""
 :   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_CHECKPOINT#
      $checkpoint = $checkpoint | where {$_.Name -eq '&UC4RB_VMM_ESC_VALUE#'}
