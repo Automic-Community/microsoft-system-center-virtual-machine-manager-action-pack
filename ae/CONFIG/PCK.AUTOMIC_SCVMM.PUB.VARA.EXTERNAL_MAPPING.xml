@@ -38,6 +38,8 @@
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_HOST_GROUPS/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_ATTRIBUTE/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_ATTRIBUTE/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_NAMES/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_NAMES/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_PERFORMANCE/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
