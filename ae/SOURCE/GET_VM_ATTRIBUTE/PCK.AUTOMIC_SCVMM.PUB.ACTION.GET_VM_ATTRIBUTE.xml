@@ -305,7 +305,7 @@
 
 = General description =
 This action is used to get provided attribute value from VM. Attribute field use PCK.AUTOMIC_SCVMM.PRV.VARA.VM_ATTRIBUTES vara to populate values. 
-User can add new attribute by updating vara PCK.AUTOMIC_SCVMM.PRV.VARA.VM_ATTRIBUTES.
+User can add new attribute by updating vara PCK.AUTOMIC_SCVMM.PRV.VARA.VM_ATTRIBUTES. If no value is found for provided attribute, action executes successfully
 
 = Failure Conditions =
 * This action will fail if multiple or no VMs exist for inputs provided. 
@@ -315,7 +315,7 @@ User can add new attribute by updating vara PCK.AUTOMIC_SCVMM.PRV.VARA.VM_ATTRIB
 * Port		    : Specify port which will be used for connection. Default value is 8100.
 * Username	    : Username which will be used for this connection. E.g. domain\username
 * Password	    : Password to your username.
-* VM Name	    : Specify name of the virtual machine you want to get. E.g. myvm.com
+* VM Name	    : SSpecify name of the Virtual Machine you want to get attribute. E.g. myvm.com
 * VM Host	    : Specify the host from which you want to get VM. E.g. myhost.com
 * Attribute	    : Specify which attribute you want to get. E.g. ComputerName
 * Advanced Options  : Specify parameters you want to include into command. E.g. -id 3d73b337-cf03-4d56-b8ae-a7c3fc90071b
@@ -326,7 +326,7 @@ User can add new attribute by updating vara PCK.AUTOMIC_SCVMM.PRV.VARA.VM_ATTRIB
 (none)
 
 =Return Value=
-(none)
+* UC4RB_VMM_VMATTRIBUTE_VAL : This variable will hold attribute value.
 
 = Outputs =
 * Return code is 0 in case of success.
