@@ -301,18 +301,17 @@
  PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_ATTRIBUTE
 
 = General description =
-This action is used to get provided attribute value from VM. Attribute field use PCK.AUTOMIC_SCVMM.PRV.VARA.VM_ATTRIBUTES vara to populate values. 
-User can add new attribute by updating vara PCK.AUTOMIC_SCVMM.PRV.VARA.VM_ATTRIBUTES. If no value is found for provided attribute, action executes successfully
+This action is used to get provided attribute value from VM. If no value is found for provided attribute, action executes successfully.
 
 = Failure Conditions =
-* This action will fail if multiple or no VMs exist for inputs provided. 
+* This action will fail if multiple or no VM exist for inputs provided. 
 
 = Inputs =
 * Server IP or DNS  : Specify IP address or DNS name of the SCVMM server to which you want to connect. E.g. myserver.com or 192.168.112.45
 * Port		    : Specify port which will be used for connection. Default value is 8100.
 * Username	    : Username which will be used for this connection. E.g. domain\username
 * Password	    : Password to your username.
-* VM Name	    : SSpecify name of the Virtual Machine you want to get attribute. E.g. myvm.com
+* VM Name	    : SSpecify name of the Virtual Machine for which you want to get attribute. E.g. myvm.com
 * VM Host	    : Specify the host from which you want to get VM. E.g. myhost.com
 * Attribute	    : Specify which attribute you want to get. E.g. VM Host Name
 * Advanced Options  : Specify parameters you want to include into command. E.g. -id 3d73b337-cf03-4d56-b8ae-a7c3fc90071b

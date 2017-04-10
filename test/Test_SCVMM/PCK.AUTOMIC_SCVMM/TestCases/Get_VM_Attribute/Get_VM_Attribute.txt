@@ -11,32 +11,44 @@ Resource          ../../Resources/keywords.txt
 Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
-*** Test Cases ***    OK_NOK    VMName            VMHost        Attribute       AdvancedOptions
+*** Test Cases ***    OK_NOK    VMName            VMHost        Attribute                 AdvancedOptions
 Get VM Host IP with valid inputs also providing VM Host
                       [Tags]    main_scenarios
-                      OK        ${Source_VM}      ${VM_Host}    VM Host IP      ${EMPTY}
+                      OK        ${Source_VM}      ${VM_Host}    VM Host IP                ${EMPTY}
 
 Get VM HostName without providing VM Host and with providing Advanced Options
-                      OK        ${Source_VM}      ${EMPTY}      VM Host Name    ${Advance_opt}
+                      OK        ${Source_VM}      ${EMPTY}      VM Host Name              ${Advance_opt}
 
 Get VM IP without providing VM Host or Advanced Options
-                      OK        ${Source_VM}      ${EMPTY}      VM IP           ${EMPTY}
+                      OK        ${Source_VM}      ${EMPTY}      VM IP                     ${EMPTY}
+
+Get VM Host ID without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      VM Host ID                ${EMPTY}
+
+Get VM Host Group Path without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      VM Host Group Path        ${EMPTY}
+
+Get VM ID without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      VM ID                     ${EMPTY}
+
+Get Virtualization Platform without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      VirtualizationPlatform    ${EMPTY}
 
 Assertion With Non-Existing VM Name
                       [Tags]    main_scenarios
-                      NOK       Invalid           ${VM_Host}    VM IP           ${EMPTY}
+                      NOK       Invalid           ${VM_Host}    VM IP                     ${EMPTY}
 
 Assertion With Non-Existing VM Host
-                      NOK       ${Source_VM}      Invalid       VM IP           ${EMPTY}
+                      NOK       ${Source_VM}      Invalid       VM IP                     ${EMPTY}
 
 Assertion with Invalid Advanced Parameter
-                      NOK       ${Source_VM}      ${EMPTY}      VM IP           Invalid
+                      NOK       ${Source_VM}      ${EMPTY}      VM IP                     Invalid
 
 Assertion when more than one VM exists with provided VM name
-                      NOK       VM*               ${VM_Host}    VM IP           ${EMPTY}
+                      NOK       VM*               ${VM_Host}    VM IP                     ${EMPTY}
 
 Assert VM Name As a Mandatory Field
-                      NOK       ${EMPTY}          ${VM_Host}    VM IP           ${Advance_opt}
+                      NOK       ${EMPTY}          ${VM_Host}    VM IP                     ${Advance_opt}
 
 *** Keywords ***
 Startup
