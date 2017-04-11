@@ -66,7 +66,7 @@
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE">
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE"/>
-<UC4RB_VMM_VMATTRIBUTEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMATTRIBUTE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE">VM Host Name</UC4RB_VMM_VMATTRIBUTEs.00>
+<UC4RB_VMM_VMATTRIBUTEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMATTRIBUTE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE">Computer Name</UC4RB_VMM_VMATTRIBUTEs.00>
 <UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE"/>
 <UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE"/>
 </PRPTBOX>
@@ -134,7 +134,7 @@
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE">
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE"/>
-<UC4RB_VMM_VMATTRIBUTEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMATTRIBUTE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE">VM Host Name</UC4RB_VMM_VMATTRIBUTEs.00>
+<UC4RB_VMM_VMATTRIBUTEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMATTRIBUTE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE">Computer Name</UC4RB_VMM_VMATTRIBUTEs.00>
 <UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE"/>
 <UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE"/>
 </PRPTBOX>
@@ -188,7 +188,7 @@
 <PROMPTSET name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE">
 <PRPTBOX promptset="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE">
 <UC4RB_VMM_ADV_OPTIONSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_ADV_OPTIONS#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE"/>
-<UC4RB_VMM_VMATTRIBUTEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMATTRIBUTE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE">VM Host Name</UC4RB_VMM_VMATTRIBUTEs.00>
+<UC4RB_VMM_VMATTRIBUTEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMATTRIBUTE#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE">Computer Name</UC4RB_VMM_VMATTRIBUTEs.00>
 <UC4RB_VMM_VMHOSTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMHOST#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE"/>
 <UC4RB_VMM_VMNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_VMM_VMNAME#" promptsetname="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.GET_VM_ATTRIBUTE"/>
 </PRPTBOX>
@@ -301,7 +301,7 @@
  PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_ATTRIBUTE
 
 = General description =
-This action is used to get provided attribute value from VM. If no value is found for provided attribute, action executes successfully.
+This action is used to get provided attribute value from VM. If no value is found for provided attribute, action executes successfully and publishes empty value.
 
 = Failure Conditions =
 * This action will fail if multiple or no VM exist for inputs provided. 
@@ -332,7 +332,17 @@ This action is used to get provided attribute value from VM. If no value is foun
 Logs will be displayed in the AE report.
 
 = Example =
-(none)]]></DOC>
+* If you want to fetch Checkpoints point for a VM
+VM Name: 	myvm
+VM Host:	myhost.com
+Attribute:	VM Checkpoints Count
+Advanced Options: 
+
+* If you want to fetch IPV4 of a VM
+VM Name: 	myvm
+VM Host:	myhost.com
+Attribute:	IPV4
+Advanced Options: ]]></DOC>
 </DOCU_Docu>
 </JOBP>
 </uc-export>
