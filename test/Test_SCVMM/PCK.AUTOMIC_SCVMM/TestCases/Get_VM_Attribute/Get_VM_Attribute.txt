@@ -14,13 +14,13 @@ Resource          ../../Resources/actions.txt
 *** Test Cases ***    OK_NOK    VMName            VMHost        Attribute                  AdvancedOptions
 Get VM IPV4 with valid inputs also providing VM Host
                       [Tags]    main_scenarios
-                      OK        ${Source_VM}      ${VM_Host}    VM IPV4                    ${EMPTY}
+                      OK        ${Source_VM}      ${VM_Host}    VM IPV4 Address            ${EMPTY}
 
 Get Computer Name without providing VM Host and with providing Advanced Options
                       OK        ${Source_VM}      ${EMPTY}      Computer Name              ${Advance_opt}
 
 Get VM IPV6 without providing VM Host or Advanced Options
-                      OK        ${Source_VM}      ${EMPTY}      VM IPV6                    ${EMPTY}
+                      OK        ${Source_VM}      ${EMPTY}      VM IPV6 Address            ${EMPTY}
 
 Get VMHost ID without providing VM Host or Advanced Options
                       OK        ${Source_VM}      ${EMPTY}      VMHost ID                  ${EMPTY}
