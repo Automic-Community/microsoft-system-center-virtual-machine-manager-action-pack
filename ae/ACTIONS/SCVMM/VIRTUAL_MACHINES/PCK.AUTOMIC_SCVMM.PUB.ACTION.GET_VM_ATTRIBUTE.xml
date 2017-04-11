@@ -332,7 +332,7 @@ This action is used to get provided attribute value from VM. If no value is foun
 Logs will be displayed in the AE report.
 
 = Example =
-* If you want to fetch Checkpoints point for a VM
+* If you want to fetch Checkpoints count for a VM
 VM Name: 	myvm
 VM Host:	myhost.com
 Attribute:	VM Checkpoints Count
