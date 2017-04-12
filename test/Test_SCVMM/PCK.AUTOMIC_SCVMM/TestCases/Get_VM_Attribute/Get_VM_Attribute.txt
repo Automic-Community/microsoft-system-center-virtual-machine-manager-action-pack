@@ -11,44 +11,56 @@ Resource          ../../Resources/keywords.txt
 Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
-*** Test Cases ***    OK_NOK    VMName            VMHost        Attribute                 AdvancedOptions
-Get VM Host IP with valid inputs also providing VM Host
+*** Test Cases ***    OK_NOK    VMName            VMHost        Attribute                  AdvancedOptions
+Get VM IPV4 with valid inputs also providing VM Host
                       [Tags]    main_scenarios
-                      OK        ${Source_VM}      ${VM_Host}    VM Host IP                ${EMPTY}
+                      OK        ${Source_VM}      ${VM_Host}    VM IPV4 Address            ${EMPTY}
 
-Get VM HostName without providing VM Host and with providing Advanced Options
-                      OK        ${Source_VM}      ${EMPTY}      VM Host Name              ${Advance_opt}
+Get Computer Name without providing VM Host and with providing Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      Computer Name              ${Advance_opt}
 
-Get VM IP without providing VM Host or Advanced Options
-                      OK        ${Source_VM}      ${EMPTY}      VM IP                     ${EMPTY}
+Get VM IPV6 without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      VM IPV6 Address            ${EMPTY}
 
-Get VM Host ID without providing VM Host or Advanced Options
-                      OK        ${Source_VM}      ${EMPTY}      VM Host ID                ${EMPTY}
-
-Get VM Host Group Path without providing VM Host or Advanced Options
-                      OK        ${Source_VM}      ${EMPTY}      VM Host Group Path        ${EMPTY}
+Get VMHost ID without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      VMHost ID                  ${EMPTY}
 
 Get VM ID without providing VM Host or Advanced Options
-                      OK        ${Source_VM}      ${EMPTY}      VM ID                     ${EMPTY}
+                      OK        ${Source_VM}      ${EMPTY}      ID                         ${EMPTY}
+
+Get VMHost Group Path without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      VMHost Group Path          ${EMPTY}
+
+Get VMHost Name without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      VMHost Name                ${EMPTY}
+
+Get VM Location without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      VM Location                ${EMPTY}
+
+Get VM State without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      VM State                   ${EMPTY}
+
+Get VM Checkpoints Count without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      VM Checkpoints Count       ${EMPTY}
 
 Get Virtualization Platform without providing VM Host or Advanced Options
-                      OK        ${Source_VM}      ${EMPTY}      VirtualizationPlatform    ${EMPTY}
+                      OK        ${Source_VM}      ${EMPTY}      Virtualization Platform    ${EMPTY}
 
 Assertion With Non-Existing VM Name
                       [Tags]    main_scenarios
-                      NOK       Invalid           ${VM_Host}    VM IP                     ${EMPTY}
+                      NOK       Invalid           ${VM_Host}    ID                         ${EMPTY}
 
 Assertion With Non-Existing VM Host
-                      NOK       ${Source_VM}      Invalid       VM IP                     ${EMPTY}
+                      NOK       ${Source_VM}      Invalid       ID                         ${EMPTY}
 
 Assertion with Invalid Advanced Parameter
-                      NOK       ${Source_VM}      ${EMPTY}      VM IP                     Invalid
+                      NOK       ${Source_VM}      ${EMPTY}      ID                         Invalid
 
 Assertion when more than one VM exists with provided VM name
-                      NOK       VM*               ${VM_Host}    VM IP                     ${EMPTY}
+                      NOK       VM*               ${VM_Host}    ID                         ${EMPTY}
 
 Assert VM Name As a Mandatory Field
-                      NOK       ${EMPTY}          ${VM_Host}    VM IP                     ${Advance_opt}
+                      NOK       ${EMPTY}          ${VM_Host}    ID                         ${Advance_opt}
 
 *** Keywords ***
 Startup

@@ -118,7 +118,7 @@
     </text></readpanel></dialog>]]></XUIEDITOR>
 </PROMPTSETXUI>
 <PROMPTSETDATA state="1">
-<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_VMM_VMNAMEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_VMNAME#" ReadFromTable="OPSE"></UC4RB_VMM_VMNAMEs.00><UC4RB_VMM_VMHOSTs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_VMHOST#" ReadFromTable="OPSE"></UC4RB_VMM_VMHOSTs.00><UC4RB_VMM_VMATTRIBUTEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_VMATTRIBUTE#" ReadFromTable="OPSE">VM Host Name</UC4RB_VMM_VMATTRIBUTEs.00><UC4RB_VMM_ADV_OPTIONSs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_ADV_OPTIONS#" ReadFromTable="OPSE"></UC4RB_VMM_ADV_OPTIONSs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
+<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_VMM_VMNAMEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_VMNAME#" ReadFromTable="OPSE"></UC4RB_VMM_VMNAMEs.00><UC4RB_VMM_VMHOSTs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_VMHOST#" ReadFromTable="OPSE"></UC4RB_VMM_VMHOSTs.00><UC4RB_VMM_VMATTRIBUTEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_VMATTRIBUTE#" ReadFromTable="OPSE">Computer Name</UC4RB_VMM_VMATTRIBUTEs.00><UC4RB_VMM_ADV_OPTIONSs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_ADV_OPTIONS#" ReadFromTable="OPSE"></UC4RB_VMM_ADV_OPTIONSs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
 </PROMPTSETDATA>
 <DOCU_Docu state="1" type="text">
 <DOC/>
