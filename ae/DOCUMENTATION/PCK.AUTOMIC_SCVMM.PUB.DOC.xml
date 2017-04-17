@@ -31,6 +31,8 @@ System Center Virtual Machine Manager 2012
 * Module VirtualMachineManager should be present on Agent machine which comes with VMM admin console installation.
 * If you are using PowerShell version 5 or above on agent OS, then this action pack will require Automic ITPA Shared package version 1.2.2 or higher.
 * Connection details to the VMM server.
+* This action pack can also connect to SCVMM server using IPV6 address. If you want to provide IPV6 address, it must be specified as [<IPV6 Address>].
+E.g. [fe80::cd7d:edbb:7dda:7d57]  
 
 =Actions=
 Following actions are supported for SCVMM:

@@ -301,7 +301,13 @@
  PCK.AUTOMIC_SCVMM.PUB.ACTION.GET_VM_ATTRIBUTE
 
 = General description =
-This action is used to get provided attribute value from VM. If no value is found for provided attribute, action executes successfully and publishes empty value.
+This action is used to get provided attribute value from VM. If no value is set for the provided attribute, This action executes successfully and publishes empty value.
+E.g. you can get the following attributes for the specified VM.
+Computer Name : Provides the host name of Virual Machine. This is different from VMHost name.
+VM State : Provides the VM current state. E.g. Power off / Power on etc.
+VM IPV4 Address : Provides the IPV4 address of the specified VM.
+VM IPV6 Address : Provides the IPV6 address of the specified VM.
+
 
 = Failure Conditions =
 * This action will fail if multiple or no VM exist for inputs provided. 
@@ -311,7 +317,7 @@ This action is used to get provided attribute value from VM. If no value is foun
 * Port		    : Specify port which will be used for connection. Default value is 8100.
 * Username	    : Username which will be used for this connection. E.g. domain\username
 * Password	    : Password to your username.
-* VM Name	    : SSpecify name of the Virtual Machine for which you want to get attribute. E.g. myvm.com
+* VM Name	    : Specify name of the Virtual Machine for which you want to get attribute. E.g. myvm.com
 * VM Host	    : Specify the host from which you want to get VM. E.g. myhost.com
 * Attribute	    : Specify which attribute you want to get. E.g. VM Host Name
 * Advanced Options  : Specify parameters you want to include into command. E.g. -id 3d73b337-cf03-4d56-b8ae-a7c3fc90071b
@@ -341,7 +347,7 @@ Advanced Options:
 * If you want to fetch IPV4 of a VM
 VM Name: 	myvm
 VM Host:	myhost.com
-Attribute:	IPV4
+Attribute:	VM IPV4 Address
 Advanced Options: ]]></DOC>
 </DOCU_Docu>
 </JOBP>

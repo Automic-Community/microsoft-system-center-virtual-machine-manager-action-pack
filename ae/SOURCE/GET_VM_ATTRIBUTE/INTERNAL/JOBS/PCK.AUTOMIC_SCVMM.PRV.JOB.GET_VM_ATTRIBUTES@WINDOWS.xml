@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
 <JOBS_WINDOWS AttrType="WINDOWS" name="PCK.AUTOMIC_SCVMM.PRV.JOB.GET_VM_ATTRIBUTES@WINDOWS">
 <XHEADER state="1">
-<Title/>
+<Title>Get VM Attribute</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -185,7 +185,7 @@ try{
       throw "Virtual Machines Found $($vmachine.count). Expected: 1"
   }
    Write-Host "INFO: Unique Virtual Machine found."
-   $attributeval= $vmachine.&ATTRIBUTE#
+   $attributeval=$vmachine.&ATTRIBUTE#
    WRITE-HOST "UC4RB_VMM_VMATTRIBUTE_VAL::=$attributeval"
 
 }catch{
@@ -212,13 +212,10 @@ try{
 <OSCRI><![CDATA[:SET &UC4RB_VMM_VMATTRIBUTE_VAL# = ""
 :SET &STATUS# = GET_UC_OBJECT_STATUS(,,"RETCODE")
 :IF &STATUS# EQ 0
-:    SET &HND# = PREP_PROCESS_REPORT("JOBS",, "REP","UC4RB_VMM_VMATTRIBUTE_VAL*","COL=DELIMITER", 'DELIMITER=*::=*')
+:    SET &HND# = PREP_PROCESS_REPORT("JOBS",, "REP","UC4RB_VMM_VMATTRIBUTE_VAL::=*","COL=DELIMITER", 'DELIMITER=*::=*')
 :    PROCESS &HND#
-:         SET &KEY# = GET_PROCESS_LINE(&HND#,1)
-:         SET &VALUE# = GET_PROCESS_LINE(&HND#,2)
-:         IF &KEY# = "UC4RB_VMM_VMATTRIBUTE_VAL"
-:          SET &UC4RB_VMM_VMATTRIBUTE_VAL# = "&VALUE#"
-:         ENDIF
+:         SET &UC4RB_VMM_VMATTRIBUTE_VAL# = GET_PROCESS_LINE(&HND#,2)
+:         SET &UC4RB_VMM_VMATTRIBUTE_VAL# = STR_TRIM(&UC4RB_VMM_VMATTRIBUTE_VAL#)
 :    ENDPROCESS
 :    CLOSE_PROCESS &HND#
 :ENDIF
