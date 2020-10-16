@@ -1,0 +1,96 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        get_vm_attribute
+Test Template     Get VM Attribute Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    VMName            VMHost        Attribute                  AdvancedOptions
+Get VM IPV4 with valid inputs also providing VM Host
+                      [Tags]    main_scenarios
+                      OK        ${Source_VM}      ${VM_Host}    VM IPV4 Address            ${EMPTY}
+
+Get Computer Name without providing VM Host and with providing Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      Computer Name              ${Advance_opt}
+
+Get VM IPV6 without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      VM IPV6 Address            ${EMPTY}
+
+Get VMHost ID without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      VMHost ID                  ${EMPTY}
+
+Get VM ID without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      ID                         ${EMPTY}
+
+Get VMHost Group Path without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      VMHost Group Path          ${EMPTY}
+
+Get VMHost Name without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      VMHost Name                ${EMPTY}
+
+Get VM Location without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      VM Location                ${EMPTY}
+
+Get VM State without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      VM State                   ${EMPTY}
+
+Get VM Checkpoints Count without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      VM Checkpoints Count       ${EMPTY}
+
+Get Virtualization Platform without providing VM Host or Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      Virtualization Platform    ${EMPTY}
+
+Assertion With Non-Existing VM Name
+                      [Tags]    main_scenarios
+                      NOK       Invalid           ${VM_Host}    ID                         ${EMPTY}
+
+Assertion With Non-Existing VM Host
+                      NOK       ${Source_VM}      Invalid       ID                         ${EMPTY}
+
+Assertion with Invalid Advanced Parameter
+                      NOK       ${Source_VM}      ${EMPTY}      ID                         Invalid
+
+Assertion when more than one VM exists with provided VM name
+                      NOK       VM*               ${VM_Host}    ID                         ${EMPTY}
+
+Assert VM Name As a Mandatory Field
+                      NOK       ${EMPTY}          ${VM_Host}    ID                         ${Advance_opt}
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "Get VM Attribute"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Get VM Attribute Template
+    [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost}    ${Attribute}    ${AdvancedOptions}
+    [Documentation]    This action is used to get the Attribute of a Virtual Machine based on Name and VM Host on which it is hosted. If VM Host is not provided then VM would be searched in whole VMM server based on VM name
+    ...    -Precondition: To run this test suite, SCVMM credentials should be known to user.
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
+    ...    -${VMName}: This field specifies Virtual machine name for which you want to retrieve Attribute.
+    ...    -${VMHost}: This field specifies the Host Name form which you want to get VM.
+    ...    -${Attribute}: This field specifies the attribute you want to get..
+    ...    -${AdvancedOptions}: This field specifies advanced parameter for command.
+    Generate String
+    Action Create    ${_GET_VM_ATTRIBUTE_ACTION}
+    Common Inputs
+    Run Keyword If    '${VMName}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMNAME#    ${VMName}
+    Run Keyword If    '${VMHost}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMHOST#    ${VMHost}
+    Action Set    &UC4RB_VMM_VMATTRIBUTE#    ${Attribute}
+    Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Should Be Found    &UC4RB_VMM_VMATTRIBUTE_VAL#    ELSE    Action Object Variable Should Not Be Found    &UC4RB_VMM_VMATTRIBUTE_VAL#
+
+Teardown
+    Log    *******End Test "Get VM Attribute"*******

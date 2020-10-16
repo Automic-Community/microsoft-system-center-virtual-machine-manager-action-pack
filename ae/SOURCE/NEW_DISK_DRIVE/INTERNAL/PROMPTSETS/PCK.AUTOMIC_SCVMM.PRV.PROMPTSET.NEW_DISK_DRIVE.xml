@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
+<PRPT name="PCK.AUTOMIC_SCVMM.PRV.PROMPTSET.NEW_DISK_DRIVE">
+<HEADER state="1">
+<Title>Attach a newly created virtual disk drive or existing VHD to a VM</Title>
+<ArchiveKey1/>
+<ArchiveKey2/>
+<OH_SubType/>
+</HEADER>
+<PROMPTDESIGNER state="1">
+<DESIGNER/>
+</PROMPTDESIGNER>
+<PROMPTSETXUI state="1">
+<XUIEDITOR><![CDATA[<dialog height="424" icon="PRPT" id="PRPTS" left="0" top="0" width="441"><readpanel fill="b" id="PRPTBOX" nl="1" scroll="v" text="New Disk Drive"><properties><entry name="text">New Disk Drive</entry><entry name="modifiable">0</entry></properties><text alt="1" enabled="1" fill="b" focus="0" id="UC4RB_VMM_VMNAMEs.00" inputassistance="0" len="" multiline="0" multilineIcon="0" nl="1" regex="" required="0" separator=";" showaspassword="0" text="VM Name" tooltip="Specify Name of the Virtual Machine where you want to attach. E.g. myvm" upper="0"><oninputassistant><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptvalue|@value"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptinputassistance" target="_chainwindow"/></oninputassistant>
+         
+      <properties>
+        <entry listparam="C,N" name="reference" reftype="STATIC">UC_DATATYPE_STRING</entry>
+        <entry name="xmlkey"/>
+        <entry name="xmlpath"/>
+        <entry name="text">VM Name</entry>
+        <entry name="multiline">0</entry>
+        <entry name="multilineIcon">0</entry>
+        <entry name="multiselect">0</entry>
+        <entry name="separator">;</entry>
+        <entry name="len"/>
+        <entry name="quotes"/>
+        <entry name="id">UC4RB_VMM_VMNAMEs.00</entry>
+        <entry name="regex"/>
+        <entry name="inputassistance">0</entry>
+        <entry name="enabled">0</entry>
+        <entry name="required">1</entry>
+        <entry name="upper">0</entry>
+        <entry name="focus">0</entry>
+        <entry name="showaspassword">0</entry>
+        <entry name="tooltip">Specify Name of the Virtual Machine where you want to attach. E.g. myvm</entry>
+        <entry name="modifiable">1</entry>
+        <entry name="customfield"/>
+        <entry name="onchangereset"/>
+        <entry name="resetable">1</entry>
+      <entry name="initvalue"/>
+         </properties>
+    </text><text alt="1" enabled="1" fill="b" focus="0" id="UC4RB_VMM_VMHOSTs.00" inputassistance="0" len="" multiline="0" multilineIcon="0" nl="1" regex="" required="0" separator=";" showaspassword="0" text="VMHost" tooltip="Specify the host on where VM is located.E.g myHost.com" upper="0"><oninputassistant><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptvalue|@value"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptinputassistance" target="_chainwindow"/></oninputassistant>
+         
+      <properties>
+        <entry listparam="C,N" name="reference" reftype="STATIC">UC_DATATYPE_STRING</entry>
+        <entry name="xmlkey"/>
+        <entry name="xmlpath"/>
+        <entry name="text">VMHost</entry>
+        <entry name="multiline">0</entry>
+        <entry name="multilineIcon">0</entry>
+        <entry name="multiselect">0</entry>
+        <entry name="separator">;</entry>
+        <entry name="len"/>
+        <entry name="quotes"/>
+        <entry name="id">UC4RB_VMM_VMHOSTs.00</entry>
+        <entry name="regex"/>
+        <entry name="inputassistance">0</entry>
+        <entry name="enabled">0</entry>
+        <entry name="required">0</entry>
+        <entry name="upper">0</entry>
+        <entry name="focus">0</entry>
+        <entry name="showaspassword">0</entry>
+        <entry name="tooltip">Specify the host on where VM is located.E.g myHost.com</entry>
+        <entry name="modifiable">1</entry>
+        <entry name="customfield"/>
+        <entry name="onchangereset"/>
+        <entry name="resetable">1</entry>
+      <entry name="initvalue"/>
+         </properties>
+    </text><text alt="1" enabled="1" fill="b" focus="0" id="UC4RB_VMM_CONFIGs.00" inputassistance="0" len="" multiline="0" multilineIcon="0" nl="1" regex="" required="0" separator=";" showaspassword="0" text="IDE/Bus/LUN Configuration" tooltip="Specify bus type and logical unit configuration. Eg. -IDE -Bus 1 -LUN 0 or -SCSI -Bus 0 -LUN 1" upper="0"><oninputassistant><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptvalue|@value"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptinputassistance" target="_chainwindow"/></oninputassistant>
+         
+      <properties>
+        <entry listparam="C,N" name="reference" reftype="STATIC">UC_DATATYPE_STRING</entry>
+        <entry name="xmlkey"/>
+        <entry name="xmlpath"/>
+        <entry name="text">IDE/Bus/LUN Configuration</entry>
+        <entry name="multiline">0</entry>
+        <entry name="multilineIcon">0</entry>
+        <entry name="multiselect">0</entry>
+        <entry name="separator">;</entry>
+        <entry name="len"/>
+        <entry name="quotes"/>
+        <entry name="id">UC4RB_VMM_CONFIGs.00</entry>
+        <entry name="regex"/>
+        <entry name="inputassistance">0</entry>
+        <entry name="enabled">0</entry>
+        <entry name="required">1</entry>
+        <entry name="upper">0</entry>
+        <entry name="focus">0</entry>
+        <entry name="showaspassword">0</entry>
+        <entry name="tooltip">Specify bus type and logical unit configuration. Eg. -IDE -Bus 1 -LUN 0 or -SCSI -Bus 0 -LUN 1</entry>
+        <entry name="modifiable">1</entry>
+        <entry name="customfield"/>
+        <entry name="onchangereset"/>
+        <entry name="resetable">1</entry>
+      <entry name="initvalue"/>
+         </properties>
+    </text><dynradiogroup alt="1" enabled="1" fill="b" focus="" id="UC4RB_VMM_DISK_USAGEs.00" nl="1" text="Action" tooltip="Specify whether if you want to create a new Disk or use existing one." required="0">
+      <properties>
+        <entry listparam="C,N" name="reference" reftype="STATIC">PCK.AUTOMIC_SCVMM.PRV.VARA.DISK_USAGE</entry>
+        <entry name="xmlkey"/>
+        <entry name="xmlpath"/>
+        <entry name="text">Action</entry>
+        <entry name="quotes"/>
+        <entry name="id">UC4RB_VMM_DISK_USAGEs.00</entry>
+        <entry name="enabled">0</entry>
+        <entry name="focus">0</entry>
+        <entry name="tooltip">Specify whether if you want to create a new Disk or use existing one.</entry>
+        <entry name="modifiable">1</entry>
+        <entry name="customfield"/>
+      <entry name="initvalue"/>
+         </properties>
+    </dynradiogroup><text alt="1" enabled="1" fill="b" focus="0" id="UC4RB_VMM_DISK_NAMEs.00" inputassistance="0" len="" multiline="0" multilineIcon="0" nl="1" regex="" required="0" separator=";" showaspassword="0" text="New Disk Name" tooltip="Specify name for the disk you are attaching.Eg myNewDisk" upper="0"><oninputassistant><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptvalue|@value"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptinputassistance" target="_chainwindow"/></oninputassistant>
+         
+      <properties>
+        <entry listparam="C,N" name="reference" reftype="STATIC">UC_DATATYPE_STRING</entry>
+        <entry name="xmlkey"/>
+        <entry name="xmlpath"/>
+        <entry name="text">New Disk Name</entry>
+        <entry name="multiline">0</entry>
+        <entry name="multilineIcon">0</entry>
+        <entry name="multiselect">0</entry>
+        <entry name="separator">;</entry>
+        <entry name="len"/>
+        <entry name="quotes"/>
+        <entry name="id">UC4RB_VMM_DISK_NAMEs.00</entry>
+        <entry name="regex"/>
+        <entry name="inputassistance">0</entry>
+        <entry name="enabled">0</entry>
+        <entry name="required">0</entry>
+        <entry name="upper">0</entry>
+        <entry name="focus">0</entry>
+        <entry name="showaspassword">0</entry>
+        <entry name="tooltip">Specify name for the disk you are attaching.Eg myNewDisk</entry>
+        <entry name="modifiable">1</entry>
+        <entry name="customfield"/>
+        <entry name="onchangereset"/>
+        <entry name="resetable">1</entry>
+      <entry name="initvalue"/>
+         </properties>
+    </text><integer alt="1" enabled="1" fill="b" focus="0" id="UC4RB_VMM_DISK_SIZEs.00" max="" min="3" nl="1" text="Disk Size (MB)" tooltip="Specify the size of a fixed VHD file or the maximum possible size of a dynamically expanding VHD file.">
+      <properties>
+        <entry listparam="N" name="reference" reftype="STATIC">UC_DATATYPE_NUMERIC</entry>
+        <entry name="text">Disk Size (MB)</entry>
+        <entry name="min">3</entry>
+        <entry name="max"/>
+        <entry name="quotes"/>
+        <entry name="id">UC4RB_VMM_DISK_SIZEs.00</entry>
+        <entry name="enabled">0</entry>
+        <entry name="focus">0</entry>
+        <entry name="tooltip">Specify the size of a fixed VHD file or the maximum possible size of a dynamically expanding VHD file.</entry>
+        <entry name="modifiable">1</entry>
+        <entry name="customfield"/>
+      <entry name="initvalue">0</entry>
+         </properties>
+    </integer><dynradiogroup alt="1" enabled="1" fill="b" focus="" id="UC4RB_VMM_DISK_TYPEs.00" nl="1" text="Disk Type" tooltip="Specify if disk should be fixed or dynamic." required="0">
+      <properties>
+        <entry listparam="C,N" name="reference" reftype="STATIC">PCK.AUTOMIC_SCVMM.PRV.VARA.DISK_TYPE</entry>
+        <entry name="xmlkey"/>
+        <entry name="xmlpath"/>
+        <entry name="text">Disk Type</entry>
+        <entry name="quotes"/>
+        <entry name="id">UC4RB_VMM_DISK_TYPEs.00</entry>
+        <entry name="enabled">0</entry>
+        <entry name="focus">0</entry>
+        <entry name="tooltip">Specify if disk should be fixed or dynamic.</entry>
+        <entry name="modifiable">1</entry>
+        <entry name="customfield"/>
+      <entry name="initvalue"/>
+         </properties>
+    </dynradiogroup><text alt="1" enabled="1" fill="b" focus="0" id="UC4RB_VMM_VHD_LOCATIONs.00" inputassistance="0" len="" multiline="0" multilineIcon="0" nl="1" regex="" required="0" separator=";" showaspassword="0" text="VHD Location" tooltip="Specify Location of the VHD file.E.g \\vviescvmm02.sbb01.spoc.global\MSSCVMMLibrary\VHDs\Blank Disk - Small.vhd" upper="0"><oninputassistant><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptvalue|@value"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptinputassistance" target="_chainwindow"/></oninputassistant>
+         
+      <properties>
+        <entry listparam="C,N" name="reference" reftype="STATIC">UC_DATATYPE_STRING</entry>
+        <entry name="xmlkey"/>
+        <entry name="xmlpath"/>
+        <entry name="text">VHD Location</entry>
+        <entry name="multiline">0</entry>
+        <entry name="multilineIcon">0</entry>
+        <entry name="multiselect">0</entry>
+        <entry name="separator">;</entry>
+        <entry name="len"/>
+        <entry name="quotes"/>
+        <entry name="id">UC4RB_VMM_VHD_LOCATIONs.00</entry>
+        <entry name="regex"/>
+        <entry name="inputassistance">0</entry>
+        <entry name="enabled">0</entry>
+        <entry name="required">0</entry>
+        <entry name="upper">0</entry>
+        <entry name="focus">0</entry>
+        <entry name="showaspassword">0</entry>
+        <entry name="tooltip">Specify Location of the VHD file.E.g \\vviescvmm02.sbb01.spoc.global\MSSCVMMLibrary\VHDs\Blank Disk - Small.vhd</entry>
+        <entry name="modifiable">1</entry>
+        <entry name="customfield"/>
+        <entry name="onchangereset"/>
+        <entry name="resetable">1</entry>
+      <entry name="initvalue"/>
+         </properties>
+    </text><text alt="1" enabled="1" fill="b" focus="0" id="UC4RB_VMM_ADV_OPTIONSs.00" inputassistance="0" len="" multiline="0" multilineIcon="0" nl="1" regex="" required="0" separator=";" showaspassword="0" text="Advanced Options" tooltip="Specify parameters you want to include into command.E.g -RunAsynchronously" upper="0"><oninputassistant><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptvalue|@value"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptinputassistance" target="_chainwindow"/></oninputassistant>
+         
+      <properties>
+        <entry listparam="C,N" name="reference" reftype="STATIC">UC_DATATYPE_STRING</entry>
+        <entry name="xmlkey"/>
+        <entry name="xmlpath"/>
+        <entry name="text">Advanced Options</entry>
+        <entry name="multiline">0</entry>
+        <entry name="multilineIcon">0</entry>
+        <entry name="multiselect">0</entry>
+        <entry name="separator">;</entry>
+        <entry name="len"/>
+        <entry name="quotes"/>
+        <entry name="id">UC4RB_VMM_ADV_OPTIONSs.00</entry>
+        <entry name="regex"/>
+        <entry name="inputassistance">0</entry>
+        <entry name="enabled">0</entry>
+        <entry name="required">0</entry>
+        <entry name="upper">0</entry>
+        <entry name="focus">0</entry>
+        <entry name="showaspassword">0</entry>
+        <entry name="tooltip">Specify parameters you want to include into command.E.g -RunAsynchronously</entry>
+        <entry name="modifiable">1</entry>
+        <entry name="customfield"/>
+        <entry name="onchangereset"/>
+        <entry name="resetable">1</entry>
+      <entry name="initvalue"/>
+         </properties>
+    </text></readpanel></dialog>]]></XUIEDITOR>
+</PROMPTSETXUI>
+<PROMPTSETDATA state="1">
+<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_VMM_VMNAMEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_VMNAME#" ReadFromTable="OPSE"></UC4RB_VMM_VMNAMEs.00><UC4RB_VMM_VMHOSTs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_VMHOST#" ReadFromTable="OPSE"></UC4RB_VMM_VMHOSTs.00><UC4RB_VMM_CONFIGs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_CONFIG#" ReadFromTable="OPSE"></UC4RB_VMM_CONFIGs.00><UC4RB_VMM_DISK_USAGEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_DISK_USAGE#" ReadFromTable="OPSE">Create New</UC4RB_VMM_DISK_USAGEs.00><UC4RB_VMM_DISK_NAMEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_DISK_NAME#" ReadFromTable="OPSE"></UC4RB_VMM_DISK_NAMEs.00><UC4RB_VMM_DISK_SIZEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_DISK_SIZE#" ReadFromTable="OPSE">3</UC4RB_VMM_DISK_SIZEs.00><UC4RB_VMM_DISK_TYPEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_DISK_TYPE#" ReadFromTable="OPSE">Dynamic</UC4RB_VMM_DISK_TYPEs.00><UC4RB_VMM_VHD_LOCATIONs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_VHD_LOCATION#" ReadFromTable="OPSE"></UC4RB_VMM_VHD_LOCATIONs.00><UC4RB_VMM_ADV_OPTIONSs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_VMM_ADV_OPTIONS#" ReadFromTable="OPSE"></UC4RB_VMM_ADV_OPTIONSs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
+</PROMPTSETDATA>
+<DOCU_Docu state="1" type="text">
+<DOC/>
+</DOCU_Docu>
+</PRPT>
+</uc-export>

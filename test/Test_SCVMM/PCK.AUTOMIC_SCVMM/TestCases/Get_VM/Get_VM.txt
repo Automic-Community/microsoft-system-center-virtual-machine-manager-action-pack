@@ -1,0 +1,67 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        get_vm
+Default Tags
+Test Template     Get VM Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    VMName            VMHost        AdvancedOptions
+Get VM With Valid Inputs With Providing VM Host
+                      [Tags]    main_scenarios
+                      OK        ${Source_VM}      ${VM_Host}    ${EMPTY}
+
+Get VM With Valid Inputs Without Providing VM Host and with providing Advanced Options
+                      OK        ${Source_VM}      ${EMPTY}      ${Advance_opt}
+
+Assertion With Non-Existing VM Name
+                      [Tags]    main_scenarios
+                      NOK       Invalid           ${VM_Host}    ${EMPTY}
+
+Assertion With Non-Existing VM Host
+                      NOK       ${Source_VM}      Invalid       ${EMPTY}
+
+Assertion with Invalid Advanced Parameter
+                      NOK       ${Source_VM}      ${EMPTY}      Invalid
+
+Assertion when more than one VM exists with provided VM name
+                      NOK       VM*               ${VM_Host}    ${EMPTY}
+
+Assert VM Name As a Mandatory Field
+                      NOK       ${EMPTY}          ${VM_Host}    -RunAsynchronously
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "Get VM"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Get VM Template
+    [Arguments]    ${OK_NOK}    ${VMName}    ${VMHost}    ${AdvancedOptions}
+    [Documentation]    This action is used to get the details of a Virtual Machine based on Name and VM Host on which it is hosted. If VM Host is not provided then VM would be searched in whole VMM server based on VM name
+    ...    -Precondition: To run this test suite, SCVMM credentials should be known to user.
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
+    ...    -${VMName}: This field specifies Virtual machine name which you want to get.
+    ...    -${VMHost}: This field specifies the Host Name form which you want to get VM.
+    ...    -${AdvancedOptions}: This field specifies advanced parameter for get-scvirtualmachine command.
+    Generate String
+    Action Create    ${_GET_VM_ACTION}
+    Common Inputs
+    Run Keyword If    '${VMName}' == 'Invalid'    Action Set    &UC4RB_VMM_VMNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMNAME#    ${VMName}
+    Run Keyword If    '${VMHost}' == 'Invalid'    Action Set    &UC4RB_VMM_VMHOST#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_VMHOST#    ${VMHost}
+    Run Keyword If    '${AdvancedOptions}' == 'Invalid'    Action Set    &UC4RB_VMM_ADV_OPTIONS#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_VMM_ADV_OPTIONS#    ${AdvancedOptions}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+
+Teardown
+    Log    *******End Test "Get VM"*******

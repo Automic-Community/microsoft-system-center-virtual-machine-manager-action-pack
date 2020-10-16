@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
+<JOBI name="PCK.AUTOMIC_SCVMM.PUB.INCLUDE.GET_VM_CMDLET">
+<HEADER state="1">
+<Title>prepare Get-SCVirtualMachine commandlet and run</Title>
+<ArchiveKey1/>
+<ArchiveKey2/>
+<OH_SubType/>
+</HEADER>
+<SCRIPT mode="1" state="1">
+<MSCRI><![CDATA[! ------------------------------Forming Get VM command-----------------------------------------------------------------------
+
+: SET &UC4RB_VMM_GETVM_CMD# = "Get-SCVirtualMachine -VMMServer $vmmserver"
+
+! VM name and server
+: IF &UC4RB_VMM_VMNAME# <> ""
+:   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMNAME#
+:   SET &UC4RB_VMM_GETVM_CMD# = STR_CAT(&UC4RB_VMM_GETVM_CMD#, " -name '&UC4RB_VMM_ESC_VALUE#' ")
+: ENDIF
+
+! vm host
+: IF &UC4RB_VMM_VMHOST# <> ""
+:   INC PCK.AUTOMIC_SCVMM.PUB.INCLUDE.ESCAPE_ARG_VALUE &TEMP_OPTION_VALUE# = &UC4RB_VMM_VMHOST#
+:   SET &UC4RB_VMM_GETVM_CMD# = STR_CAT("Get-SCVMHost -ComputerName '&UC4RB_VMM_ESC_VALUE#' | ", &UC4RB_VMM_GETVM_CMD#)
+: ENDIF
+
+!--------------------------------Command execution---------------------------------------------------------------------------
+ WRITE-HOST "INFO:" &UC4RB_VMM_GETVM_CMD#
+ $vm = &UC4RB_VMM_GETVM_CMD#
+ if($vm.count -ne 1){
+        throw "Virtual Machines Found $($vm.count). Expected: 1"
+ }
+ WRITE-HOST "INFO: Unique Virtual Machine found."]]></MSCRI>
+</SCRIPT>
+<DOCU_Docu state="1" type="text">
+<DOC/>
+</DOCU_Docu>
+</JOBI>
+</uc-export>
